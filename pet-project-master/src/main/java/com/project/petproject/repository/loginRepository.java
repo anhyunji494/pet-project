@@ -16,4 +16,13 @@ public class loginRepository {
 
         sql.insert("user.signUp", userDTO);
     }
+
+    public void userUpdate(userDTO userDTO) {
+        sql.update("user.update", userDTO);
+        System.out.println("return DTO 체크"+userDTO);
+    }
+
+    public userDTO login(userDTO userDTO) {
+        return sql.selectOne("user.login", userDTO);
+    }
 }
