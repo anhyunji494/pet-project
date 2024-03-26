@@ -1,0 +1,113 @@
+.div {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 400;
+  white-space: nowrap;
+  justify-content: space-between;
+  padding: 38px 74px;
+}
+@media (max-width: 991px) {
+  .div {
+    flex-wrap: wrap;
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.img {
+  aspect-ratio: 2.94;
+  object-fit: auto;
+  object-position: center;
+  width: 41px;
+  align-self: stretch;
+  margin: auto 0;
+}
+.button-2 {
+  color: #000;
+  letter-spacing: 8.14px;
+  align-self: stretch;
+  margin: auto 0;
+  font: 11px/100% KoPub Batang, -apple-system, Roboto, Helvetica, sans-serif;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.div-3 {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-self: stretch;
+  position: relative;
+  min-height: 25px;
+  width: 944px;
+  align-items: start;
+  font-size: 12px;
+  color: #414042;
+  line-height: 24px;
+  justify-content: center;
+  padding: 0 60px;
+}
+@media (max-width: 991px) {
+  .div-3 {
+    max-width: 100%;
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.img-2 {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.search{
+    padding: 2px;
+    border: none;
+}
+
+.button-3 {
+  position: relative;
+  border-radius: 24px;
+  border-color: rgba(227, 227, 227, 1);
+  border-style: solid;
+  border-width: 1px;
+  background-color: #fff;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  /* margin: -7px 0 0 90px; */
+  padding: 8px 16px;
+  cursor: pointer;
+  width: 70%;
+}
+@media (max-width: 991px) {
+  .button-3 {
+    flex-wrap: wrap;
+    white-space: initial;
+  }
+}
+.div-5 {
+  font-family: Noto Sans KR, -apple-system, Roboto, Helvetica, sans-serif;
+  flex: 1;
+}
+@media (max-width: 991px) {
+  .div-5 {
+    max-width: 100%;
+  }
+}
+.img-3 {
+  aspect-ratio: 1;
+  object-fit: auto;
+  width: 24px;
+}
