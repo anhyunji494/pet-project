@@ -19,10 +19,28 @@ function Header() {
           />
         </button>
         <button className="logo">petwave</button>
+
+        <button className="apps">apps</button>
+
+        <button className="alarm">alarm</button>
+
+        <button className="heart">heart</button>
+
+        <button className="talk">talk</button>
+
+        <button className="beMyFriend">beMyFriend</button>
+        
+        <button className="share">share</button>
+
+        <button className="petPaw">petPaw</button>
+
           <div className="search-div" onClick={handleSearch}>
-            <fieldset>
+            
+            <fieldset className="fieldset">
             <input type="text" className="search-input" placeholder="search" />
-            <i className="fi fi-rr-search"></i>
+            <i class="fi fi-rr-search"></i>
+             
+
             </fieldset>
             
             
