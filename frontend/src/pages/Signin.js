@@ -1,8 +1,8 @@
 import * as React from "react";
-import "./Signin.css"
-import { Link } from 'react-router-dom';
+import "./Signin.css";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const PetWaveIcon = () => (
   <img
@@ -13,57 +13,60 @@ const PetWaveIcon = () => (
   />
 );
 
-
-function Signin() {{}
+function Signin() {
+  {
+  }
 
   const SigninButton = () => (
-    <button type="submit" className="signin-button" formAction="/signUp" formMethod="POST">
+    <button
+      type="submit"
+      className="signin-button"
+      formAction="/signUp"
+      formMethod="POST"
+    >
       <Link to="/signUp" className="signin-button">
         회원가입
       </Link>
     </button>
   );
 
+  const [id, setId] = useState("");
+  const [nick, setNick] = useState("");
 
-
-  const [id, setId] = useState("")
-  const [nick, setNick] = useState("")
-
-
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [password1, setPassword1] = useState("");
+  const [password2, setPassword2] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(true);
-
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log('현재 데이터', id, nick, password1)
+    console.log("현재 데이터", id, nick, password1);
 
-    
     //axios.post('/signUp',{text : 'hello'})
     //.then(res => {console.log('전송 성공')})
 
-    // axios를 이용해서 해당 데이터를 백앤드로 넘겨주면 됨 
-    axios.post('/signUp', {
-      user_id: id,
-      user_nick: nick,
-      user_pw: password1})
-    .catch(function(error){
-      console.log('실패');
-      console.log(error);
-    })
-      
-    
-  
-  }
+    // axios를 이용해서 해당 데이터를 백앤드로 넘겨주면 됨
+    axios
+      .post("/signUp", {
+        user_id: id,
+        user_nick: nick,
+        user_pw: password1,
+      })
 
+      .then(function (response) {
+        console.log(response);
+      })
+
+      .catch(function (error) {
+        console.log("실패");
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     setPasswordMatch(password1 === password2);
   }, [password1, password2]);
 
   const isSignUpDisabled = !passwordMatch; // 회원가입 버튼을 비활성화할지 여부를 결정합니다.
-
 
   return (
     <>
@@ -89,7 +92,9 @@ function Signin() {{}
                   className="input-field"
                   placeholder="이메일을 입력하세요"
                   aria-label="Enter your email"
-                  onChange={(e) => { setId(e.target.value) }}
+                  onChange={(e) => {
+                    setId(e.target.value);
+                  }}
                 />
                 <br />
                 <br />
@@ -104,7 +109,9 @@ function Signin() {{}
                   className="input-field"
                   placeholder="닉네임을 입력해주세요"
                   aria-label="Enter your nickname"
-                  onChange={(e) => { setNick(e.target.value) }}
+                  onChange={(e) => {
+                    setNick(e.target.value);
+                  }}
                 />
                 <br />
                 <br />
@@ -117,7 +124,9 @@ function Signin() {{}
                   type="password"
                   name="user_pw"
                   id="password1"
-                  onChange={(e) => { setPassword1(e.target.value) }}
+                  onChange={(e) => {
+                    setPassword1(e.target.value);
+                  }}
                   className="input-field"
                   placeholder="비밀번호를 입력하세요"
                   aria-label="Enter your password"
@@ -135,25 +144,34 @@ function Signin() {{}
                   id="password2"
                   className="input-field"
                   placeholder="비밀번호를 입력해주세요"
-                  onChange={(e) => { setPassword2(e.target.value) }}
+                  onChange={(e) => {
+                    setPassword2(e.target.value);
+                  }}
                   aria-label="Enter your password"
                 />
                 {!passwordMatch && (
-                  <p className="password-content" style={{ color: 'red' }}>
+                  <p className="password-content" style={{ color: "red" }}>
                     비밀번호가 일치하지 않습니다
                   </p>
                 )}
                 {/* 회원가입 버튼을 비활성화합니다. */}
                 <div className="form-actions">
-                  <button type="submit" className={`signin-button ${isSignUpDisabled ? 'disabled' : ''}`} disabled={isSignUpDisabled}>
+                  <button
+                    type="submit"
+                    className={`signin-button ${
+                      isSignUpDisabled ? "disabled" : ""
+                    }`}
+                    disabled={isSignUpDisabled}
+                  >
                     회원가입
                   </button>
                 </div>
-
               </form>
 
               <div className="social-signin">
-                <div className="social-signin-text">이렇게도 로그인 할 수 있어요</div>
+                <div className="social-signin-text">
+                  이렇게도 로그인 할 수 있어요
+                </div>
                 <div className="google-signin">Google</div>
               </div>
             </div>
@@ -172,4 +190,4 @@ function Signin() {{}
   );
 }
 
-export default Signin
+export default Signin;

@@ -7,8 +7,10 @@ import Main from "./pages/Main";
 import {Route, Routes} from "react-router";
 import ProfilePage from "./pages/ProfilePage";
 import Header from "./components/Header";
+import ProfileUpdate from "./components/ProfileUpdate";
 import Post from "./pages/Post";
 import UserUpdate from "./pages/UserUpdate";
+
 
 function App() {
     return (
@@ -27,5 +29,6 @@ function App() {
     );
 
 }
+
 
 export default App;

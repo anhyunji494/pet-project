@@ -33,7 +33,7 @@
   height: 20vw;
   flex-direction: column;
   background: whitesmoke;
-  padding: 50px;
+  padding: 100px;
   justify-content: center;
   align-items: center;
   margin: 25px;
@@ -66,6 +66,8 @@
   width: 250px;
   height: 250px;
   border-radius: 50%;
+  margin-top: 50px;
+  
 }
 
 .name-div{
@@ -77,6 +79,7 @@
 
 .tags{
     margin-top: 20px;
+    padding-bottom: 50px;
 }
 
 
@@ -89,7 +92,7 @@
   height: 20vw;
   flex-direction: column;
   background: whitesmoke;
-  padding: 50px;
+  padding: 100px;
   justify-content: first baseline;
   margin: 25px;
 }
@@ -112,4 +115,14 @@
 
 .birthday{
   font-weight: 300;
+}
+
+.btn{
+  display: flex;
+  vertical-align: top;
+}
+
+.update-btn{
+  display: flex;
+  
 }

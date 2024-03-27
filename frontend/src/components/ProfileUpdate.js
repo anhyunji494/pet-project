@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./Profile.css";
+import "./Profile.css";
 import { Link } from "react-router-dom";
 
 const Birthday = () => {
@@ -10,18 +10,14 @@ const tags = () => {
   "tags";
 };
 
-const updateBtn = () => {
-  console.log('updateBtn ck')
-}
-
-function Profile() {
+function ProfileUpdate() {
   return (
     <div id="body">
       <div className="profile-box">
         <div className="profile-div">
           <div className="profile-photo"></div>
           <div className="name-div">
-            <span className="name">반려동물 이름</span>
+            <input className="name">반려동물 이름</input>
           </div>
           <div className="birthday">
             <i className="fi fi-br-cake-birthday"></i>
@@ -31,28 +27,23 @@ function Profile() {
         <div className="tags">태그</div>
       </div>
       <div className="content-box">
-        <div className="intro">한줄소개</div>
+        <input className="intro">한줄소개</input>
         <div className="etc-div">
           <div className="likes">
             <i className="fi fi-sr-thumbs-up"></i>&nbsp;&nbsp;
-            <span className="profile-text">좋아하는 것</span>
+            <input className="profile-text">좋아하는 것</input>
           </div>
           <div className="dislikes">
             <i className="fi fi-sr-thumbs-up"></i>&nbsp;&nbsp;
-            <span className="profile-text">싫어하는 것</span>
+            <input className="profile-text">싫어하는 것</input>
           </div>
           <div className="location">
             <i className="fi fi-sr-map-marker-smile"></i>&nbsp;&nbsp;
-            <span className="profile-text">위치정보</span>
+            <input className="profile-text">위치정보</input>
           </div>
         </div>
-      </div>
-      <div className="btn">
-        <button className="update-btn" onClick={updateBtn}>
-          수정
-        </button>
       </div>
     </div>
   );
 }
-export default Profile;
+export default ProfileUpdate;

@@ -1,7 +1,6 @@
 package com.project.petproject.controller;
 
 import com.project.petproject.dto.Post;
-import com.project.petproject.dto.Post_file;
 import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.postService;
 import jakarta.servlet.http.HttpSession;
@@ -9,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
-
 @RestController
 @RequestMapping("/posts")
 public class PostController {
