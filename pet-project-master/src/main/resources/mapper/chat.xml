@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.petproject.mapper.ChatMapper">
+
+    <!-- 채팅 메시지 저장 -->
+    <insert id="insertChat" parameterType="com.project.petproject.dto.dm_chat">
+        INSERT INTO dm_chat (room_idx, chatter, dm_content, emoticon, chatter_at)
+        VALUES (#{room_idx}, #{chatter}, #{dm_content}, #{emoticon}, #{chatter_at})
+    </insert>
+
+    <!-- 채팅방 내 모든 메시지 조회 -->
+    <select id="selectChatByRoomId" resultType="com.project.petproject.dto.dm_chat" parameterType="int">
+        SELECT * FROM dm_chat WHERE room_idx = #{room_idx}
+    </select>
+
+    <!-- 채팅방 메시지 삭제 -->
+    <delete id="deleteChat" parameterType="int">
+        DELETE FROM dm_chat WHERE dm_idx = #{dm_idx}
+    </delete>
+
+</mapper>
