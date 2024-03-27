@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class Post_file {
     private int post_idx;
-    private int file_idx;
+    private int fileIdx;
     private String file_rname;
     private String storedName;
     private int file_size;

@@ -23,7 +23,6 @@ function App() {
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/Post" element={<Post/>}/>
                 <Route path="/UserUpdate" element={<UserUpdate/>}/>
-                <Route path="/chat" element={<ChatApp />} />
             </Routes>
         </div>
     );
