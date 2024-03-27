@@ -6,6 +6,7 @@ import Main from "./pages/Main";
 import { Route, Routes } from "react-router";
 import ProfilePage from "./pages/ProfilePage";
 import Header from "./components/Header";
+import ProfileUpdate from "./components/ProfileUpdate";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/update" element={<ProfileUpdate />} />
       </Routes>
     </div>
   );
