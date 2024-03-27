@@ -6,7 +6,7 @@ function main(){
     return (
     <div>
     <Header />
-    <div class="body"></div>
+    <div className="body"></div>
     </div>)
 }
 

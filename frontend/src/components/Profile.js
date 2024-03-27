@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./ProfilePage.css";
+import "./Profile.css";
 import { Link } from "react-router-dom";
 
 const Birthday = () => {
@@ -10,7 +10,7 @@ const tags = () => {
   "tags";
 };
 
-function ProfilePage() {
+function Profile() {
   return (
     <div id="body">
       <div className="profile-box">
@@ -46,4 +46,4 @@ function ProfilePage() {
     </div>
   );
 }
-export default ProfilePage;
+export default Profile;
