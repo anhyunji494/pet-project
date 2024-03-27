@@ -2,10 +2,13 @@ package com.project.petproject.controller;
 
 import com.project.petproject.dto.Post;
 import com.project.petproject.dto.Post_file;
+import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.postService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -16,14 +19,24 @@ public class PostController {
     private postService postService;
 
     // 게시물 추가
+    // @PostMapping("/new")
+    // public String newPost(Post post) {
+    //     try {
+    //         postService.addPost(post, postFiles);
+    //         return "게시물이 성공적으로 추가되었습니다."; // 게시글로 이동하게끔 수정해야할듯
+    //     } catch (Exception e) {
+    //         return "게시물 추가 중 오류 발생: " + e.getMessage();
+    //     }
+    // }
+
     @PostMapping("/new")
-    public String newPost(@RequestBody Post post, @RequestBody List<Post_file> postFiles) {
-        try {
-            postService.addPost(post, postFiles);
-            return "게시물이 성공적으로 추가되었습니다."; // 게시글로 이동하게끔 수정해야할듯
-        } catch (Exception e) {
-            return "게시물 추가 중 오류 발생: " + e.getMessage();
-        }
+    public String save(Post post, HttpSession session) throws IOException {
+        userDTO info = (userDTO) session.getAttribute("info");
+        session.getAttribute("info" + info);
+        post.setUser_id(info.getUser_id());
+        System.out.println("Controller save 확인");
+        postService.save(post);
+        return "/";
     }
 
     // 게시물 삭제
