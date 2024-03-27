@@ -22,7 +22,7 @@ function Header() {
           <div className="search-div" onClick={handleSearch}>
             <fieldset>
             <input type="text" className="search-input" placeholder="search" />
-            <i class="fi fi-rr-search"></i>
+            <i className="fi fi-rr-search"></i>
             </fieldset>
             
             
