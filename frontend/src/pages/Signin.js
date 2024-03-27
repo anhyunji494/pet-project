@@ -45,8 +45,9 @@ function Signin() {{}
 
     // axios를 이용해서 해당 데이터를 백앤드로 넘겨주면 됨 
     axios.post('/signUp', {
-      user : {id : id, nick : nick, password : password1},
-    })
+      user_id: id,
+      user_nick: nick,
+      user_pw: password1})
     .catch(function(error){
       console.log('실패');
       console.log(error);
