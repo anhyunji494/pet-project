@@ -12,7 +12,7 @@ const PetWaveIcon = () => (
 );
 
 const LoginButton = () => (
-  <button type="submit" className="signin-button"><Link to="/" className="signin-button">
+  <button type="submit" className="signin-button"><Link to="/login" className="signin-button">
     로그인
   </Link></button>
 );
@@ -38,37 +38,41 @@ function Login() {
               <p className="tagline">
                 펫웨이브와 함께하며 <br />더 많은 반려동물 이야기를 발견하세요!
               </p>
-              <form>
+              <form action="/login" method="POST">
                 <label htmlFor="userId" className="input-label">
                   아이디
                 </label>
-                <br />
+                <br/>
                 <input
-                  type="email"
-                  id="userId"
-                  className="input-field"
-                  placeholder="이메일을 입력하세요"
-                  aria-label="Enter your email"
+                    type="email"
+                    name="user_id"
+                    className="input-field"
+                    placeholder="이메일을 입력하세요"
+                    aria-label="Enter your email"
                 />
                 <br/>
                 <br/>
                 <label htmlFor="password" className="input-label">
                   비밀번호
                 </label>
-                <br />
+                <br/>
                 <input
-                  type="password"
-                  id="userPw"
-                  className="input-field"
-                  placeholder="비밀번호를 입력하세요"
-                  aria-label="Enter your email"
+                    type="password"
+                    name="user_pw"
+                    className="input-field"
+                    placeholder="비밀번호를 입력하세요"
+                    aria-label="Enter your email"
                 />
+                <div className="forgot-password">비밀번호를 잊으셨나요?</div>
+                <div className="form-actions">
+                  {/*<LoginButton/>*/}
+                  <button type="submit" className="signin-button">
+                    로그인
+                  </button>
+                  <SignUpButton/>
+                </div>
               </form>
-              <div className="forgot-password">비밀번호를 잊으셨나요?</div>
-              <div className="form-actions">
-                <LoginButton />
-                <SignUpButton />
-              </div>
+
               <div className="social-login">
                 <div className="social-login-text">이렇게도 로그인 할 수 있어요</div>
                 <div className="google-login">Google</div>

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.sql.Timestamp;
 
 @Component
 @Data
@@ -13,6 +14,6 @@ public class Post_likes {
     private int likes_idx;
     private int Post_idx;
     private String user_id;
-    private String created_at;
+    private Timestamp created_at;
     
 }

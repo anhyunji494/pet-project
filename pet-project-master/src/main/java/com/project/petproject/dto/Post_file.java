@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+import java.sql.Timestamp;
 
 @Component
 @Data
@@ -15,5 +16,5 @@ public class Post_file {
     private String file_rename;
     private int file_size;
     private String file_ext;
-    private String uploaded_at;
+    private Timestamp uploaded_at;
 }

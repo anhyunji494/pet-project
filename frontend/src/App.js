@@ -4,6 +4,7 @@ import Signin from "./pages/Signin"
 import Signin2 from "./pages/Signin2"
 import Main from "./pages/Main";
 import { Route, Routes } from "react-router";
+import ProfilePage from "./components/ProfilePage"
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Route path="/" element={<Main />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signin" element={<Signin />} />
-      <Route path="/signin2" element={<Signin2 />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      
     </Routes>
 );
 }

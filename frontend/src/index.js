@@ -10,6 +10,9 @@ root.render(
   // <React.StrictMode>
   // React.StrinctMode: 혹시 모를 상황을 위해 코드  2번씩 실행하는 모드 
   <BrowserRouter>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.2.0/uicons-regular-rounded/css/uicons-regular-rounded.css'></link>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.2.0/uicons-solid-rounded/css/uicons-solid-rounded.css'></link>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.2.0/uicons-bold-rounded/css/uicons-bold-rounded.css'></link>
   {/* BrouserRouter: React에서 Router을 사용하기 위해(페이징) */}
     <App />
   </BrowserRouter>

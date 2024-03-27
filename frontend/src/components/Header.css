@@ -1,3 +1,4 @@
+/* css 적용 */
 .div {
   background-color: #fff;
   display: flex;
@@ -5,7 +6,7 @@
   gap: 20px;
   font-weight: 400;
   white-space: nowrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 38px 74px;
 }
 @media (max-width: 991px) {
@@ -29,7 +30,7 @@
   align-self: stretch;
   margin: auto 0;
 }
-.button-2 {
+.logo {
   color: #000;
   letter-spacing: 8.14px;
   align-self: stretch;
@@ -40,9 +41,9 @@
   padding: 0;
   cursor: pointer;
 }
-.div-3 {
+.search-div {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   overflow: hidden;
   align-self: stretch;
   position: relative;
@@ -56,7 +57,7 @@
   padding: 0 60px;
 }
 @media (max-width: 991px) {
-  .div-3 {
+  .search-div {
     max-width: 100%;
     white-space: initial;
     padding: 0 20px;
@@ -71,9 +72,32 @@
   object-position: center;
 }
 
-.search{
-    padding: 2px;
-    border: none;
+.search-input {
+  font-size: 16px;
+  width: 90%;
+  padding-left: 10%;
+  padding: 20px;
+  border: none;
+  border-color: rgba(227, 227, 227, 1);
+  border-style: solid;
+  border-width: 1px;
+  background-color: #fff;
+  border-radius: 24px;
+  outline: none;
+}
+
+.fi fi-rr-search{
+  font-size: 16px;
+  width: 90%;
+  padding-left: 10%;
+  padding: 20px;
+  border: none;
+  border-color: rgba(227, 227, 227, 1);
+  border-style: solid;
+  border-width: 1px;
+  background-color: #fff;
+  border-radius: 24px;
+  outline: none;
 }
 
 .button-3 {
@@ -84,12 +108,13 @@
   border-width: 1px;
   background-color: #fff;
   z-index: 10;
-  display: flex;
+  /* display: flex; */
   gap: 8px;
   /* margin: -7px 0 0 90px; */
   padding: 8px 16px;
   cursor: pointer;
   width: 70%;
+  align-items: center;
 }
 @media (max-width: 991px) {
   .button-3 {
@@ -105,9 +130,4 @@
   .div-5 {
     max-width: 100%;
   }
-}
-.img-3 {
-  aspect-ratio: 1;
-  object-fit: auto;
-  width: 24px;
 }
