@@ -24,7 +24,7 @@ public class controller {
     }
 
     @PostMapping("/signUp")
-    public String signUp(userDTO userDTO) {
+    public String signUp(@RequestBody userDTO userDTO) {
         System.out.println("userDTO" + userDTO);
         loginService.signUp(userDTO);
         return "redirect:/";

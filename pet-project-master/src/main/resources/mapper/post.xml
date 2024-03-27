@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="user">
+<mapper namespace="post">
 
     <!-- 게시물 추가 -->
-    <insert id="insertPost" parameterType="com.project.petproject.dto.Post">
-        INSERT INTO post (Post_content, posted_at, post_views, post_likes, user_id)
-        VALUES (#{Post_content}, #{posted_at}, #{post_views}, #{post_likes}, #{user_id})
+    <insert id="insertPost" parameterType="com.project.petproject.dto.Post" useGeneratedKeys="true" keyProperty="post_idx">
+        INSERT INTO posts (Post_content, posted_at, post_views, post_likes, user_id)
+        VALUES (#{Post_content}, now(), #{post_views}, #{post_likes}, #{user_id})
     </insert>
 
-        <!-- 게시물 파일 추가 -->
-    <insert id="insertPostFile" parameterType="com.project.petproject.dto.Post_file">
-        INSERT INTO post_file (post_idx, file_idx, file_rename, file_size, file_ext, uploaded_at)
-        VALUES (#{post_idx}, #{file_idx}, #{file_rename}, #{file_size}, #{file_ext}, #{uploaded_at})
+    <insert id="saveFile" parameterType="com.project.petproject.dto.Post_file" useGeneratedKeys="true" keyProperty="file_idx">
+        insert into post_file(file_idx, post_idx, file_rname, uploaded_at, storedName)
+        VALUES (#{file_idx}, #{post_idx}, #{file_rname}, now(), #{storedName})
     </insert>
+
+<!--    <select id="selectPost" resultType="com.project.petproject.dto.Post" parameterType="com.project.petproject.dto.Post">-->
+<!--        select * from posts where postsuser_id = #{user_id}-->
+<!--    </select>-->
+
+
+<!--        &lt;!&ndash; 게시물 파일 추가 &ndash;&gt;-->
+<!--    <insert id="insertPostFile" parameterType="com.project.petproject.dto.Post_file">-->
+<!--        INSERT INTO post_file (post_idx, file_idx, file_rname, file_size, file_ext, uploaded_at)-->
+<!--        VALUES (#{post_idx}, #{file_idx}, #{file_rname}, #{file_size}, #{file_ext}, #{uploaded_at})-->
+<!--    </insert>-->
 
     <!-- 게시물 삭제 -->
     <delete id="deletePost" parameterType="int">
