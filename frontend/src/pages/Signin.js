@@ -14,21 +14,9 @@ const PetWaveIcon = () => (
 );
 
 function Signin() {
-  {
-  }
 
-  const SigninButton = () => (
-    <button
-      type="submit"
-      className="signin-button"
-      formAction="/signUp"
-      formMethod="POST"
-    >
-      <Link to="/signUp" className="signin-button">
-        회원가입
-      </Link>
-    </button>
-  );
+
+  
 
   const [id, setId] = useState("");
   const [nick, setNick] = useState("");
@@ -54,6 +42,7 @@ function Signin() {
 
       .then(function (response) {
         console.log(response);
+
       })
 
       .catch(function (error) {
@@ -62,11 +51,30 @@ function Signin() {
       });
   };
 
+
   useEffect(() => {
     setPasswordMatch(password1 === password2);
   }, [password1, password2]);
 
   const isSignUpDisabled = !passwordMatch; // 회원가입 버튼을 비활성화할지 여부를 결정합니다.
+
+  const SigninButton = () => (
+    <button
+      type="submit"
+      className={`signin-button ${
+        isSignUpDisabled ? "disabled" : ""
+      }`}
+      formAction="/signUp"
+      formMethod="POST"
+      disabled={isSignUpDisabled}
+    >
+      
+      <Link to="/profile" className="signin-button">
+        회원가입
+      </Link>
+    </button>
+  );
+
 
   return (
     <>
@@ -156,15 +164,9 @@ function Signin() {
                 )}
                 {/* 회원가입 버튼을 비활성화합니다. */}
                 <div className="form-actions">
-                  <button
-                    type="submit"
-                    className={`signin-button ${
-                      isSignUpDisabled ? "disabled" : ""
-                    }`}
-                    disabled={isSignUpDisabled}
-                  >
-                    회원가입
-                  </button>
+                  
+                    <SigninButton />
+                  
                 </div>
               </form>
 

@@ -14,6 +14,12 @@ const updateBtn = () => {
   console.log('updateBtn ck')
 }
 
+const followBtn = () => {
+  console.log('followBtn ck')
+  // 누른 사람 아이디 가져오기 /넘기기
+  // 눌린 사람 아이디 가져오기 /넘기기
+}
+
 function Profile() {
   return (
     <div id="body">
@@ -50,6 +56,9 @@ function Profile() {
       <div className="btn">
         <button className="update-btn" onClick={updateBtn}>
           수정
+        </button>
+        <button className="follow-btn" onClick={followBtn}>
+          팔로우
         </button>
       </div>
     </div>
