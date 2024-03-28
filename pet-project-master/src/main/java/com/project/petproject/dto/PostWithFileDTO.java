@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PostWithFileDTO {
     private int post_idx;
+    private String user_id;
     private String content;
     private List<String> file_rnames; // 파일 이름들을 담는 리스트
 }

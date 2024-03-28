@@ -24,7 +24,6 @@ public class PostController {
     @PostMapping("/new")
     public String save(Post post, HttpSession session) throws IOException {
         userDTO info = (userDTO) session.getAttribute("info");
-        session.getAttribute("info" + info);
         post.setUser_id(info.getUser_id());
         System.out.println("Controller save 확인");
         postService.save(post);
@@ -34,8 +33,7 @@ public class PostController {
     @GetMapping("/PostsList")
         public ResponseEntity<List<PostWithFileDTO>> list() {
             List<PostWithFileDTO> postsWithFiles = postService.list(); // 게시글 및 파일 목록 조회
-            System.out.println();
-            System.out.println(postsWithFiles);
+//            System.out.println(postsWithFiles);
             return ResponseEntity.ok(postsWithFiles); // 게시글 및 파일 목록을 응답에 담아 반환
         }
 

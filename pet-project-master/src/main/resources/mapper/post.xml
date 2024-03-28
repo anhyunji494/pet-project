@@ -16,18 +16,6 @@
         VALUES (#{post_idx}, #{file_rname}, now(), #{storedName})
     </insert>
 
-
-    <!--    <select id="selectPost" resultType="com.project.petproject.dto.Post" parameterType="com.project.petproject.dto.Post">-->
-    <!--        select * from posts where postsuser_id = #{user_id}-->
-    <!--    </select>-->
-
-
-    <!--        &lt;!&ndash; 게시물 파일 추가 &ndash;&gt;-->
-    <!--    <insert id="insertPostFile" parameterType="com.project.petproject.dto.Post_file">-->
-    <!--        INSERT INTO post_file (post_idx, file_idx, file_rname, file_size, file_ext, uploaded_at)-->
-    <!--        VALUES (#{post_idx}, #{file_idx}, #{file_rname}, #{file_size}, #{file_ext}, #{uploaded_at})-->
-    <!--    </insert>-->
-
     <!-- 게시물 삭제 -->
     <delete id="deletePost" parameterType="int">
         DELETE FROM posts WHERE post_idx = #{post_idx}
@@ -38,20 +26,8 @@
         SELECT * FROM posts WHERE Post_content LIKE '%' || #{keyword} || '%'
     </select>
 
-    <!-- 전체 게시물 불러오기
-    <select id="mainPost" resultType="com.project.petproject.dto.Post">
-        SELECT * FROM posts
-        WHERE Post_content LIKE '%' || #{keyword} || '%'
-    </select> -->
-
-    <!--전체 게시물 불러오기-->
-<!--    <select id="mainPost" resultMap="postWithFiles">-->
-<!--        SELECT p.post_idx as post_id, p.post_content as content, pf.file_rname as file_rname-->
-<!--        FROM posts p-->
-<!--                 INNER JOIN post_file pf ON p.post_idx = pf.post_idx-->
-<!--    </select>-->
     <select id="mainPost" resultMap="postWithFiles">
-        SELECT pf.post_idx as post_idx, p.post_content as content, pf.file_rname as file_rname
+        SELECT p.user_id, pf.post_idx as post_idx, p.post_content as content, pf.file_rname as file_rname
         FROM post_file pf
         INNER JOIN posts p ON pf.post_idx = p.post_idx
     </select>
@@ -60,6 +36,7 @@
     <resultMap id="postWithFiles" type="PostWithFileDTO">
         <id property="post_idx" column="post_idx"/>
         <result property="content" column="content"/>
+        <result property="user_id" column="user_id"/>
         <collection property="file_rnames" ofType="String">
             <result column="file_rname"/>
         </collection>
