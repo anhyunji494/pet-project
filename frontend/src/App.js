@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
+import {Route, Routes} from "react-router";
 import Login from "./pages/Login/Login.js"
 import Signin from "./pages/Signin/Signin.js"
 import Main from "./pages/Main/Main.js";
-import {Route, Routes} from "react-router";
-import ProfilePage from "./pages/ProfilePage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import Header from "./components/Header/Header.js";
-import ProfileUpdate from "./components/ProfileUpdate/";
+import ProfileUpdate from "./pages/Profile/ProfileUpdate.js";
 import Post from "./pages/Post/Post.js";
-import UserUpdate from "./pages/UserUpdate";
+import UserUpdate from "./pages/UserUpdate/UserUpdate.js";
 import Chat from "./pages/Chat/chat.js";
 import Test from "./pages/Test.js";
 
