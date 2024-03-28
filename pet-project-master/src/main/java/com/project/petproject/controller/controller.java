@@ -5,6 +5,8 @@ import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.loginService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,15 +34,13 @@ public class controller {
 
     @PostMapping("/login")
     // 매개변수에 필요한 객체 적으면됨
-    public String login(userDTO userDTO, HttpSession session) {
+    public ResponseEntity<String> login(userDTO userDTO, HttpSession session) {
         userDTO info = loginService.login(userDTO);
-        if(info != null) {
+        if (info != null) {
             session.setAttribute("info", info);
-            System.out.println("\n 로그인 info: " + info);
-            return "redirect:http://localhost:3000/";
-
+            return ResponseEntity.ok().body("로그인 성공"); // 로그인 성공 시 200 응답
         } else {
-            return "/login";
+            return ResponseEntity.badRequest().body("로그인 실패"); // 로그인 실패 시 400 응답
         }
 
     }

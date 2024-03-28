@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from "react";
-import Login from "./pages/Login";
-import Signin from "./pages/Signin"
-import Main from "./pages/Main";
+import Login from "./pages/Login/Login.js"
+import Signin from "./pages/Signin/Signin.js"
+import Main from "./pages/Main/Main.js";
 import {Route, Routes} from "react-router";
 import ProfilePage from "./pages/ProfilePage";
-import Header from "./components/Header";
-import ProfileUpdate from "./components/ProfileUpdate";
-import Post from "./pages/Post";
+import Header from "./components/Header/Header.js";
+import ProfileUpdate from "./components/ProfileUpdate/";
+import Post from "./pages/Post/Post.js";
 import UserUpdate from "./pages/UserUpdate";
-import Chat from "./pages/chat";
+import Chat from "./pages/Chat/chat.js";
+import Test from "./pages/Test.js";
+
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
         <Route path="/post" element={<Post/>}/>
         <Route path="/userUpdate" element={<UserUpdate/>}/>
         <Route path="/chat" element={<Chat/>}/>
+        <Route path="/test" element={<Test />} />
       </Routes>
     </div>
   );

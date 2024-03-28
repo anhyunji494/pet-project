@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Header.css";
-import search from "../icons/searchicon.png"
+import search from "../icons/searchicon.png";
 
 function Header() {
   const handleSearch = () => {
@@ -20,31 +20,26 @@ function Header() {
         </button>
         <button className="logo">petwave</button>
 
-        <button className="apps">apps</button>
+        <i class="fi fi-br-home"></i>
 
         <button className="alarm">alarm</button>
 
-        <button className="heart">heart</button>
-
-        <button className="talk">talk</button>
-
-        <button className="beMyFriend">beMyFriend</button>
-        
-        <button className="share">share</button>
-
-        <button className="petPaw">petPaw</button>
-
-          <div className="search-div" onClick={handleSearch}>
-            
-            <fieldset className="fieldset">
+        <div className="search-div" onClick={handleSearch}>
+          <fieldset className="search-fs">
             <input type="text" className="search-input" placeholder="search" />
             <i class="fi fi-rr-search"></i>
-             
-
-            </fieldset>
-            
-            
+          </fieldset>
         </div>
+
+        <i class="fi fi-br-plus"></i>
+
+        <i class="fi fi-br-comments"></i>
+
+        <button className="beMyFriend">beMyFriend</button>
+
+        <button className="share">share</button>
+
+        <i class="fi fi-br-paw"></i>
       </div>
     </>
   );

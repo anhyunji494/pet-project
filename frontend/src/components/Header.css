@@ -104,10 +104,11 @@
   align-content: center;
 }
 
-.fieldset {
+.search-fs{
   border:none;
-  
 }
+
+
 @media (max-width: 991px) {
   .search-div {
     max-width: 100%;
