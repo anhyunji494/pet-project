@@ -1,11 +1,13 @@
 package com.project.petproject.repository;
 
 import com.project.petproject.dto.Post;
+import com.project.petproject.dto.PostWithFileDTO;
 import com.project.petproject.dto.Post_file;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -43,5 +45,11 @@ public class postRepository {
         sql.delete("post.deletePost", post_idx);
     }
 
+
+    public List<PostWithFileDTO> list() {
+        List<PostWithFileDTO> posts = sql.selectList("post.mainPost");
+        System.out.println("list() 메서드의 실행이 완료되었습니다.");
+        return posts;
+    }
 
 }

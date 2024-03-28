@@ -1,6 +1,7 @@
 package com.project.petproject.service;
 
 import com.project.petproject.dto.Post;
+import com.project.petproject.dto.PostWithFileDTO;
 import com.project.petproject.dto.Post_file;
 import com.project.petproject.repository.postRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class postService {
         // 포스트에서 파일 리스트를 가져옵니다.
         Post_file postFile = new Post_file();
         Post info = repository.insertPost(post);
-        System.out.println("info 값: "+info);
+        System.out.println("info 값: " + info);
 
         postFile.setPost_idx(info.getPost_idx());
 
@@ -83,7 +84,8 @@ public class postService {
                 file.transferTo(new File(savePath));
                 // 포스트 파일 정보를 생성하고 저장
                 // 원본은 확장명 빼고 저장
-                postFile.setFile_rname(filenameWithoutExtension);
+                postFile.setFile_rname(savePath);
+//                postFile.setFile_rname(filenameWithoutExtension);
 
                 postFile.setStoredName(storedFileName);
 
@@ -100,6 +102,11 @@ public class postService {
         }
     }
 
+
+    public List<PostWithFileDTO> list() {
+
+        return repository.list();
+    }
 
 }
 

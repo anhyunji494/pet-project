@@ -1,19 +1,25 @@
 package com.project.petproject.controller;
 
 import com.project.petproject.dto.Post;
+import com.project.petproject.dto.PostWithFileDTO;
+import com.project.petproject.dto.Post_file;
 import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.postService;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
+
 @RestController
 @RequestMapping("/posts")
+@RequiredArgsConstructor
 public class PostController {
     
-    @Autowired
-    private postService postService;
+    private final postService postService;
 
     // 게시물 추가
     // @PostMapping("/new")
@@ -36,6 +42,14 @@ public class PostController {
         return "/";
     }
 
+    @GetMapping("/PostsList")
+        public ResponseEntity<List<PostWithFileDTO>> list() {
+            List<PostWithFileDTO> postsWithFiles = postService.list(); // 게시글 및 파일 목록 조회
+            System.out.println();
+            System.out.println(postsWithFiles);
+            return ResponseEntity.ok(postsWithFiles); // 게시글 및 파일 목록을 응답에 담아 반환
+        }
+
     // 게시물 삭제
     @DeleteMapping("/delete/{post_idx}")
     public String deletePost(@PathVariable("post_idx") int post_idx) {
@@ -46,4 +60,5 @@ public class PostController {
             return "게시물 삭제 중 오류 발생: " + e.getMessage();
         }
     }
+
 }
