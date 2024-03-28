@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./Header.css";
-import search from "../icons/searchicon.png";
 
 function Header() {
   const handleSearch = () => {
