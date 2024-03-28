@@ -1,13 +1,11 @@
 import * as React from "react";
 import Header from "../components/Header";
+import PostsList  from "../components/PostsList.js";
 
-
-function main(){
-    return (
-    <div>
-    <Header />
-    <div className="body"></div>
-    </div>)
+function main() {
+  return (
+    <PostsList />
+  )
 }
 
-export default main
+export default main;

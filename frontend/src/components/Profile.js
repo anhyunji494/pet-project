@@ -1,20 +1,30 @@
 import * as React from "react";
 import styles from "./Profile.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Birthday = () => {
-  "0000.00.00";
-};
 
-const tags = () => {
-  "tags";
-};
-
-const updateBtn = () => {
-  console.log('updateBtn ck')
-}
 
 function Profile() {
+  const navigate = useNavigate();
+  const Birthday = () => {
+    "0000.00.00";
+  };
+  
+  const tags = () => {
+    "tags";
+  };
+  
+  const updateBtn = () => {
+    console.log('updateBtn ck')
+    navigate('/profile/update')
+  }
+  
+  const followBtn = () => {
+    console.log('followBtn ck')
+    // 누른 사람 아이디 가져오기 /넘기기
+    // 눌린 사람 아이디 가져오기 /넘기기
+  }
+
   return (
     <div id="body">
       <div className="profile-box">
@@ -50,6 +60,9 @@ function Profile() {
       <div className="btn">
         <button className="update-btn" onClick={updateBtn}>
           수정
+        </button>
+        <button className="follow-btn" onClick={followBtn}>
+          팔로우
         </button>
       </div>
     </div>

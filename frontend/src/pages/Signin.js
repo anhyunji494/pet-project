@@ -1,8 +1,10 @@
 import * as React from "react";
 import "./Signin.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
+
 
 const PetWaveIcon = () => (
   <img
@@ -14,21 +16,9 @@ const PetWaveIcon = () => (
 );
 
 function Signin() {
-  {
-  }
 
-  const SigninButton = () => (
-    <button
-      type="submit"
-      className="signin-button"
-      formAction="/signUp"
-      formMethod="POST"
-    >
-      <Link to="/signUp" className="signin-button">
-        회원가입
-      </Link>
-    </button>
-  );
+  const navigate = useNavigate();
+  
 
   const [id, setId] = useState("");
   const [nick, setNick] = useState("");
@@ -54,19 +44,45 @@ function Signin() {
 
       .then(function (response) {
         console.log(response);
+
       })
 
       .catch(function (error) {
         console.log("실패");
         console.log(error);
       });
+      navigate('/profile');
   };
+
 
   useEffect(() => {
     setPasswordMatch(password1 === password2);
   }, [password1, password2]);
 
   const isSignUpDisabled = !passwordMatch; // 회원가입 버튼을 비활성화할지 여부를 결정합니다.
+
+  const SigninButton = () => (
+    <button
+      type="submit"
+      className={`signin-button ${
+        isSignUpDisabled ? "disabled" : ""
+      }`}
+      formAction="/signUp"
+      formMethod="POST"
+      disabled={isSignUpDisabled}
+    >
+      
+      
+
+      <span>
+        회원가입
+      </span>
+    </button>
+  );
+
+
+
+
 
   return (
     <>
@@ -156,15 +172,9 @@ function Signin() {
                 )}
                 {/* 회원가입 버튼을 비활성화합니다. */}
                 <div className="form-actions">
-                  <button
-                    type="submit"
-                    className={`signin-button ${
-                      isSignUpDisabled ? "disabled" : ""
-                    }`}
-                    disabled={isSignUpDisabled}
-                  >
-                    회원가입
-                  </button>
+                  
+                    <SigninButton />
+                  
                 </div>
               </form>
 
