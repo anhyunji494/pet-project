@@ -32,33 +32,33 @@ function Login() {
     e.preventDefault();
 
     axios
-      .post("/login",{
+      .post("/login", {
         user_id: id,
-        user_pw: password
+        user_pw: password,
       })
 
-      .then(function(response){
+      .then(function (response) {
         console.log(response);
-        console.log('데이터 전송 성공')
+        console.log("데이터 전송 성공");
         console.log(response.status);
-        if(response.status===200){
-          navigate('/Profile');
-          console.log('로그인 완전 성공');
+        if (response.status === 200) {
+          navigate("/Profile");
+          console.log("로그인 완전 성공");
         } else {
-          console.log('로그인 성공, 하지만 오류');
+          console.log("로그인 성공, 하지만 오류");
         }
       })
 
-      .catch(function(error){
-        console.log('데이터 전송 실패');
+      .catch(function (error) {
+        console.log("데이터 전송 실패");
         console.log("데이터 정보", id, password);
-        console.log(function(response){
+        console.log(function (response) {
           console.log(response);
         });
         console.log(error);
-        alert('로그인 실패');
-        navigate('/login')
-      })
+        alert("로그인 실패");
+        navigate("/login");
+      });
     // if (function (response) ==="200")
 
     // navigate('/main')
@@ -77,7 +77,7 @@ function Login() {
               <p className="tagline">
                 펫웨이브와 함께하며 <br />더 많은 반려동물 이야기를 발견하세요!
               </p>
-              <form  method="POST" onSubmit={handleLogin}>
+              <form method="POST" onSubmit={handleLogin}>
                 <label htmlFor="userId" className="input-label">
                   아이디
                 </label>
@@ -88,7 +88,7 @@ function Login() {
                   className="input-field"
                   placeholder="이메일을 입력하세요"
                   aria-label="Enter your email"
-                  onChange={(e)=>{
+                  onChange={(e) => {
                     setId(e.target.value);
                   }}
                 />
@@ -104,7 +104,7 @@ function Login() {
                   className="input-field"
                   placeholder="비밀번호를 입력하세요"
                   aria-label="Enter your email"
-                  onChange={(e)=>{
+                  onChange={(e) => {
                     setPassword(e.target.value);
                   }}
                 />
@@ -121,7 +121,11 @@ function Login() {
                 <div className="social-login-text">
                   이렇게도 로그인 할 수 있어요
                 </div>
-                <div className="google-login">Google</div>
+                <Link to="https://accounts.google.com/o/oauth2/v2/auth?scope=profile&response_type=code&redirect_uri=http://localhost:3000/&client_id=100190826571-b2v3fs803cn1mr3jttqhiullv9m2t9en.apps.googleusercontent.com">
+                  <form method="get">
+                      Google
+                  </form>
+                </Link>
               </div>
             </div>
           </div>

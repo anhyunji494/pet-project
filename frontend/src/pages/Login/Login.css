@@ -77,7 +77,6 @@
   color: #000;
   font-weight: 400;
   letter-spacing: 8.14px;
-  line-height: 100%;
 }
 
 @media (max-width: 991px) {
@@ -249,7 +248,6 @@
   gap: 20px;
   font-size: 16px;
   color: #414042;
-  line-height: 100%;
   justify-content: space-between;
 }
 
@@ -268,7 +266,7 @@
 
 .google-login {
   font-family: "NotoSansKR", sans-serif;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .image-column {
@@ -316,4 +314,10 @@
   .login-image {
     margin-top: 40px;
   }
+}
+
+.google-login{
+  border: 0;
+  background-color: transparent;
+
 }

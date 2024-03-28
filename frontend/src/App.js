@@ -21,6 +21,7 @@ function App() {
         <Route path="/" element={
         <><Header /><Main /></>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login/google" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/update" element={<ProfileUpdate />} />
