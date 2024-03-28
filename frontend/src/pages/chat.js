@@ -15,7 +15,7 @@ class Chat extends Component {
 
   componentDidMount() {
     // 세션에서 사용자명을 가져옴
-    const username = sessionStorage.getItem('username');
+    const username = sessionStorage.getItem('user_nick');
     if (username) {
       this.setState({ username });
       this.connect();
@@ -58,12 +58,16 @@ class Chat extends Component {
 
   sendMessage = () => {
     const { stompClient, message, username } = this.state;
-    stompClient.send(
-      '/app/chat.sendMessage',
-      {},
-      JSON.stringify({ content: message, sender: username, type: 'CHAT' })
-    );
-    this.setState({ message: '' });
+    if (stompClient && stompClient.connected) { // stompClient가 있고 연결된 상태인지 확인
+      stompClient.send(
+        '/app/chat.sendMessage',
+        {},
+        JSON.stringify({ content: message, sender: username, type: 'CHAT' })
+      );
+      this.setState({ message: '' });
+    } else {
+      console.error('WebSocket connection is not established or disconnected.');
+    }
   };
 
   render() {

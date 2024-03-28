@@ -1,6 +1,8 @@
 package com.project.petproject.controller;
 
 import com.project.petproject.dto.ChatMessage;
+
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -18,10 +20,16 @@ public class WebSocketEventListener {
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
+    @Autowired
+    private HttpSession session; // HttpSession 주입
+
     // WebSocket 연결 이벤트를 처리하는 메소드
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
-        log.info("새로운 연결이 들어왔습니다.");
+        String username = (String)session.getAttribute("user_nick"); // HttpSession에서 사용자명 가져오기
+        if (username != null) {
+            log.info("새로운 연결이 들어왔습니다. 사용자명: " + username);
+        }
     }
 
     // WebSocket 연결 종료 이벤트를 처리하는 메소드
@@ -29,7 +37,7 @@ public class WebSocketEventListener {
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         // WebSocket 세션에서 사용자명 가져오기
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-        String username = (String) headerAccessor.getSessionAttributes().get("username");
+        String username = (String) headerAccessor.getSessionAttributes().get("user_nick");
 
         // 사용자명이 존재하면
         if (username != null) {
