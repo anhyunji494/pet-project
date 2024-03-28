@@ -31,7 +31,6 @@ public class postService {
 
     // 게시글을 삭제하는 매서드
     public void deletePost(int post_idx) {
-
         repository.deletePost(post_idx);
     }
 
@@ -108,13 +107,10 @@ public class postService {
             e.printStackTrace();
         }
     }
-
-
     public List<PostWithFileDTO> list() {
 
         return repository.list();
     }
 
 }
-
 

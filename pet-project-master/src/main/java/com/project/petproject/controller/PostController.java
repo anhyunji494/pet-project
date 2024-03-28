@@ -7,7 +7,6 @@ import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.postService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +17,7 @@ import java.util.List;
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
+
     
     private final postService postService;
 
@@ -60,16 +60,7 @@ public class PostController {
             return "게시물 삭제 중 오류 발생: " + e.getMessage();
         }
     }
-    @GetMapping("/all")
-    public ResponseEntity<?> getMainPost() {
-        try {
-            List<Post> posts = postService.getMainPost();
-            return ResponseEntity.ok(posts);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버에서 오류가 발생했습니다: " + e.getMessage());
-        }
-    }
+
+
 
 }
-
-
