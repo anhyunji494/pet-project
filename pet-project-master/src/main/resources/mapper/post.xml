@@ -2,27 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="post">
 
+
     <!-- 게시물 추가 -->
-    <insert id="insertPost" parameterType="com.project.petproject.dto.Post" useGeneratedKeys="true" keyProperty="post_idx">
+    <insert id="insertPost" parameterType="com.project.petproject.dto.Post" useGeneratedKeys="true"
+            keyProperty="post_idx">
         INSERT INTO posts (Post_content, posted_at, post_views, post_likes, user_id)
         VALUES (#{Post_content}, now(), #{post_views}, #{post_likes}, #{user_id})
     </insert>
 
-    <insert id="saveFile" parameterType="com.project.petproject.dto.Post_file" useGeneratedKeys="true" keyProperty="file_idx">
-        insert into post_file(file_idx, post_idx, file_rname, uploaded_at, storedName)
-        VALUES (#{file_idx}, #{post_idx}, #{file_rname}, now(), #{storedName})
+    <insert id="saveFile" parameterType="com.project.petproject.dto.Post_file" useGeneratedKeys="true"
+            keyProperty="file_idx">
+        insert into post_file(post_idx, file_rname, uploaded_at, storedName)
+        VALUES (#{post_idx}, #{file_rname}, now(), #{storedName})
     </insert>
 
-<!--    <select id="selectPost" resultType="com.project.petproject.dto.Post" parameterType="com.project.petproject.dto.Post">-->
-<!--        select * from posts where postsuser_id = #{user_id}-->
-<!--    </select>-->
+
+    <!--    <select id="selectPost" resultType="com.project.petproject.dto.Post" parameterType="com.project.petproject.dto.Post">-->
+    <!--        select * from posts where postsuser_id = #{user_id}-->
+    <!--    </select>-->
 
 
-<!--        &lt;!&ndash; 게시물 파일 추가 &ndash;&gt;-->
-<!--    <insert id="insertPostFile" parameterType="com.project.petproject.dto.Post_file">-->
-<!--        INSERT INTO post_file (post_idx, file_idx, file_rname, file_size, file_ext, uploaded_at)-->
-<!--        VALUES (#{post_idx}, #{file_idx}, #{file_rname}, #{file_size}, #{file_ext}, #{uploaded_at})-->
-<!--    </insert>-->
+    <!--        &lt;!&ndash; 게시물 파일 추가 &ndash;&gt;-->
+    <!--    <insert id="insertPostFile" parameterType="com.project.petproject.dto.Post_file">-->
+    <!--        INSERT INTO post_file (post_idx, file_idx, file_rname, file_size, file_ext, uploaded_at)-->
+    <!--        VALUES (#{post_idx}, #{file_idx}, #{file_rname}, #{file_size}, #{file_ext}, #{uploaded_at})-->
+    <!--    </insert>-->
 
     <!-- 게시물 삭제 -->
     <delete id="deletePost" parameterType="int">
@@ -34,10 +38,33 @@
         SELECT * FROM posts WHERE Post_content LIKE '%' || #{keyword} || '%'
     </select>
 
-    <!--전체 게시물 불러오기-->
+    <!-- 전체 게시물 불러오기
     <select id="mainPost" resultType="com.project.petproject.dto.Post">
         SELECT * FROM posts
+        WHERE Post_content LIKE '%' || #{keyword} || '%'
+    </select> -->
+
+    <!--전체 게시물 불러오기-->
+<!--    <select id="mainPost" resultMap="postWithFiles">-->
+<!--        SELECT p.post_idx as post_id, p.post_content as content, pf.file_rname as file_rname-->
+<!--        FROM posts p-->
+<!--                 INNER JOIN post_file pf ON p.post_idx = pf.post_idx-->
+<!--    </select>-->
+    <select id="mainPost" resultMap="postWithFiles">
+        SELECT pf.post_idx as post_idx, p.post_content as content, pf.file_rname as file_rname
+        FROM post_file pf
+        INNER JOIN posts p ON pf.post_idx = p.post_idx
     </select>
+
+
+    <resultMap id="postWithFiles" type="PostWithFileDTO">
+        <id property="post_idx" column="post_idx"/>
+        <result property="content" column="content"/>
+        <collection property="file_rnames" ofType="String">
+            <result column="file_rname"/>
+        </collection>
+    </resultMap>
+
 
     <!-- 게시물 검색 (ID 기준) -->
     <select id="selectPostById" resultType="com.project.petproject.dto.Post" parameterType="String">
