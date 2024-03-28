@@ -44,6 +44,7 @@ function Signin() {
 
       .then(function (response) {
         console.log(response);
+        console.log('axios sc')
 
       })
 

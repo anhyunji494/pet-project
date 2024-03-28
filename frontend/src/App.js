@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import ProfileUpdate from "./components/ProfileUpdate";
 import Post from "./pages/Post";
 import UserUpdate from "./pages/UserUpdate";
-
+import Test from "./pages/Test.js";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="/profile/update" element={<ProfileUpdate />} />
         <Route path="/post" element={<Post/>}/>
         <Route path="/userUpdate" element={<UserUpdate/>}/>
+        <Route path="/test" element={<Test />} />
       </Routes>
     </div>
   );
