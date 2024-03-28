@@ -14,14 +14,15 @@ import UserUpdate from "./pages/UserUpdate";
 function App() {
   return (
     <div className="body">
-      <Header />
+      
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={
+        <><Header /><Main /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/update" element={<ProfileUpdate />} />
-        <Route path="/Post" element={<Post/>}/>
+        <Route path="/post" element={<Post/>}/>
         <Route path="/userUpdate" element={<UserUpdate/>}/>
       </Routes>
     </div>

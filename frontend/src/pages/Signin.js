@@ -1,8 +1,10 @@
 import * as React from "react";
 import "./Signin.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
+
 
 const PetWaveIcon = () => (
   <img
@@ -15,7 +17,7 @@ const PetWaveIcon = () => (
 
 function Signin() {
 
-
+  const navigate = useNavigate();
   
 
   const [id, setId] = useState("");
@@ -49,6 +51,7 @@ function Signin() {
         console.log("실패");
         console.log(error);
       });
+      navigate('/profile');
   };
 
 
@@ -69,11 +72,16 @@ function Signin() {
       disabled={isSignUpDisabled}
     >
       
-      <Link to="/profile" className="signin-button">
+      
+
+      <span>
         회원가입
-      </Link>
+      </span>
     </button>
   );
+
+
+
 
 
   return (

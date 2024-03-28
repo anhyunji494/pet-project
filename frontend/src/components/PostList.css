@@ -1,0 +1,25 @@
+.body{
+    display: grid;
+    background: whitesmoke;
+    width: 100vw;
+    height: 150vh;
+    justify-content: center;
+}
+
+.post-div{
+    display: flex;
+    background: wheat;
+    width: 90vw;
+    height: 150vh;
+    justify-content: center;
+    
+}
+
+#content{
+    display: flex;
+    background: gold;
+    width: 15vw;
+    height: 15vw;
+    justify-content: center;
+    border-radius: 24px;
+}
