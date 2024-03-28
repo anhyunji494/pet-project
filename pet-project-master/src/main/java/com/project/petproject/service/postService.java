@@ -19,32 +19,13 @@ public class postService {
     @Autowired
     private postRepository repository;
 
-    // 게시글을 추가 하는 매서드
-//    public void addPost(Post post, List<Post_file> postFiles) {
-//        repository.insertPost(post);
-//
-//        // 사진 수만큼 반복해서 repository.insertPostFile
-//        for (Post_file postFile : postFiles) {
-//            repository.insertPostFile(postFile);
-//        }
-//    }
-
+ 
     // 게시글을 삭제하는 매서드
     public void deletePost(int post_idx) {
         repository.deletePost(post_idx);
     }
 
-    // 전체 게시물을 불러오는 코드
-    public List<Post> getMainPost() {
-        return repository.getMainPost();
-    }
 
-
-//    public boolean insertPost(Post post) {
-//        // 포스트를 데이터베이스에 추가하고, 추가된 포스트의 식별자를 반환
-//        boolean postId = repository.insertPost(post);
-//        return postId;
-//    }
 
     public void save(Post post) throws IOException {
         // 포스트에서 파일 리스트를 가져옵니다.
@@ -107,8 +88,8 @@ public class postService {
             e.printStackTrace();
         }
     }
+     // 전체 게시물을 불러오는 코드
     public List<PostWithFileDTO> list() {
-
         return repository.list();
     }
 

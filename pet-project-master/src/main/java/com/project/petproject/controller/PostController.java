@@ -21,17 +21,6 @@ public class PostController {
     
     private final postService postService;
 
-    // 게시물 추가
-    // @PostMapping("/new")
-    // public String newPost(Post post) {
-    // try {
-    // postService.addPost(post, postFiles);
-    // return "게시물이 성공적으로 추가되었습니다."; // 게시글로 이동하게끔 수정해야할듯
-    // } catch (Exception e) {
-    // return "게시물 추가 중 오류 발생: " + e.getMessage();
-    // }
-    // }
-
     @PostMapping("/new")
     public String save(Post post, HttpSession session) throws IOException {
         userDTO info = (userDTO) session.getAttribute("info");

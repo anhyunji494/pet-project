@@ -25,10 +25,6 @@ public class postRepository {
         return post;
     }
 
-//    public List<Post> selectPost(Post post) {
-//        return sql.selectList("post.selectPost", post);
-//    }
-
     public void saveFile(Post_file postFile) {
         sql.insert("post.saveFile", postFile);
         System.out.println("saveFile 성공");
@@ -49,10 +45,6 @@ public class postRepository {
     }
 
     // 전체 게시물 불러오기
-    public List<Post> getMainPost() {
-        return sql.selectList("post.mainPost");
-    }
-
     public List<PostWithFileDTO> list() {
         List<PostWithFileDTO> posts = sql.selectList("post.mainPost");
         System.out.println("list() 메서드의 실행이 완료되었습니다.");
