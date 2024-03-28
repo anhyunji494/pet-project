@@ -1,74 +1,89 @@
-// Chat.js
-
 import React, { Component } from 'react';
-import SockJsClient from "react-stomp";
-import UsernameGenerator from "username-generator";
-import Fetch from "json-fetch";
-import { TalkBox } from "react-talk";
-import randomstring from "randomstring";
+import Stomp from 'stompjs';
 
 class Chat extends Component {
   constructor(props) {
     super(props);
-    // randomUserId is used to emulate a unique user id for this demo usage
-    this.randomUserName = UsernameGenerator.generateUsername("-");
-    this.randomUserId = randomstring.generate();
-    this.sendURL = "/message";
     this.state = {
-      clientConnected: false,
-      messages: []
+      messages: [],
+      message: '',
+      stompClient: null,
+      username: '', // 사용자명
+      connected: false // 웹소켓 연결 상태
     };
   }
 
-  onMessageReceive = (msg, topic) => {
-    this.setState(prevState => ({
-      messages: [...prevState.messages, msg]
-    }));
-  }
-
-  sendMessage = (msg, selfMsg) => {
-    try {
-      var send_message = {
-        "user": selfMsg.author,
-        "message": selfMsg.message
-      }
-      this.clientRef.sendMessage("/app/message", JSON.stringify(send_message));
-      return true;
-    } catch(e) {
-      return false;
+  componentDidMount() {
+    // 세션에서 사용자명을 가져옴
+    const username = sessionStorage.getItem('username');
+    if (username) {
+      this.setState({ username });
+      this.connect();
+    } else {
+      // 사용자가 로그인되지 않은 경우 로그인 페이지로 리다이렉트 또는 처리
+      console.error('사용자가 로그인되지 않았습니다.');
     }
   }
 
-  componentDidMount() {
-    Fetch("/history", {
-      method: "GET"
-    }).then((response) => {
-      this.setState({ messages: response.body });
-    });
-  }
+  connect = () => {
+    const socket = new WebSocket('ws://localhost:8085/ws');
+    const stompClient = Stomp.over(socket);
+    stompClient.connect({}, this.onConnected, this.onError);
+    this.setState({ stompClient });
+  };
+
+  onConnected = () => {
+    console.log('Connected to WebSocket');
+    this.setState({ connected: true });
+    // 서버로 사용자명 전달
+    this.state.stompClient.send(
+      '/app/chat.addUser',
+      {},
+      JSON.stringify({ sender: this.state.username, type: 'JOIN' })
+    );
+    // 서버로부터 메시지 받기
+    this.state.stompClient.subscribe('/topic/public', this.onMessageReceived);
+  };
+
+  onError = (error) => {
+    console.error('Error connecting to WebSocket:', error);
+  };
+
+  onMessageReceived = (payload) => {
+    const message = JSON.parse(payload.body);
+    this.setState((prevState) => ({
+      messages: [...prevState.messages, message]
+    }));
+  };
+
+  sendMessage = () => {
+    const { stompClient, message, username } = this.state;
+    stompClient.send(
+      '/app/chat.sendMessage',
+      {},
+      JSON.stringify({ content: message, sender: username, type: 'CHAT' })
+    );
+    this.setState({ message: '' });
+  };
 
   render() {
-    const wsSourceUrl = "http://localhost:8085/chatting";
+    const { messages, message } = this.state;
     return (
       <div>
-        <TalkBox
-          topic="/topic/public"
-          currentUserId={this.randomUserId}
-          currentUser={this.randomUserName}
-          messages={this.state.messages}
-          onSendMessage={this.sendMessage}
-          connected={this.state.clientConnected}
+        <h1>Chat</h1>
+        <div>
+          {messages.map((msg, index) => (
+            <div key={index}>
+              {msg.sender}: {msg.content}
+            </div>
+          ))}
+        </div>
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => this.setState({ message: e.target.value })}
         />
-        <SockJsClient
-          url={wsSourceUrl}
-          topics={["/topic/public"]}
-          onMessage={this.onMessageReceive}
-          ref={(client) => { this.clientRef = client }}
-          onConnect={() => { this.setState({ clientConnected: true }) }}
-          onDisconnect={() => { this.setState({ clientConnected: false }) }}
-          debug={false}
-          style={[{ width: '100%', height: '100%' }]}
-        />
+        <button onClick={this.sendMessage}>Send</button>
       </div>
     );
   }

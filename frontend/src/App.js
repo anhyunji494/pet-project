@@ -21,12 +21,9 @@ function App() {
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/Post" element={<Post/>}/>
                 <Route path="/UserUpdate" element={<UserUpdate/>}/>
-                <Route path="/chat" element={<Chat/>}/>
+                <Route path="/Chat" element={<Chat/>}/>
             </Routes>
         </div>
     );
-
 }
-
-
 export default App;
