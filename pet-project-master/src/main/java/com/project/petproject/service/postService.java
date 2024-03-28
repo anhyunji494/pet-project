@@ -33,6 +33,13 @@ public class postService {
 
         repository.deletePost(post_idx);
     }
+
+    // 전체 게시물을 불러오는 코드
+    public List<Post> getMainPost() {
+        return repository.getMainPost();
+    }
+
+
 //    public boolean insertPost(Post post) {
 //        // 포스트를 데이터베이스에 추가하고, 추가된 포스트의 식별자를 반환
 //        boolean postId = repository.insertPost(post);

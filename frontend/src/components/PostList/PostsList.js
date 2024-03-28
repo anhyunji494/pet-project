@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./PostList.css";
 
 const PostsList = () => {
   const [postsList, setPostsList] = useState([]);
-
-  const getPostsList = async () => {
-    const res = (await axios.get("/PostsList")).data; //2. 게시글 목록 데이터에 할당
-    console.log(res.data);
-    setPostsList(res.data); // 3. postsList 변수에 할당
-    console.log(postsList);
-  };
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getPostsList(); // 1. 게시글 목록 조회 함수 호출
+    const getPostsList = async () => {
+      try {
+        const res = await axios.get("/posts/all");
+        console.log(res.data); // res 데이터를 콘솔에 출력
+        setPostsList(res.data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    getPostsList();
   }, []);
 
   return (
     <div>
       <div className="body">
+        {error && <div>Error: {error}</div>}
         <ul className="post-div">
-          <div id="content"></div>
-          {postsList.map((post) => (
-            // 4. map  함수로 데이터 출력
-            <li key={post.idx}>{post.storedName} </li>
-          ))}
-          게시판 목록 출력
+          {postsList.length > 0 &&
+            postsList.map((post) => (
+              <li key={post.post_idx}>{post.Post_content}</li>
+            ))}
         </ul>
       </div>
     </div>

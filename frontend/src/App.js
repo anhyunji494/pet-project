@@ -10,6 +10,7 @@ import Post from "./pages/Post/Post.js";
 import UserUpdate from "./pages/UserUpdate/UserUpdate.js";
 import Chat from "./pages/Chat/chat.js";
 import Test from "./pages/Test.js";
+import PostsList from "./components/PostList/PostsList.js";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/userUpdate" element={<UserUpdate/>}/>
         <Route path="/chat" element={<Chat/>}/>
         <Route path="/test" element={<Test />} />
+        <Route path="/postsList" element={<PostsList />} />
       </Routes>
     </div>
   );

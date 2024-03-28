@@ -30,11 +30,9 @@ function Login() {
   // 로그인 핸들러
   const handleLogin = (e) => {
     e.preventDefault();
-
-    axios
-      .post("/login", {
+    axios.post("/login", {
         user_id: id,
-        user_pw: password,
+        user_pw: password
       })
 
       .then(function (response) {

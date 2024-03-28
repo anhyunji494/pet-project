@@ -38,8 +38,10 @@ public class controller {
         userDTO info = loginService.login(userDTO);
         if (info != null) {
             session.setAttribute("info", info);
+            System.out.println(ResponseEntity.ok().body("로그인 성공"));
             return ResponseEntity.ok().body("로그인 성공"); // 로그인 성공 시 200 응답
         } else {
+            System.out.println(ResponseEntity.badRequest().body("로그인 실패"));
             return ResponseEntity.badRequest().body("로그인 실패"); // 로그인 실패 시 400 응답
         }
 

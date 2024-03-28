@@ -3,6 +3,9 @@ package com.project.petproject.repository;
 import com.project.petproject.dto.Post;
 import com.project.petproject.dto.Post_file;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -43,5 +46,9 @@ public class postRepository {
         sql.delete("post.deletePost", post_idx);
     }
 
+    // 전체 게시물 불러오기
+    public List<Post> getMainPost() {
+        return sql.selectList("post.mainPost");
+    }
 
 }

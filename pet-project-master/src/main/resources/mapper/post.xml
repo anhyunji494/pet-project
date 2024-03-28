@@ -26,22 +26,22 @@
 
     <!-- 게시물 삭제 -->
     <delete id="deletePost" parameterType="int">
-        DELETE FROM post WHERE post_idx = #{post_idx}
+        DELETE FROM posts WHERE post_idx = #{post_idx}
     </delete>
 
     <!--작성된 게시물의 내용에서 키워드 검색 -->
     <select id="selectPostByKeyword" resultType="com.project.petproject.dto.Post" parameterType="String">
-        SELECT * FROM post WHERE Post_content LIKE '%' || #{keyword} || '%'
+        SELECT * FROM posts WHERE Post_content LIKE '%' || #{keyword} || '%'
     </select>
 
     <!--전체 게시물 불러오기-->
     <select id="mainPost" resultType="com.project.petproject.dto.Post">
-        SELECT * FROM post
+        SELECT * FROM posts
     </select>
 
     <!-- 게시물 검색 (ID 기준) -->
     <select id="selectPostById" resultType="com.project.petproject.dto.Post" parameterType="String">
-        SELECT * FROM post WHERE user_id = #{user_id}
+        SELECT * FROM posts WHERE user_id = #{user_id}
     </select>
 
 
