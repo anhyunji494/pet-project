@@ -31,19 +31,23 @@ public class controller {
         loginService.signUp(userDTO);
         return "redirect:/";
     }
-
-    @PostMapping("/login")
+    
+     @PostMapping("/login")
     // 매개변수에 필요한 객체 적으면됨
-    public ResponseEntity<String> login(userDTO userDTO, HttpSession session) {
+    public String login(@RequestBody userDTO userDTO, HttpSession session) {
         userDTO info = loginService.login(userDTO);
-        if (info != null) {
+        System.out.println(userDTO);
+        System.out.println(info);
+        if(info != null) {
             session.setAttribute("info", info);
-            return ResponseEntity.ok().body("로그인 성공"); // 로그인 성공 시 200 응답
+            System.out.println("\n 로그인 info: " + info);
+            System.out.println("info null");
+            return "200";
         } else {
-            return ResponseEntity.badRequest().body("로그인 실패"); // 로그인 실패 시 400 응답
+            return "400";
         }
-
     }
+
 
     @PostMapping("/userUpdate")
     public String userUpdate(userDTO userDTO, HttpSession session) {
