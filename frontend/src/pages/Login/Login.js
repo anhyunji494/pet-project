@@ -39,11 +39,11 @@ function Login() {
         console.log(response);
         console.log("데이터 전송 성공");
         console.log(response.status);
-        if (response.status === 200) {
+        if (response.data === 200) {
           navigate("/Profile");
           console.log("로그인 완전 성공");
         } else {
-          console.log("로그인 성공, 하지만 오류");
+          console.log("데이터 전송 성공, 로그인 오류");
         }
       })
 

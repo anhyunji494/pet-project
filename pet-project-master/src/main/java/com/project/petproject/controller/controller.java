@@ -30,8 +30,8 @@ public class controller {
         loginService.signUp(userDTO);
         return "redirect:/";
     }
-
-    @PostMapping("/login")
+    
+     @PostMapping("/login")
     // 매개변수에 필요한 객체 적으면됨
     public String login(@RequestBody userDTO userDTO, HttpSession session) {
         userDTO info = loginService.login(userDTO);
@@ -46,6 +46,7 @@ public class controller {
             return "400";
         }
     }
+
 
     @PostMapping("/userUpdate")
     public String userUpdate(userDTO userDTO, HttpSession session) {
