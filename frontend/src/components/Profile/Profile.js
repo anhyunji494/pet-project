@@ -21,6 +21,7 @@ const Profile = ()=> {
   
   const updateBtn = () => {
     console.log('updateBtn ck')
+    
     navigate('/profile/update')
   }
   

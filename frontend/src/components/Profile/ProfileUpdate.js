@@ -17,29 +17,35 @@ function ProfileUpdate() {
         <div className="profile-div">
           <div className="profile-photo"></div>
           <div className="name-div">
-            <input className="name">반려동물 이름</input>
+            반려동물이름
+            <input className="name"></input>
           </div>
           <div className="birthday">
             <i className="fi fi-br-cake-birthday"></i>
-            &nbsp; 0000.00.00
+            &nbsp; 생일 <input className="bitrhday"></input>
           </div>
         </div>
-        <div className="tags">태그</div>
+        <div className="tags"></div>
       </div>
       <div className="content-box">
-        <input className="intro">한줄소개</input>
+        <span className="intro">
+        한줄소개</span>
+        <input className="intro"></input>
         <div className="etc-div">
           <div className="likes">
             <i className="fi fi-sr-thumbs-up"></i>&nbsp;&nbsp;
-            <input className="profile-text">좋아하는 것</input>
+            좋아하는 것
+            <input className="profile-text"></input>
           </div>
           <div className="dislikes">
             <i className="fi fi-sr-thumbs-up"></i>&nbsp;&nbsp;
-            <input className="profile-text">싫어하는 것</input>
+            싫어하는 것
+            <input className="profile-text"></input>
           </div>
           <div className="location">
             <i className="fi fi-sr-map-marker-smile"></i>&nbsp;&nbsp;
-            <input className="profile-text">위치정보</input>
+            지역
+            <input className="profile-text"></input>
           </div>
         </div>
       </div>
