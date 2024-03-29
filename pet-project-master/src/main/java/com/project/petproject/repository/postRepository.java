@@ -2,6 +2,7 @@ package com.project.petproject.repository;
 
 import com.project.petproject.dto.Post;
 import com.project.petproject.dto.PostWithFileDTO;
+import com.project.petproject.dto.UserPublicDTO;
 import com.project.petproject.dto.Post_file;
 import lombok.RequiredArgsConstructor;
 
@@ -47,8 +48,23 @@ public class postRepository {
     // 전체 게시물 불러오기
     public List<PostWithFileDTO> list() {
         List<PostWithFileDTO> posts = sql.selectList("post.mainPost");
-        System.out.println("list() 메서드의 실행이 완료되었습니다.");
+        System.out.println("list() 전체 게시물 출력이 되었습니다.");
         return posts;
     }
+
+    // 프로필 게시물 불러오기
+    public List<PostWithFileDTO> getUserPosts(String user_id) {
+        List<PostWithFileDTO> UserPosts = sql.selectList("post.UserPosts", user_id);
+        System.out.println(" 유저 게시물 출력이되었습니다.");
+        return UserPosts;
+    }
+
+    //유저의 프로필 불러오기
+    public UserPublicDTO getUserPublic(String user_id){
+        UserPublicDTO userPublic = sql.selectOne("user.UserProfile",user_id);
+        System.out.println("유저 게시물 출력이되었습니다.");
+        return userPublic;
+    }
+
 
 }

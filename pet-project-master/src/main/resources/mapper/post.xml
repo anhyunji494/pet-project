@@ -44,9 +44,14 @@
 
 
     <!-- 게시물 검색 (ID 기준) -->
-    <select id="selectPostById" resultType="com.project.petproject.dto.Post" parameterType="String">
-        SELECT * FROM posts WHERE user_id = #{user_id}
+    <select id="UserPosts" resultMap="postWithFiles">
+        SELECT p.user_id, pf.post_idx as post_idx, p.post_content as content, pf.file_rname as file_rname
+        FROM post_file pf
+        INNER JOIN posts p ON pf.post_idx = p.post_idx
+        WHERE p.user_id = #{userId}
     </select>
+
+
 
 
 </mapper>

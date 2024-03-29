@@ -13,7 +13,6 @@ public class loginRepository {
     private final SqlSessionTemplate sql;
 
     public void signUp(userDTO userDTO) {
-
         sql.insert("user.signUp", userDTO);
     }
 
@@ -25,4 +24,6 @@ public class loginRepository {
     public userDTO login(userDTO userDTO) {
         return sql.selectOne("user.login", userDTO);
     }
+
+    
 }

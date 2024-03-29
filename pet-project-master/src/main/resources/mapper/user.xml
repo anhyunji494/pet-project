@@ -10,7 +10,14 @@
     <update id="update" parameterType="com.project.petproject.dto.userDTO">
         update users set user_nick = #{user_nick}, user_pw = #{user_pw} where user_id = #{user_id}
     </update>
+
     <select id="login" resultType="com.project.petproject.dto.userDTO" parameterType="com.project.petproject.dto.userDTO">
         SELECT * FROM users WHERE user_id = #{user_id} AND user_pw = #{user_pw}
+    </select>
+
+    <select id="UserProfile" resultType="com.project.petproject.dto.UserPublicDTO">
+        SELECT user_id, user_nick , user_animal , user_info , user_profile_img , joined_at, user_role
+        FROM  USERS
+        WHERE user_id = #{user_id}
     </select>
 </mapper>

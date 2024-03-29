@@ -3,6 +3,7 @@ package com.project.petproject.service;
 import com.project.petproject.dto.Post;
 import com.project.petproject.dto.PostWithFileDTO;
 import com.project.petproject.dto.Post_file;
+import com.project.petproject.dto.UserPublicDTO;
 import com.project.petproject.repository.postRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,6 +93,17 @@ public class postService {
     public List<PostWithFileDTO> list() {
         return repository.list();
     }
+
+     // 해당 유저의 게시물을 불러오는 코드
+    public List<PostWithFileDTO> getUserPosts(String user_id) {
+        return repository.getUserPosts(user_id);
+    }
+
+     // 해당 유저의 프로필을 불러오는 코드
+    public UserPublicDTO getUserPublic(String user_id){
+        return repository.getUserPublic(user_id);
+    }
+
 
 }
 

@@ -52,6 +52,13 @@ const PostsList = () => {
         console.log(error);
         console.log("에러");
       });
+
+
+
+      // 세션에 값이 있는지 없는지? 
+      console.log('session',sessionStorage.getItem('user'))
+      // 실제 하실 때는 객체형태니까 json 파싱 작업이 필요함 
+      // 참고 : https://sanghye.tistory.com/14
   }, []);
 
   //   useEffect(() => {
@@ -63,6 +70,8 @@ const PostsList = () => {
       <div className="body">
         <ul className="post-div">
           <div id="post-photo"></div>
+
+            {/* {(sessionStorage.getItem('user')).user_id} 님 환영합니다. */}
           게시판 목록 출력
           {dataObjArr.map(item =>
         //    <img src="{item.file_rnames[0]}">

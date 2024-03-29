@@ -39,7 +39,9 @@ function Login() {
         console.log(response);
         console.log("데이터 전송 성공");
         console.log(response.status);
-        if (response.data === 200) {
+        if (response != null) {
+          // 로그인시 세션정보를 json으로 essionStorage 넣음
+          sessionStorage.setItem('myInfo', JSON.stringify(response.data)); 
           navigate("/Profile");
           console.log("로그인 완전 성공");
         } else {

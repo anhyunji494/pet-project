@@ -7,6 +7,8 @@ import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.postService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
 
-    
     private final postService postService;
 
     @PostMapping("/new")
@@ -31,11 +32,11 @@ public class PostController {
     }
 
     @GetMapping("/PostsList")
-        public ResponseEntity<List<PostWithFileDTO>> list() {
-            List<PostWithFileDTO> postsWithFiles = postService.list(); // 게시글 및 파일 목록 조회
-//            System.out.println(postsWithFiles);
-            return ResponseEntity.ok(postsWithFiles); // 게시글 및 파일 목록을 응답에 담아 반환
-        }
+    public ResponseEntity<List<PostWithFileDTO>> list() {
+        List<PostWithFileDTO> postsWithFiles = postService.list(); // 게시글 및 파일 목록 조회
+        // System.out.println(postsWithFiles);
+        return ResponseEntity.ok(postsWithFiles); // 게시글 및 파일 목록을 응답에 담아 반환
+    }
 
     // 게시물 삭제
     @DeleteMapping("/delete/{post_idx}")
@@ -48,6 +49,17 @@ public class PostController {
         }
     }
 
+     // user_id을 기준으로 유저 게시물 호출
+    @GetMapping("/{user_id}")
+    public ResponseEntity<List<PostWithFileDTO>> getUserPosts(@PathVariable("user_id") String user_id) {
+        try {
+            List<PostWithFileDTO> userPosts = postService.getUserPosts(user_id);
+            System.out.println(" 유저 게시물 호출 확인");
+            return ResponseEntity.ok(userPosts);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 
 
 }
