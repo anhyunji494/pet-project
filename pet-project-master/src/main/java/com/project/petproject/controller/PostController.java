@@ -2,12 +2,10 @@ package com.project.petproject.controller;
 
 import com.project.petproject.dto.Post;
 import com.project.petproject.dto.PostWithFileDTO;
-import com.project.petproject.dto.Post_file;
 import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.postService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +13,6 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
     
@@ -32,7 +29,9 @@ public class PostController {
     //     }
     // }
 
-    @PostMapping("/new")
+//    @RequestMapping("/posts")
+
+    @PostMapping("/posts/new")
     public String save(Post post, HttpSession session) throws IOException {
         userDTO info = (userDTO) session.getAttribute("info");
         post.setUser_id(info.getUser_id());
@@ -40,8 +39,23 @@ public class PostController {
         postService.save(post);
         return "/";
     }
+//    @PostMapping("/newImage")
+//    public ResponseEntity<String> save(MultipartFile image) throws IOException {
+//        String photoImg = null;
+//        if (image != null) {
+//            Base64.Encoder encoder = Base64.getEncoder();
+//            byte[] photoEncode = encoder.encode(image.getBytes());
+//            photoImg = new String(photoEncode, "UTF8");
+////            System.out.println("post정보 " + post);
+//        }
+//        if (postService.saveImg(photoImg) != null) {
+//            return ResponseEntity.status(200).body(photoImg);
+//        }
+//        return ResponseEntity.status(500).body("error");
+//    }
 
-    @GetMapping("/PostsList")
+
+    @GetMapping("/images")
         public ResponseEntity<List<PostWithFileDTO>> list() {
             List<PostWithFileDTO> postsWithFiles = postService.list(); // 게시글 및 파일 목록 조회
 //            System.out.println(postsWithFiles);
