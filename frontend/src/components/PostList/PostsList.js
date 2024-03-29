@@ -66,8 +66,8 @@ const PostsList = () => {
           <div id="post-photo"></div>
           게시판 목록 출력
           {dataObjArr.map(item =>
-        //    <img src="{item.file_rnames[0]}">
-           <span>{item.file_rnames[0]}</span>
+           <img src="{item.file_rnames[0]}"/>
+           /* <span>{item.file_rnames[0]}</span> */
             // <Detail idx={item.post_idx}></Detail>
             // <img src={item.file_rnames[0]}></img>
             )            }

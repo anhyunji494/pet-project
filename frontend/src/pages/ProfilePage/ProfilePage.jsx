@@ -1,5 +1,5 @@
 import * as React from "react";
-import Profile from "../Profile/Profile";
+import Profile from "../../components/Profile/Profile.js";
 
 
 function ProfilePage(){

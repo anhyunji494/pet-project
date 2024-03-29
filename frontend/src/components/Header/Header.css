@@ -45,7 +45,8 @@
   letter-spacing: 8.14px;
   align-self: stretch;
   margin: auto 0;
-  font: 11px/100% KoPub Batang, -apple-system, Roboto, Helvetica, sans-serif;
+  font: 11px/100% "NotoSerifKR", -apple-system, Roboto, Helvetica,
+  sans-serif;
   background: none;
   border: none;
   padding: 0;

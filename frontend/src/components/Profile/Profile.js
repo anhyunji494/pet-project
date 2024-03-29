@@ -4,8 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 
-function Profile() {
+const Profile = ()=> {
+  // 페이지 넘기는 라우팅 로딩
   const navigate = useNavigate();
+
+  // 
+
+
   const Birthday = () => {
     "0000.00.00";
   };
@@ -26,7 +31,11 @@ function Profile() {
   }
 
   return (
+    <>
+
     <div id="body">
+
+      
       <div className="profile-box">
         <div className="profile-div">
           <div className="profile-photo"></div>
@@ -66,6 +75,7 @@ function Profile() {
         </button>
       </div>
     </div>
+    </>
   );
 }
 export default Profile;
