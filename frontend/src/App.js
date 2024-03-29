@@ -9,6 +9,7 @@ import Post from "./pages/Post/Post.js";
 import UserUpdate from "./pages/UserUpdate/UserUpdate.js";
 import Chat from "./pages/Chat/chat.js";
 import Test from "./pages/Test.js";
+import ProfileUpdate from "./components/Profile/ProfileUpdate.js";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login/google" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/update" element={<ProfileUpdate/>}/>
         <Route path="/post" element={<Post/>}/>
         <Route path="/userUpdate" element={<UserUpdate/>}/>
         <Route path="/chat" element={<Chat/>}/>
