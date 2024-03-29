@@ -62,7 +62,7 @@ public class postService {
 
                 // 파일 저장 경로 설정 (여기서는 macOS 기준으로 설정되어 있습니다.)
 //                String savePath = "/resources/static/images/" + storedFileName;
-                String savePath = "/Users/donghyeokkim/Desktop/isaac/pet-project-master/src/main/resources/static/images/" + storedFileName;
+                String savePath = "C:\\Users\\smhrd\\Desktop\\pet-project-main\\pet-project-master\\src\\main\\resources\\static\\images\\" + storedFileName;
 
 //                String imageUrl = "http://localhost:3000" + savePath + storedFileName;
                 // String savePath = "C:/development/intellij_community/spring_upload_files/" + storedFileName; // 윈도우 경로
@@ -72,6 +72,9 @@ public class postService {
                 // 포스트 파일 정보를 생성하고 저장
                 // 원본은 확장명 빼고 저장
                 String getPath = "/images/" + storedFileName;
+
+               // String getPath = storedFileName;
+
                 postFile.setFile_rname(getPath);
 //                postFile.setFile_rname(filenameWithoutExtension);
 

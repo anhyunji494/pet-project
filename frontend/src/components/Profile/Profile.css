@@ -60,30 +60,31 @@
 }
 
 .profile-photo {
-  display: block;
+  display: flex;
   border-radius: 60px;
   background: gainsboro;
-  width: 250px;
-  height: 250px;
+  width: 15vw;
+  height: 15vw;
   border-radius: 50%;
-  margin-top: 50px;
   
 }
 
 .name-div{
   display: flex;
-    font-size: 18pt;
+    font-size: 1.3vw;
     font-weight: 400;
     justify-content: center;
 }
 
 .tags{
-    margin-top: 20px;
-    padding-bottom: 50px;
+    font-size: 1vw;
+    margin-top: 1vw;
+    padding-bottom: 5%;
 }
 
 
 .content-box{
+  font-size: 1vw;
   display: flex;
   border-radius: 24px;
   box-shadow: 0px 72px 80px -48px #000000;
@@ -100,7 +101,7 @@
 .intro{
   margin-top: 60%;
   display: grid;
-  font-size: 14pt;
+  font-size: 1vw;
   font-weight: 600;
   margin-left: 10%;
   /* justify-content: center; */
@@ -108,12 +109,13 @@
 
 .etc-div{
   display: inline-block;
-  font-size: 14pt;
+  font-size: 1vw;
   font-weight: 400;
   margin-left: 10%;
 }
 
 .birthday{
+  font-size: 1vw;
   font-weight: 300;
 }
 
