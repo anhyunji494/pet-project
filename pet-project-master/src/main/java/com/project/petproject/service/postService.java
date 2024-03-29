@@ -20,22 +20,18 @@ public class postService {
     @Autowired
     private postRepository repository;
 
- 
     // 게시글을 삭제하는 매서드
     public void deletePost(int post_idx) {
         repository.deletePost(post_idx);
     }
 
-
-
     public void save(Post post) throws IOException {
         // 포스트에서 파일 리스트를 가져옵니다.
-        Post_file postFile = new Post_file();
         Post info = repository.insertPost(post);
         System.out.println("info 값: " + info);
+        Post_file postFile = new Post_file();
 
         postFile.setPost_idx(info.getPost_idx());
-
         try {
             List<MultipartFile> files = post.getPost_file();
 
@@ -65,14 +61,21 @@ public class postService {
                 String storedFileName = uuid + "_" + filenameWithoutExtension + "." + ext;
 
                 // 파일 저장 경로 설정 (여기서는 macOS 기준으로 설정되어 있습니다.)
-                String savePath = "/Users/donghyeokkim/Documents/down/" + storedFileName;
+//                String savePath = "/resources/static/images/" + storedFileName;
+                String savePath = "C:\\Users\\smhrd\\Desktop\\pet-project-main\\pet-project-master\\src\\main\\resources\\static\\images\\" + storedFileName;
+
+//                String imageUrl = "http://localhost:3000" + savePath + storedFileName;
                 // String savePath = "C:/development/intellij_community/spring_upload_files/" + storedFileName; // 윈도우 경로
 
                 // 파일을 서버에 저장합니다.
                 file.transferTo(new File(savePath));
                 // 포스트 파일 정보를 생성하고 저장
                 // 원본은 확장명 빼고 저장
-                postFile.setFile_rname(savePath);
+                String getPath = "/images/" + storedFileName;
+
+               // String getPath = storedFileName;
+
+                postFile.setFile_rname(getPath);
 //                postFile.setFile_rname(filenameWithoutExtension);
 
                 postFile.setStoredName(storedFileName);
@@ -103,7 +106,6 @@ public class postService {
     public UserPublicDTO getUserPublic(String user_id){
         return repository.getUserPublic(user_id);
     }
-
 
 }
 

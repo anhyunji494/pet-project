@@ -5,7 +5,6 @@ import Signin from "./pages/Signin/Signin.js"
 import Main from "./pages/Main/Main.js";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import Header from "./components/Header/Header.js";
-import ProfileUpdate from "./pages/Profile/ProfileUpdate.js";
 import Post from "./pages/Post/Post.js";
 import UserUpdate from "./pages/UserUpdate/UserUpdate.js";
 import Chat from "./pages/Chat/chat.js";
@@ -25,7 +24,6 @@ function App() {
         <Route path="/login/google" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/profile/update" element={<ProfileUpdate />} />
         <Route path="/post" element={<Post/>}/>
         <Route path="/userUpdate" element={<UserUpdate/>}/>
         <Route path="/chat" element={<Chat/>}/>
