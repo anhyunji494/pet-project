@@ -1,14 +1,12 @@
 .body{
-    display: grid;
+    display: fixed;
     background: whitesmoke;
     width: 100vw;
-    height: 100vh;
     justify-content: center;
 }
 
 .post-div{
     display: flex;
-    background: wheat;
     width: 90vw;
     height: 100%;
     justify-content: center;
@@ -17,7 +15,6 @@
 
 #content{
     display: flex;
-    background: gold;
     width: 15vw;
     height: 15vw;
     justify-content: center;

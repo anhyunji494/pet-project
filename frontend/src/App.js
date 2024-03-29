@@ -7,7 +7,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import Header from "./components/Header/Header.js";
 import Post from "./pages/Post/Post.js";
 import UserUpdate from "./pages/UserUpdate/UserUpdate.js";
-import Chat from "./pages/Chat/chat.js";
+// import Chat from "./pages/Chat/Chat.js";
 import Test from "./pages/Test.js";
 import ProfileUpdate from "./components/Profile/ProfileUpdate.js";
 
@@ -27,7 +27,7 @@ function App() {
         <Route path="/profile/update" element={<ProfileUpdate/>}/>
         <Route path="/post" element={<Post/>}/>
         <Route path="/userUpdate" element={<UserUpdate/>}/>
-        <Route path="/chat" element={<Chat/>}/>
+        {/* <Route path="/chat" element={<Chat/>}/>/ */}
         <Route path="/test" element={<Test />} />
       </Routes>
     </div>
