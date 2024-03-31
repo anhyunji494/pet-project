@@ -12,7 +12,7 @@ const Write = ()=>{
                 <div id="photo-preview"></div>
                 <div id="photo-upload">
                     <label id="photo-upload-btn" for="input-file">
-                    사진 업로드
+                    파일 업로드
                     </label>
                     <input type="file" id="photo-upload-btn" style={{display:"none"}}/> 
                     {/* 기존의 input file 태그 숨김 */}
