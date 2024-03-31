@@ -8,8 +8,8 @@ import Profile from "../Profile/Profile.js";
 import { useNavigate } from "react-router";
 import { useBodyScrollLock } from "../useBodyScrollLock.js";
 // import Chat from "../pages/Chat/Chat.js";
-import Chat from "../../pages/Chat/Chat.js"
 import Write from "../Write/Write.js";
+
 
 const Header = () => {
   // navigate 선언 : 항상 최상단. 위치 바뀌면 안 됨! 
