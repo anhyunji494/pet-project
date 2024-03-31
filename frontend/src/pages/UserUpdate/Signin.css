@@ -1,0 +1,340 @@
+/* 폰트 목록 */
+
+@font-face {
+  font-family: "NotoSerifKR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* CSS 적용 */
+
+#signin-container {
+  justify-content: center;
+
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.signin-content {
+  display: flex;
+  border-radius: 24px;
+  box-shadow: 0px 72px 80px -48px #000000;
+  gap: 20px;
+}
+
+@media (max-width: 991px) {
+  .signin-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.signin-form-column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 50%;
+}
+
+@media (max-width: 991px) {
+  .signin-form-column {
+    width: 100%;
+  }
+}
+
+.signin-form {
+  background-color: #fff;
+  display: flex;
+  flex-grow: 1;
+  border-radius: 24px;
+  flex-direction: column;
+  padding: 65px 64px;
+}
+
+@media (max-width: 991px) {
+  .signin-form {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.logo-header {
+  display: flex;
+  gap: 20px;
+  font-size: 11px;
+  color: #000;
+  font-weight: 400;
+  letter-spacing: 8.14px;
+  line-height: 100%;
+}
+
+@media (max-width: 991px) {
+  .logo-header {
+    white-space: initial;
+  }
+}
+
+.pet-wave-icon {
+  aspect-ratio: 3.03;
+  object-fit: auto;
+  object-position: center;
+  width: 42px;
+  stroke-width: 1px;
+  stroke: #000;
+}
+
+.logo-text {
+  font-family: KoPub Batang, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .logo-text {
+    padding: 30px;
+  }
+}
+.tagline {
+  color: #4b4b4b;
+  margin-top: 74px;
+  font: 600 20px/36px "NotoSerifKR", -apple-system, Roboto, Helvetica,
+    sans-serif;
+}
+
+@media (max-width: 991px) {
+  .tagline {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+}
+
+.input-label {
+  color: #2f3d4c;
+  margin-top: 20%;
+  font: 500 16px/100% "Noto Sans KR", -apple-system, Roboto, Helvetica,
+    sans-serif;
+}
+
+@media (max-width: 991px) {
+  .input-label {
+    max-width: 100%;
+  }
+}
+
+.input-field {
+  border-radius: 8px;
+  width: 300px;
+  border: 1px solid rgba(227, 227, 227, 1);
+  background-color: #fff;
+  margin-top: 8px;
+  color: #414042;
+  padding: 16px;
+  font: 400 16px/150% "Noto Sans KR", -apple-system, Roboto, Helvetica,
+    sans-serif;
+}
+
+@media (max-width: 991px) {
+  .input-field {
+    max-width: 100%;
+  }
+}
+
+.password-input {
+  border-radius: 8px;
+  border: 1px solid rgba(227, 227, 227, 1);
+  background-color: #fff;
+  display: flex;
+  margin-top: 8px;
+  gap: 8px;
+  padding: 16px;
+}
+
+@media (max-width: 991px) {
+  .password-input {
+    flex-wrap: wrap;
+  }
+}
+
+.password-visibility-icon {
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+  width: 24px;
+}
+
+.forgot-password {
+  color: #414042;
+  text-align: right;
+  text-decoration: underline;
+  align-self: center;
+  margin-top: 24px;
+  font: 400 16px/100% "Noto Sans KR", -apple-system, Roboto, Helvetica,
+    sans-serif;
+}
+
+.form-actions {
+  display: flex;
+  margin-top: 24px;
+  gap: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 100%;
+}
+
+@media (max-width: 991px) {
+  .form-actions {
+    flex-wrap: wrap;
+  }
+}
+
+.next-button {
+  font-family: "Noto Sans KR", -apple-system, Roboto, Helvetica, sans-serif;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #4b4b4b;
+  color: #fff;
+  flex: 1;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .signin-button {
+    white-space: initial;
+  }
+}
+
+.next-button {
+  font-family: "Noto Sans KR", -apple-system, Roboto, Helvetica, sans-serif;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #4b4b4b;
+  color: #fff;
+  flex: 1;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.signin-button {
+  font-family: "Noto Sans KR", -apple-system, Roboto, Helvetica, sans-serif;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #4b4b4b;
+  color: #fff;
+  flex: 1;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .signin-button {
+    white-space: initial;
+  }
+}
+
+.signup-button {
+  font-family: Noto Sans KR, -apple-system, Roboto, Helvetica, sans-serif;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid rgba(75, 75, 75, 1);
+  color: #414042;
+  flex: 1;
+  padding: 16px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+.social-signin {
+  display: flex;
+  margin-top: 56px;
+  gap: 20px;
+  font-size: 16px;
+  color: #414042;
+  line-height: 100%;
+  justify-content: space-between;
+}
+
+@media (max-width: 991px) {
+  .social-signin {
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding: 30px;
+  }
+}
+
+.social-signin-text {
+  font-family: "NotoSerifKR", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.google-signin {
+  font-family: "NotoSansKR", sans-serif;
+  font-weight: 500;
+}
+
+.image-column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 58%;
+  margin-left: 20px;
+}
+
+@media (max-width: 991px) {
+  .image-column {
+    width: 100%;
+  }
+}
+
+.image-wrapper {
+  background-color: #e7e6e6;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 80px 60px;
+  border-radius: 24px;
+}
+
+@media (max-width: 991px) {
+  .image-wrapper {
+    display: none;
+    padding: 0 20px;
+  }
+}
+
+.signin-image {
+  aspect-ratio: 1.04;
+  object-fit: auto;
+  object-position: center;
+  width: 477px;
+  margin-top: 48px;
+  max-width: 100%;
+}
+
+@media (max-width: 991px) {
+  .signin-image {
+    margin-top: 40px;
+  }
+}
+
+.signin-button.disabled {
+  background-color: gray; /* 원하는 색상으로 변경할 수 있습니다 */
+  cursor: not-allowed; /* 커서를 기본으로 설정하여 사용자가 클릭하지 못하도록 합니다 */
+}

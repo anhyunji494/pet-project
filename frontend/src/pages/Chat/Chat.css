@@ -1,0 +1,193 @@
+/* 폰트 목록 */
+
+@font-face {
+    font-family: "NotoSerifKR";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+  
+  .notosanskr * {
+    font-family: "Noto Sans KR", sans-serif;
+  }
+  
+/* CSS 적용 */
+
+#newBody{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 75vh;
+}
+
+#container{
+    display: flex;
+    border-radius: 24px;
+    background:white;
+    box-shadow: 0px 72px 80px -48px #000000;
+    /* display: grid; */
+    justify-content: center;
+    align-content: center;
+    padding: 3%;
+    font: 500 16px/100% "Noto Sans KR", "Courier New", Courier, monospace;
+    width: 80%;
+    height: 100%;
+    margin: 30px;
+}
+
+#container:after{
+    content:'';display:block;clear:both;
+}
+
+
+#container-list{
+    background: 247, 247, 247;
+    height: 100%;
+    width: 30%;
+}
+
+#container-card{ 
+    display: flex;
+    align-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    flex-wrap: wrap;
+    background: white;
+    height: 70px;
+    width: 80%;
+    border-radius: 24px;
+    padding-left: 5%;
+}
+
+#container-card:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.474), 0 6px 6px rgba(0, 0, 0, 0.474);
+
+}
+
+#container-profile{
+    display: flex;
+    background: black;
+    width: 4vw;
+    height: 4vw;
+    border-radius: 50px;
+}
+
+#container-profile-text{
+    align-content: center;
+}
+
+#container-profile-text-nick{
+    font-size: 14pt;
+    display: block;
+}
+
+#container-profile-last-chat{
+    display: block;
+    font-size: 10pt;
+    font-weight: 200;
+}
+
+#chat-container{
+    display: grid;
+    background: whitesmoke;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    width: 70%;
+    padding: 20px;
+    border-radius: 24px;
+    flex-direction: column;
+    align-items: end;
+}
+
+
+#chat-box{
+    display: grid;
+    flex-direction: column
+}
+
+#message-from{
+    background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 24px;
+    padding: 20px;
+    margin: 10px;
+    width: 50%;
+    align-self: start;
+}
+
+#message-from:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.474), 0 6px 6px rgba(0, 0, 0, 0.474);
+
+}
+
+#message-to{
+    background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 24px;
+    padding: 20px;
+    margin: 10px;
+    width: 50%;
+    align-self: end;
+    justify-self: right;
+}
+
+#message-to:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.474), 0 6px 6px rgba(0, 0, 0, 0.474);
+
+}
+
+#message-input-box{
+    display: flex;
+    align-self: self-start;
+    justify-self: stretch;
+    width: 100%;
+
+    justify-content: center;
+    align-content: center;
+}
+
+#message-input-box:after{
+    display: flex;
+    content:'';display:block;clear:both;
+}
+
+#message-input-txt{
+    box-sizing: border-box;
+    /* display: flex; */
+    align-self: self-start;
+    width: 90%;
+    margin: 20px;
+    padding: 25px;
+    border: none;
+    border-radius: 24px;
+    height: 100px;
+    resize: none;
+    font: 500 16px/100% "Noto Sans KR", "Courier New", Courier, monospace;
+}
+
+#message-input-txt:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.474), 0 6px 6px rgba(0, 0, 0, 0.474);
+
+}
+
+
+#message-input-txt:focus{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.474), 0 6px 6px rgba(0, 0, 0, 0.474);
+    outline: none;
+}
+
+
+#message-input-btn{
+    box-sizing: border-box;
+    align-self: self-start;
+    width: 10%;
+    margin-top: 20px;
+    border: none;
+    border-radius: 24px;
+    height: 100px;
+}
+
+#message-input-btn:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.474), 0 6px 6px rgba(0, 0, 0, 0.474);
+}
