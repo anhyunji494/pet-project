@@ -17,7 +17,7 @@ const PostDetail = () => {
             {/* 닉네임+자기소개 */}
             <div id="container-profile-text">
               <div id="container-profile-nick">닉네임</div>
-              <div id="container-profile-badge">뱃지</div>
+              <div id="container-profile-badge"></div>
             </div>
           </div>
           {/* 게시글 */}

@@ -167,7 +167,7 @@ const PostsList = () => {
                       right: 0,
                       bottom: 0,
                       backgroundColor: "rgba(0, 0, 0, 0.52)",
-                      backdropFilter: "blur(1px)",
+                      backdropFilter: "blur(5px)",
                     },
                     content: {
                       position: "absolute",
