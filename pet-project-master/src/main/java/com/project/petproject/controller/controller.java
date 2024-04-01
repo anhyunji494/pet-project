@@ -1,11 +1,13 @@
 package com.project.petproject.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.loginService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,46 +22,62 @@ public class controller {
         return "Hello Spring Boot🎃";
     }
 
+    public class ImageController {
+
+        @GetMapping("/images/{imageName:.+}")
+        public String getImage() {
+            return "forward:/Users/donghyeokkim/Documents/down/{imageName}";
+        }
+    }
+
     @GetMapping("/")
     public String home() {
-        return "Main"; // Main 컴포넌트를 렌더링하도록 설정
+        return "/resources"; // Main 컴포넌트를 렌더링하도록 설정
     }
 
     @PostMapping("/signUp")
-    public String signUp(@RequestBody userDTO userDTO) {
+    public String signUp(@RequestBody userDTO userDTO, HttpSession session) {
         System.out.println("userDTO" + userDTO);
         loginService.signUp(userDTO);
+        session.setAttribute("info", userDTO);
         return "redirect:/";
     }
-    
-     @PostMapping("/login")
-    // 매개변수에 필요한 객체 적으면됨
-    public String login(@RequestBody userDTO userDTO, HttpSession session) {
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody userDTO userDTO, HttpSession session) {
         userDTO info = loginService.login(userDTO);
-        System.out.println(userDTO);
-        System.out.println(info);
         if(info != null) {
             session.setAttribute("info", info);
-            System.out.println("\n 로그인 info: " + info);
-            System.out.println("info null");
-            return "200";
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                String infoJson = objectMapper.writeValueAsString(info);
+                //info.getUser_id 하면 id만 넘어옴
+                System.out.println("\n 로그인 info: " + info);
+                return ResponseEntity.ok(infoJson); // 로그인 정보를 JSON 형태로 반환
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error converting object to JSON");
+            }
         } else {
-            return "400";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials"); // 인증 실패 시 에러 메시지 반환
         }
     }
 
 
     @PostMapping("/userUpdate")
-    public String userUpdate(userDTO userDTO, HttpSession session) {
-        System.out.println("컨트롤러 받아올때 : "+userDTO);
+    public String userUpdate(@RequestBody userDTO userDTO, HttpSession session) {
         userDTO info = (userDTO) session.getAttribute("info");
-        System.out.println("\n info(session으로 받은거): "+info);
-        if (info != null) {
-            info.setUser_nick(userDTO.getUser_nick());
-            info.setUser_pw(userDTO.getUser_pw());
-            loginService.userUpdate(info);
-        }
+        System.out.println("\n info(session으로 받은거): " + info);
+        System.out.println("userDTO : " + userDTO);
+        info.setUser_nick(userDTO.getUser_nick());
+        info.setUser_intro(userDTO.getUser_intro());
+        info.setLikes(userDTO.getLikes());
+        info.setDislikes(userDTO.getDislikes());
+        info.setBirthday(userDTO.getBirthday());
+        info.setLocation(userDTO.getLocation());
+        loginService.userUpdate(info);
+
         return "redirect:/";
     }
-    
+
 }
