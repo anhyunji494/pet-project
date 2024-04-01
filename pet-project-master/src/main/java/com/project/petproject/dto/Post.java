@@ -21,6 +21,6 @@ public class Post {
     private int post_views;
     private int post_likes;
     private String user_id;
-    private List<MultipartFile> post_file;
+    private List<String> post_file;
 
 }

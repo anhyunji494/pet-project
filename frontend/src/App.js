@@ -11,6 +11,7 @@ import Chat from "./pages/Chat/Chat.js";
 import Test from "./pages/Test.js";
 import ProfileUpdate from "./components/Profile/ProfileUpdate.js";
 import PostsList from "./components/PostList/PostsList.js";
+import Write from "./components/Write/Write.js";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/chat" element={<Chat/>}/>/
         <Route path="/test" element={<Test />} />
         <Route path="/postsList" element={<PostsList />} />
+        <Route path="/new" element={<Write/>}/>
       </Routes>
     </div>
   );

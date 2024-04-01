@@ -8,7 +8,14 @@
     </insert>
 
     <update id="update" parameterType="com.project.petproject.dto.userDTO">
-        update users set user_nick = #{user_nick}, user_pw = #{user_pw} where user_id = #{user_id}
+        update users
+        set user_nick  = #{user_nick},
+            birthday   = #{birthday},
+            user_intro = #{user_intro},
+            likes      = #{likes},
+            dislikes   = #{dislikes},
+            location   = #{location}
+        where user_id = #{user_id}
     </update>
 
     <select id="login" resultType="com.project.petproject.dto.userDTO" parameterType="com.project.petproject.dto.userDTO">

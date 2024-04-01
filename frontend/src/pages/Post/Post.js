@@ -2,27 +2,27 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Posts() {
-    // const [post_content, setContent] = useState('');
-    // const [image, setImage] = useState(null);
-    // const [imageUrl, setImageUrl] = useState('');
+    const [post_content, setContent] = useState('');
+    const [image, setImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    //     try {
-    //         // FormData 객체 생성
-    //         const formData = new FormData();
-    //         formData.append('post_content', post_content);
-    //         formData.append('file_rname', image);
+        try {
+            // FormData 객체 생성
+            const formData = new FormData();
+            formData.append('post_content', post_content);
+            formData.append('file_rname', image);
 
-    //         // 게시물 추가 요청
-    //         const response = await axios.post('/posts/new', formData);
-    //         console.log(response.data);
-    //         // 게시물 추가 완료 후 처리 (예: 홈 화면으로 이동)
-    //     } catch (error) {
-    //         console.error('게시물 추가 중 오류 발생:', error);
-    //     }
-    // };
+            // 게시물 추가 요청
+            const response = await axios.post('/posts/new', formData);
+            console.log(response.data);
+            // 게시물 추가 완료 후 처리 (예: 홈 화면으로 이동)
+        } catch (error) {
+            console.error('게시물 추가 중 오류 발생:', error);
+        }
+    };
 
     return (
         <div>
