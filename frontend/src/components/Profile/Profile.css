@@ -19,7 +19,6 @@
 #body {
   font-family: "Noto Sans KR", "Courier New", Courier, monospace;
   justify-content: center;
-  background-color: #fff;
   display: flex;
   align-items: center;
 }

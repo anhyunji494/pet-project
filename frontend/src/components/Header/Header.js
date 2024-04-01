@@ -6,6 +6,10 @@ import { useRef } from "react";
 import Modal from "react-modal";
 import Profile from "../Profile/Profile.js";
 import { useNavigate } from "react-router";
+import { useBodyScrollLock } from "../useBodyScrollLock.js";
+// import Chat from "../pages/Chat/Chat.js";
+import Write from "../Write/Write.js";
+
 
 const Header = () => {
   // navigate 선언 : 항상 최상단. 위치 바뀌면 안 됨! 
@@ -18,15 +22,26 @@ const Header = () => {
   };
 
   // 모달 컨트롤
+
+  // 모달 사용 시 오버레이 뒷배경 스크롤 막기 
+  const {lockScroll, openScroll} = useBodyScrollLock();
+
+  // 모달 오픈/클로즈
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
+    lockScroll();
     setModalIsOpen(true);
   };
 
   const closeModal = () => {
+    openScroll();
     setModalIsOpen(false);
   };
+
+
+
+
 
   return (
     <>
@@ -56,10 +71,9 @@ const Header = () => {
             </fieldset>
           </div>
 
-          <i className="fi fi-br-plus" id="icon"></i>
-          <div id="icon">
-            <i className="fi fi-br-comments" id="icon" onClick={openModal}></i>
-            <Modal
+          <i className="fi fi-br-plus" id="icon" onClick={openModal}></i>
+
+          <Modal
               isOpen={modalIsOpen}
               onRequestClose={closeModal}
               style={{
@@ -70,6 +84,7 @@ const Header = () => {
                   right: 0,
                   bottom: 0,
                   backgroundColor: "rgba(0, 0, 0, 0.52)",
+                  backdropFilter: 'blur(15px)',
                 },
                 content: {
                   position: "absolute",
@@ -87,9 +102,16 @@ const Header = () => {
                 },
               }}
             >
-              <Profile />
-              <button onClick={closeModal}>닫기</button>
+
+              <Write />
+              <button id="modal-close-btn" onClick={closeModal}>X</button>
             </Modal>
+
+          <div id="icon">
+            <i className="fi fi-br-comments" id="icon" onClick={()=>{
+              navigate('/chat');
+            }}></i>
+            
           </div>
 
           <i className="fi fi-br-eclipse-alt" id="icon"></i>
