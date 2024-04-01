@@ -36,15 +36,26 @@ public class controller {
         }
     }
 
+    public class ImageController {
+
+        @GetMapping("/images/{imageName:.+}")
+        public String getImage() {
+            return "forward:/Users/donghyeokkim/Documents/down/{imageName}";
+        }
+    }
+
     @GetMapping("/")
     public String home() {
+        return "/resources"; // Main 컴포넌트를 렌더링하도록 설정
         return "/resources"; // Main 컴포넌트를 렌더링하도록 설정
     }
 
     @PostMapping("/signUp")
     public String signUp(@RequestBody userDTO userDTO, HttpSession session) {
+    public String signUp(@RequestBody userDTO userDTO, HttpSession session) {
         System.out.println("userDTO" + userDTO);
         loginService.signUp(userDTO);
+        session.setAttribute("info", userDTO);
         session.setAttribute("info", userDTO);
         return "redirect:/";
     }
@@ -70,7 +81,18 @@ public class controller {
             
     @PostMapping("/userUpdate")
     public String userUpdate(@RequestBody userDTO userDTO, HttpSession session) {
+    public String userUpdate(@RequestBody userDTO userDTO, HttpSession session) {
         userDTO info = (userDTO) session.getAttribute("info");
+        System.out.println("\n info(session으로 받은거): " + info);
+        System.out.println("userDTO : " + userDTO);
+        info.setUser_nick(userDTO.getUser_nick());
+        info.setUser_intro(userDTO.getUser_intro());
+        info.setLikes(userDTO.getLikes());
+        info.setDislikes(userDTO.getDislikes());
+        info.setBirthday(userDTO.getBirthday());
+        info.setLocation(userDTO.getLocation());
+        loginService.userUpdate(info);
+
         System.out.println("\n info(session으로 받은거): " + info);
         System.out.println("userDTO : " + userDTO);
         info.setUser_nick(userDTO.getUser_nick());
