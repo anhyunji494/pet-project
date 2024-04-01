@@ -181,9 +181,9 @@ function Signin() {
 
               <div className="social-signin">
                 <div className="social-signin-text">
-                  이렇게도 로그인 할 수 있어요
+                  이렇게도 이용할 수 있어요
                 </div>
-                <div className="google-signin">Google</div>
+                <div className="google-signin" onClick={navigate('/login')}>Google</div>
               </div>
             </div>
           </div>
