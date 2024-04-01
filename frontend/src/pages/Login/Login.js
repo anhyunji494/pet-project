@@ -23,8 +23,6 @@ const SignUpButton = () => (
 function Login() {
     // navigate(페이지 라우팅) 선언
     const navigate = useNavigate();
-    // navigate(페이지 라우팅) 선언
-    const navigate = useNavigate();
 
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
@@ -66,58 +64,7 @@ function Login() {
     // navigate('/main')
   };
 
-    return (
-        <>
-            <div id="login-container">
-                <div className="login-content">
-                    <div className="login-form-column">
-                        <div className="login-form">
-                            <header className="logo-header">
-                                <PetWaveIcon />
-                                <div className="logo-text">petwave</div>
-                            </header>
-                            <p className="tagline">
-                                펫웨이브와 함께하며 <br />더 많은 반려동물 이야기를 발견하세요!
-                            </p>
-                            <form method="POST" onSubmit={handleLogin}>
-                                <label htmlFor="user_id" className="input-label">
-                                    아이디
-                                </label>
-                                <br />
-                                <input
-                                    type="email"
-                                    name="user_id"
-                                    className="input-field"
-                                    placeholder="이메일을 입력하세요"
-                                    aria-label="Enter your email"
-                                    onChange={(e) => {
-                                        setId(e.target.value);
-                                    }}
-                                />
-                                <br />
-                                <br />
-                                <label htmlFor="password" className="input-label">
-                                    비밀번호
-                                </label>
-                                <br />
-                                <input
-                                    type="password"
-                                    name="user_pw"
-                                    className="input-field"
-                                    placeholder="비밀번호를 입력하세요"
-                                    aria-label="Enter your email"
-                                    onChange={(e) => {
-                                        setPassword(e.target.value);
-                                    }}
-                                />
-                                <div className="forgot-password">비밀번호를 잊으셨나요?</div>
-                                <div className="form-actions">
-                                    <button type="submit" className="signin-button">
-                                        로그인
-                                    </button>
-                                    <SignUpButton />
-                                </div>
-                            </form>
+  
     return (
         <>
             <div id="login-container">
