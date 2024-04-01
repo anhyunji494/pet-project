@@ -1,12 +1,36 @@
 import * as React from "react";
-import { useBodyScrollLock } from "../useBodyScrollLock";
 import { useState } from "react";
+import axios from "axios";
+import { useBodyScrollLock } from "../useBodyScrollLock";
 import Modal from "react-modal";
 import "./PostDetail.css";
 
 const PostDetail = () => {
+  // 댓글 입력값을 상태로 관리합니다.
+  const [comment, setComment] = useState("");
+
+  // 댓글 입력 핸들러
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  // 댓글 전송 핸들러
+  const handleSubmitComment = async () => {
+    try {
+      // 댓글을 서버에 전송합니다.
+      const response = await axios.post("/comments/new", { cmt_content: comment });
+
+      // 서버로부터의 응답을 확인합니다.
+      console.log("Response from server:", response.data);
+
+      // 댓글 입력 후 댓글 상태를 초기화합니다.
+      setComment("");
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
-    <>
       <div id="newBody">
         <div id="container-postdetail">
           {/* 게시글 컨테이너*/}
@@ -32,13 +56,19 @@ const PostDetail = () => {
           <div id="reply-box">
             <div id="reply">messageFrom</div>
             <div id="message-input-box">
-              <textarea id="message-input-txt"></textarea>
-              <button id="message-input-btn">입력</button>
+            <textarea
+                id="message-input-txt"
+                value={comment}
+                name="cmt_content" // 댓글 내용의 name을 설정합니다.
+                onChange={handleCommentChange}
+            ></textarea>
+              <button id="message-input-btn" onClick={handleSubmitComment}>
+                입력
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </>
   );
 };
 
