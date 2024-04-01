@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import jwt_decode, { jwtDecode } from "jwt-decode";
 
 const PetWaveIcon = () => (
   <img
@@ -59,9 +62,11 @@ function Login() {
         alert("로그인 실패");
         navigate("/login");
       });
-    // if (function (response) ==="200")
+  };
 
-    // navigate('/main')
+  // 구글 로그인 핸들러
+  const HandlerGoogleLogin = (e) => {
+    console.log("구글 로그인 요청");
   };
 
   return (
@@ -121,11 +126,54 @@ function Login() {
                 <div className="social-login-text">
                   이렇게도 로그인 할 수 있어요
                 </div>
-                <Link to="https://accounts.google.com/o/oauth2/v2/auth?scope=profile&response_type=code&redirect_uri=http://localhost:3000/&client_id=100190826571-b2v3fs803cn1mr3jttqhiullv9m2t9en.apps.googleusercontent.com">
-                  <form method="get">
-                      Google
-                  </form>
-                </Link>
+                <GoogleOAuthProvider clientId="100190826571-b2v3fs803cn1mr3jttqhiullv9m2t9en.apps.googleusercontent.com">
+                  <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                      const isVerified = jwtDecode(credentialResponse.credential).email_verified;
+                      const googleUserId = jwtDecode(credentialResponse.credential).email
+
+                      console.log(
+                        isVerified
+                        );
+                      console.log(
+                        googleUserId
+                      );
+
+                      // if(isVerified=='true'){
+                        axios
+                        .post("/login",{  
+                          user_id:googleUserId
+                        })
+                        .then(function (response){
+                          console.log(response)
+                          console.log('구글 로그인 성공');
+                          // navigate('/');}
+                        })
+                        .catch(
+                          function (error) {
+                            console.log("구글로그인 실패");
+                            console.log("데이터 정보", error);
+                            
+                            alert("구글 로그인에 실패하였습니다.");
+                            navigate("/login");
+                          }
+                        )
+                      // }
+
+                      // else{
+
+                      // }
+
+                      
+
+                    }}
+                    onError={() => {
+                      console.log("구글 로그인 실패");
+                      navigate("/login");
+                    }}
+                  />
+                </GoogleOAuthProvider>
+                ;
               </div>
             </div>
           </div>
@@ -142,4 +190,5 @@ function Login() {
     </>
   );
 }
+
 export default Login;
