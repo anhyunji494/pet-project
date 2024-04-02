@@ -3,7 +3,14 @@
 <mapper namespace="profile">
 
     <select id="list" resultType="com.project.petproject.dto.userDTO" parameterType="com.project.petproject.dto.userDTO">
-        select * from users where user_nick = #{user_nick};
+        select * from users where user_id = #{user_id};
     </select>
 
+     <!-- <select id="profileId" resultType="com.project.petproject.dto.userDTO" parameterType="com.project.petproject.dto.userDTO">
+        select * from users where user_id = #{user_id};
+    </select>
+    
+    <select id="profilePost" resultType="com.project.petproject.dto.Post" parameterType="com.project.petproject.dto.Post">
+        select * from Posts where user_id = #{user_id};
+    </select> -->
 </mapper>

@@ -96,14 +96,5 @@ public class controller {
         return "redirect:/";
     }
 
-    @PostMapping("/user/{user_id}")
-    public ResponseEntity<UserPublicDTO> getUserPublic(@PathVariable("user_id") String user_id) {
-        try {
-            UserPublicDTO userPublic = postService.getUserPublic(user_id);
-            System.out.println(" 유저 프로필 호출");
-            return ResponseEntity.ok(userPublic);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-}
+
 }

@@ -32,6 +32,7 @@ const Header = () => {
 
         if (profileData) {
             navigate(`/profile/${profileData.user_nick}`);
+            // navigate(`/profiles/${profileData.user_id}`);
         } else {
             // 프로필 데이터가 없는 경우 예외 처리
             console.error('No profile data found');

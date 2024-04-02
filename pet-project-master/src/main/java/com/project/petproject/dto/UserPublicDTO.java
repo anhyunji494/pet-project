@@ -13,9 +13,6 @@ public class UserPublicDTO {
     // 회원 아이디
     private String user_id;
 
-    // 회원 이메일
-    private String user_email;
-
     // 회원 닉네임
     private String user_nick;
 

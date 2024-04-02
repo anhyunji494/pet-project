@@ -52,7 +52,7 @@ function Signin() {
         console.log("실패");
         console.log(error);
       });
-      navigate('/profile');
+      navigate(`/profile/${id}`);
   };
 
 
@@ -183,7 +183,7 @@ function Signin() {
                 <div className="social-signin-text">
                   이렇게도 이용할 수 있어요
                 </div>
-                <div className="google-signin" onClick={navigate('/login')}>Google</div>
+                <div className="google-signin" onClick={() => navigate('/login')}>Google</div>
               </div>
             </div>
           </div>
