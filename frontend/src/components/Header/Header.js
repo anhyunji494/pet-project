@@ -31,7 +31,7 @@ const Header = () => {
         console.log(profileData);
 
         if (profileData) {
-            navigate(`/profile/${profileData.user_nick}`);
+            navigate(`/profile/${profileData.user_id}`);
             // navigate(`/profiles/${profileData.user_id}`);
         } else {
             // 프로필 데이터가 없는 경우 예외 처리

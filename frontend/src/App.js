@@ -25,7 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/login/google" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/profile/:user_nick" element={<ProfilePage />} />
+        <Route path="/profile/:user_id" element={<ProfilePage />} />
         <Route path="/profile/update" element={<ProfileUpdate/>}/>
         <Route path="/post" element={<Post/>}/>
         <Route path="/userUpdate" element={<UserUpdate/>}/>

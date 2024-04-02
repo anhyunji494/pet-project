@@ -5,26 +5,25 @@ import axios from "axios";
 const Profile = () => {
     const navigate = useNavigate();
     const [profileData, setProfileData] = useState(null);
-    const {user_id} = useParams();
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // 프로필 정보 가져오기
-                const profileInfoResponse = await axios.get(`/profile_info/${user_id}`);
-                setProfileData(profileInfoResponse.data);
-                console.log(profileInfoResponse.data);
-    
-                // 유저가 작성한 게시글 가져오기
-                const profilePostResponse = await axios.get(`/profile_post/${user_id}`);
-                console.log("작성자의 게시물 : " + profilePostResponse.data);
-            } catch (error) {
-                console.error("Error fetching profile data:", error);
-            }
-        };
-    
-        fetchData();
-    }, [user_id]);
+    const { user_id } = useParams(); 
+useEffect(() => {
+    const fetchData = async () => {
+        try {
+            // 프로필 정보 가져오기
+            const profileInfoResponse = await axios.get(`/profile_info/${user_id}`);
+            setProfileData(profileInfoResponse.data);
+            console.log(profileInfoResponse.data);
+
+            // 유저가 작성한 게시글 가져오기
+            const profilePostResponse = await axios.get(`/profile_post/${user_id}`);
+            console.log("작성자의 게시물 : " + profilePostResponse.data);
+        } catch (error) {
+            console.error("Error fetching profile data:", error);
+        }
+    };
+
+    fetchData();
+}, [user_id]);
 
     const updateBtn = () => {
         navigate('/profile/update')
