@@ -4,8 +4,8 @@
 
     <insert id="newComment" parameterType="com.project.petproject.dto.CommentDTO" useGeneratedKeys="true"
             keyProperty="cmt_idx">
-        insert into comments(post_idx, cmt_content, created_at, user_id)
-        VALUES (#{post_idx}, #{cmt_content}, now(), #{user_id})
+        insert into comments(post_idx, cmt_content, user_id)
+        VALUES (#{post_idx}, #{cmt_content}, #{user_id})
     </insert>
 
 

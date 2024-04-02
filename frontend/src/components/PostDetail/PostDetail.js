@@ -19,26 +19,25 @@ const PostDetail = ({post_idx}) => {
 
   const [dataObjArr, setDataObjArr] = useState([]);
 
-  const handleReply = (props) => {
-    console.log("댓글 작성 요청");
-  
-    axios.post("/comments/new", {
-        post_idx: props.post_idx,
-        cmt_content: comment,
-      })
-      .then((response) => {
-        console.log("응답 받기 성공");
-        console.log(response.data);
-        console.log("idx", post_idx);
-        console.log("cmt_content", comment);
-        setComment("");
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
+    const handleReply = () => {
+        console.log("댓글 작성 요청");
 
-  //   // 댓글 전송 핸들러
+        axios
+            .post(`/comments/new/${post_idx}`, {
+                cmt_content: comment,
+            })
+            .then((response) => {
+                console.log("응답 받기 성공");
+                console.log(response.data);
+                setComment("");
+            })
+            .catch((error) => {
+                console.log("error", error);
+            });
+    };
+
+
+    //   // 댓글 전송 핸들러
   //   const handleSubmitComment = async () => {
   //     try {
   //       // 댓글을 서버에 전송합니다.
