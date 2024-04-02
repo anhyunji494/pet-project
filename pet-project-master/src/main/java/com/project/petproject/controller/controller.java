@@ -96,5 +96,12 @@ public class controller {
         return "redirect:/";
     }
 
+    // logout
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        System.out.println("session 삭제");
+        return "";
+    }
 
 }

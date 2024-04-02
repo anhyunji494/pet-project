@@ -35,13 +35,20 @@ useEffect(() => {
         console.log("followBtn ck");
         // 팔로우 기능 구현
     };
-    const handleLogout = () => {
-        // sessionStorage에 저장된 정보 삭제
-        sessionStorage.removeItem('myInfo');
-        sessionStorage.removeItem('updatedProfileData');
+    const handleLogout = async () => {
+        try {
+            // 서버로 로그아웃 요청 보내기
+            await axios.post('/logout');
 
-        // 로그아웃 후 로그인 페이지로 이동
-        navigate('/login');
+            // sessionStorage에 저장된 정보 삭제
+            sessionStorage.removeItem('myInfo');
+            sessionStorage.removeItem('updatedProfileData');
+
+            // 로그아웃 후 로그인 페이지로 이동
+            navigate('/login');
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
     };
 
     return (
