@@ -1,18 +1,7 @@
-import * as React from "react";
-import "./Profile.css"
-import {Link} from 'react-router-dom';
-import {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
-
-const PetWaveIcon = () => (
-    <img
-        loading="lazy"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/62ac67801738c13143d0710165edd3a0c539b15e2bc0a83b0ac2d41402024a47?apiKey=90aa7ae4bb3148a18366a057ad7e2c00&"
-        alt="PetWave logo"
-        className="pet-wave-icon"
-    />
-);
-
+import { Buffer } from 'buffer';
+import uploadImageToS3 from "../../module/s3";
 
 function UserUpdate() {
     const [formData, setFormData] = useState({
@@ -21,45 +10,74 @@ function UserUpdate() {
         user_intro: "",
         likes: "",
         dislikes: "",
-        location: ""
+        location: "",
+        user_img: null,
     });
+    const [imagePreview, setImagePreview] = useState(null); // 미리보기 이미지 상태 추가
 
-
-    const handleChange = (e) => {
-        const {name, value} = e.target;
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
         setFormData({
             ...formData,
-            [name]: value
+            user_img: file,
+        });
+
+        // 미리보기 이미지 업데이트
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setImagePreview(reader.result);
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
         });
     };
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         try {
-            const response = await axios.post("/userUpdate", formData);
+            // 이미지를 S3에 업로드하고 업로드된 이미지의 URL을 받아옴
+            const imageUrl = await uploadImageToS3(formData.user_img);
+
+            // 다른 폼 데이터와 함께 서버에 전송
+            const response = await axios.post("/userUpdate", {
+                ...formData,
+                user_img: imageUrl, // S3에서 받아온 이미지 URL로 대체
+            });
+
             console.log("Response from server:", response.data);
-            console.log(formData);
 
             // 서버 응답에 따라 필요한 작업 수행
-
-            // 수정된 정보를 sessionStorage에 저장
-            sessionStorage.setItem('updatedProfileData', JSON.stringify(formData));
+            sessionStorage.setItem('updatedProfileData', JSON.stringify(response.data));
         } catch (error) {
             console.error("Error:", error);
         }
     };
 
-    const SigninButton = () => (
-        <button type="submit" className="signin-button"><Link to="/" className="signin-button" onClick={handleSubmit}>
-            회원 수정</Link>
-        </button>
-    );
-
     return (
         <div id="body">
             <div className="profile-box">
                 <div className="profile-div">
-                    <div className="profile-photo"></div>
+                    <div className="profile-photo">
+                        {imagePreview ? (
+                            <img src={imagePreview} alt="Profile Preview" style={{ maxWidth: "100px", maxHeight: "100px" }} />
+                        ) : (
+                            <span>프로필 사진</span>
+                        )}
+                        <input
+                            type="file"
+                            className="user_img"
+                            name="user_img"
+                            onChange={handleFileChange}
+                        />
+                    </div>
                     <div className="name-div">
                         반려동물이름
                         <input
@@ -67,7 +85,7 @@ function UserUpdate() {
                             name="user_nick"
                             value={formData.user_nick}
                             onChange={handleChange}
-                        ></input>
+                        />
                     </div>
                     <div className="birthday">
                         <i className="fi fi-br-cake-birthday"></i>
@@ -77,7 +95,7 @@ function UserUpdate() {
                             name="birthday"
                             value={formData.birthday}
                             onChange={handleChange}
-                        ></input>
+                        />
                     </div>
                 </div>
                 <div className="tags"></div>
@@ -89,7 +107,7 @@ function UserUpdate() {
                     name="user_intro"
                     value={formData.user_info}
                     onChange={handleChange}
-                ></input>
+                />
                 <div className="etc-div">
                     <div className="likes">
                         <i className="fi fi-sr-thumbs-up"></i>&nbsp;&nbsp; 좋아하는 것
@@ -98,7 +116,7 @@ function UserUpdate() {
                             name="likes"
                             value={formData.likes}
                             onChange={handleChange}
-                        ></input>
+                        />
                     </div>
                     <div className="dislikes">
                         <i className="fi fi-sr-thumbs-up"></i>&nbsp;&nbsp; 싫어하는 것
@@ -107,7 +125,7 @@ function UserUpdate() {
                             name="dislikes"
                             value={formData.dislikes}
                             onChange={handleChange}
-                        ></input>
+                        />
                     </div>
                     <div className="location">
                         <i className="fi fi-sr-map-marker-smile"></i>&nbsp;&nbsp; 지역
@@ -116,13 +134,13 @@ function UserUpdate() {
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
-                        ></input>
+                        />
                     </div>
-                    <SigninButton/>
+                    <button type="submit" className="signin-button" onClick={handleSubmit}>
+                        회원 수정
+                    </button>
                 </div>
-
             </div>
-
         </div>
     );
 }

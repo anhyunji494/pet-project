@@ -76,16 +76,7 @@ public class controller {
         System.out.println("\n info(session으로 받은거): " + info);
         System.out.println("userDTO : " + userDTO);
         info.setUser_nick(userDTO.getUser_nick());
-        info.setUser_intro(userDTO.getUser_intro());
-        info.setLikes(userDTO.getLikes());
-        info.setDislikes(userDTO.getDislikes());
-        info.setBirthday(userDTO.getBirthday());
-        info.setLocation(userDTO.getLocation());
-        loginService.userUpdate(info);
-
-        System.out.println("\n info(session으로 받은거): " + info);
-        System.out.println("userDTO : " + userDTO);
-        info.setUser_nick(userDTO.getUser_nick());
+        info.setUser_img(userDTO.getUser_img());
         info.setUser_intro(userDTO.getUser_intro());
         info.setLikes(userDTO.getLikes());
         info.setDislikes(userDTO.getDislikes());

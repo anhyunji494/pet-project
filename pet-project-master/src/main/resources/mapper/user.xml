@@ -11,6 +11,7 @@
         update users
         set user_nick  = #{user_nick},
             birthday   = #{birthday},
+            user_img   = #{user_img},
             user_intro = #{user_intro},
             likes      = #{likes},
             dislikes   = #{dislikes},

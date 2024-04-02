@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import "./Profile.css"
 
 const Profile = () => {
     const navigate = useNavigate();
     const [profileData, setProfileData] = useState(null);
+    const [profilePost, setProfilePost] = useState(null);
     const { user_id } = useParams(); 
 useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +18,7 @@ useEffect(() => {
 
             // 유저가 작성한 게시글 가져오기
             const profilePostResponse = await axios.get(`/profile_post/${user_id}`);
+            setProfilePost(profilePostResponse.data)
             console.log("작성자의 게시물 : " + profilePostResponse.data);
         } catch (error) {
             console.error("Error fetching profile data:", error);
@@ -48,7 +51,7 @@ useEffect(() => {
         <div id="body">
             <div className="profile-box">
                 <div className="profile-div">
-                    <div className="profile-photo"></div>
+                    <div className="profile-photo"><img src={profileData?.user_img} alt="" id="photo"/></div>
                     <div className="name-div">
                         <span className="name">{profileData?.user_nick}</span>
                     </div>
