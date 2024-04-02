@@ -64,5 +64,8 @@ public class postRepository {
         return userPublic;
     }
 
+    public List<Post> postDetail(int post_idx) {
+        return sql.selectList("post.Detail", post_idx);
+    }
 
 }

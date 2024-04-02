@@ -81,5 +81,8 @@ public class postService {
         return repository.getUserPublic(user_id);
     }
 
+    public List<Post> postDetail(int post_idx) {
+        return repository.postDetail(post_idx);
+    }
 }
 

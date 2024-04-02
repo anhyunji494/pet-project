@@ -6,7 +6,6 @@ import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.postService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,5 +60,24 @@ public class PostController {
         }
     }
 
+//    @GetMapping("/post/{post_idx}")
+//    public String postDetail(@PathVariable("post_idx") int post_idx) {
+//        postService.postDetail(post_idx);
+//        System.out.println("detail 확인");
+//        return "";
+//    }
+
+    // 게시글 상세보기
+    @GetMapping("/post/{post_idx}")
+    public ResponseEntity<?> postDetail(@PathVariable("post_idx") int post_idx) {
+        List<Post> post = postService.postDetail(post_idx);
+        if (post != null) {
+            System.out.println("\n"+"게시글상세 정보 "+post);
+            return ResponseEntity.ok().body(post);
+
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }
