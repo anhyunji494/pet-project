@@ -8,5 +8,11 @@
         VALUES (#{post_idx}, #{cmt_content}, #{user_id})
     </insert>
 
+    <select id="list" resultType="com.project.petproject.dto.CommentDTO" parameterType="com.project.petproject.dto.CommentDTO">
+        SELECT c.*, u.user_nick
+        FROM comments c
+                 JOIN users u ON c.user_id = u.user_id
+        WHERE c.post_idx = #{post_idx}
 
+    </select>
 </mapper>

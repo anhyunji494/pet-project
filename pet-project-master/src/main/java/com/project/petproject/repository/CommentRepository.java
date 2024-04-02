@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class CommentRepository {
@@ -13,5 +15,9 @@ public class CommentRepository {
 
     public void newComment(CommentDTO commentDTO) {
         sql.insert("newComment", commentDTO);
+    }
+
+    public List<CommentDTO> list(int postIdx) {
+        return sql.selectList("comment.list", postIdx);
     }
 }

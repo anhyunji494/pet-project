@@ -31,6 +31,14 @@ const Profile = () => {
         console.log("followBtn ck");
         // 팔로우 기능 구현
     };
+    const handleLogout = () => {
+        // sessionStorage에 저장된 정보 삭제
+        sessionStorage.removeItem('myInfo');
+        sessionStorage.removeItem('updatedProfileData');
+
+        // 로그아웃 후 로그인 페이지로 이동
+        navigate('/login');
+    };
 
     return (
         <div id="body">
@@ -71,6 +79,7 @@ const Profile = () => {
                 <button className="follow-btn" onClick={followBtn}>
                     팔로우
                 </button>
+                <button onClick={handleLogout}>로그아웃</button>
             </div>
         </div>
     );

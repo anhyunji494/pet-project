@@ -14,4 +14,5 @@ public class CommentDTO {
     private String created_at;
     private int cmt_likes;
     private String user_id;
+    private String user_nick;
 }
