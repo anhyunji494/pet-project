@@ -6,6 +6,9 @@ const PostDetail = ({post_idx}) => {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
 
+    const [photos, setPhotos] = useState([]);
+    const [text, setText] = useState("");
+
     // created_at을 몇 분 전 또는 몇 초 전으로 변환하는 함수 인스타 따라한거
     const timeAgo = (date) => {
         const seconds = Math.floor((new Date() - new Date(date)) / 1000);
@@ -45,6 +48,19 @@ const PostDetail = ({post_idx}) => {
 
     // 컴포넌트가 마운트될 때와 post_idx가 변경될 때 댓글 목록을 가져옴
     useEffect(() => {
+        const fetchPostInfo = () => {
+            axios.get(`/post/${post_idx}`)
+                .then(response => {
+                    const { file_rname, post_content } = response.data;
+                    setPhotos(file_rname ? [file_rname] : []);
+                    setText(post_content);
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error("포스트 정보 불러오기 오류:", error);
+                });
+        };
+        fetchPostInfo();
         fetchComments();
     }, [post_idx]);
 
@@ -82,6 +98,12 @@ const PostDetail = ({post_idx}) => {
                 <div id="container-contents">
                     <div id="photo">사진</div>
                     <div id="txt">텍스트</div>
+                    {/*<div id="photo"> 이 부분 수정하면될거같아요*/}
+                    {/*    {photos.length > 0 && photos.map((photo, index) => (*/}
+                    {/*        <img key={index} src={photo.file_rname} alt={`포스트 이미지 ${index}`}/>*/}
+                    {/*    ))}*/}
+                    {/*</div>*/}
+                    {/*<div id="txt">{text}</div>*/}
                 </div>
             </div>
             <div id="container-postdetail">
