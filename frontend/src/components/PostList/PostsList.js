@@ -36,8 +36,6 @@ const PostsList = () => {
   // 선택된 게시글의 idx를 저장할 상태
   const [selectedPostIdx, setSelectedPostIdx] = useState();
 
-
-
   useEffect(() => {
     // 컴포넌트 마운트 될 때 이미지 경로 불러옴
     axios
@@ -63,18 +61,16 @@ const PostsList = () => {
         console.log("에러");
       });
 
-
-
-      // 세션에 값이 있는지 없는지? 
-      console.log('session',sessionStorage.getItem('user'))
-      // 실제 하실 때는 객체형태니까 json 파싱 작업이 필요함 
-      // 참고 : https://sanghye.tistory.com/14
+    // 세션에 값이 있는지 없는지?
+    console.log("session", sessionStorage.getItem("user"));
+    // 실제 하실 때는 객체형태니까 json 파싱 작업이 필요함
+    // 참고 : https://sanghye.tistory.com/14
   }, []);
 
   useEffect(() => {
-    console.log('selectedPostIdx', selectedPostIdx);
+    console.log("selectedPostIdx", selectedPostIdx);
   }, [selectedPostIdx]);
-  
+
   // 상세 게시글 보기
   const handleDetail = (post_idx) => {
 
@@ -84,7 +80,7 @@ const PostsList = () => {
     console.log("상세 게시글 보기 요청"); // 글 idx 넘겨야함 post_idx
     console.log("idx", post_idx);
     setSelectedPostIdx(post_idx);
-//    console.log('selectedPostIdx',selectedPostIdx);
+    //    console.log('selectedPostIdx',selectedPostIdx);
     // setModalIsOpen(true); // 모달 열기 <-- 이 부분을 아래로 이동하세요
     openModal(); // 모달 열기 함수 호출
     //   .get("/images", {
@@ -126,26 +122,115 @@ const PostsList = () => {
       <div className="body">
         {/* 게시글 들어갈 박스들 */}
         <ul className="post-div">
-          <div id="post-photo">
-            {/* 게시글 맵핑 */}
-            {dataObjArr.map((item, index) => (
-              <div id="photo-idv">
-                <img
-                  id="photo-content"
-                  key={index}
-                  src={item.file_rnames[0]}
-                  alt={`사진 ${item.post_idx}`}
-                  width="100%"
-                  height="100%"
-                  onClick={(event) => {
-                    console.log('item',item.post_idx);
-                    setSelectedPostIdx(item.post_idx);
-                    handleDetail(item.post_idx);
-                  }}
-                />
+
+
+
+          {/* 주제별 분할 - 장소 */}
+          <div id="place">
+            <div id="place-txt">
+              <div id="div-title">🙋‍♀️ 주말에 어디가지?</div>
+              <div id="title-tags" style={{ color: "black" }}>
+                #반려동물동반
               </div>
-            ))}
+              <div id="title-tags"style={{ color: "white", backgroundColor:'green' }}>#이색카페</div>
+            </div>
+            <div id="post-divs">
+              <div id="post-photo">
+                {/* 게시글 맵핑 */}
+                {dataObjArr.map((item, index) => (
+                  <div id="photo-idv">
+                    <img
+                      id="photo-content"
+                      key={index}
+                      src={item.file_rnames[0]}
+                      alt={`사진 ${item.post_idx}`}
+                      width="100%"
+                      height="100%"
+                      onClick={(event) => {
+                        console.log("item", item.post_idx);
+                        setSelectedPostIdx(item.post_idx);
+                        handleDetail(item.post_idx);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+
+          {/* 주제별 분할 */}
+          <div id="place">
+            <div id="place-txt">
+              <div id="div-title">✨ 스타일링은 여기가 맛집</div>
+              <div id="title-tags" style={{ color: "black" , background:'rose'}}>
+                #미용
+              </div>
+              <div id="title-tags" style={{ color: "white" , background:'purple'}}>
+                #외출
+              </div>
+            </div>
+            <div id="post-divs">
+              <div id="post-photo">
+                {/* 게시글 맵핑 */}
+                {dataObjArr.map((item, index) => (
+                  <div id="photo-idv">
+                    <img
+                      id="photo-content"
+                      key={index}
+                      src={item.file_rnames[0]}
+                      alt={`사진 ${item.post_idx}`}
+                      width="100%"
+                      height="100%"
+                      onClick={(event) => {
+                        console.log("item", item.post_idx);
+                        setSelectedPostIdx(item.post_idx);
+                        handleDetail(item.post_idx);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 주제별 분할 */}
+          <div id="place">
+            <div id="place-txt">
+              <div id="div-title">🪐 엄마 나도 티니핑</div>
+              <div id="title-tags" style={{ color: "black" , backgroundColor:'skyblue'}}>
+                #반려동물장난감
+              </div>
+            </div>
+            <div id="post-divs">
+              <div id="post-photo">
+                {/* 게시글 맵핑 */}
+                {dataObjArr.map((item, index) => (
+                  <div id="photo-idv">
+                    <img
+                      id="photo-content"
+                      key={index}
+                      src={item.file_rnames[0]}
+                      alt={`사진 ${item.post_idx}`}
+                      width="100%"
+                      height="100%"
+                      onClick={(event) => {
+                        console.log("item", item.post_idx);
+                        setSelectedPostIdx(item.post_idx);
+                        handleDetail(item.post_idx);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
 
           <Modal
             isOpen={modalIsOpen}
