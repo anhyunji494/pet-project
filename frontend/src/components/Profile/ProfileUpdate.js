@@ -62,7 +62,7 @@ function UserUpdate() {
     };
 
     return (
-        <div id="body">
+        <div class="container" id="body">
             <div className="profile-box">
                 <div className="profile-div">
                     <div className="profile-photo">
@@ -101,7 +101,7 @@ function UserUpdate() {
                 <div className="tags"></div>
             </div>
             <div className="content-box">
-                <span className="intro">한줄소개</span>
+                <span className="intro">소개</span>
                 <input
                     className="intro"
                     name="user_intro"

@@ -29,7 +29,6 @@ function App() {
         <Route path="/profile/update" element={<ProfileUpdate/>}/>
         <Route path="/post" element={<Post/>}/>
         <Route path="/userUpdate" element={<UserUpdate/>}/>
-        {/* <Route path="/chat" element={<Chat/>}/>/ */}
         <Route path="/test" element={<Test />} />
         <Route path="/postsList" element={<PostsList />} />
         <Route path="/new" element={<Write/>}/>
