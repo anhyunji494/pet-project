@@ -18,22 +18,18 @@
 
     <!-- 게시물 삭제 -->
     <delete id="deletePost" parameterType="int">
-        DELETE
-        FROM posts
-        WHERE post_idx = #{post_idx}
+        DELETE FROM posts WHERE post_idx = #{post_idx}
     </delete>
 
     <!--작성된 게시물의 내용에서 키워드 검색 -->
     <select id="selectPostByKeyword" resultType="com.project.petproject.dto.Post" parameterType="String">
-        SELECT *
-        FROM posts
-        WHERE Post_content LIKE '%' || #{keyword} || '%'
+        SELECT * FROM posts WHERE Post_content LIKE '%' || #{keyword} || '%'
     </select>
 
     <select id="mainPost" resultMap="postWithFiles">
         SELECT p.user_id, pf.post_idx as post_idx, p.post_content as content, pf.file_rname as file_rname
         FROM post_file pf
-                 INNER JOIN posts p ON pf.post_idx = p.post_idx
+        INNER JOIN posts p ON pf.post_idx = p.post_idx
     </select>
 
 
@@ -48,10 +44,22 @@
 
 
     <!-- 게시물 검색 (ID 기준) -->
-    <select id="selectPostById" resultType="com.project.petproject.dto.Post" parameterType="String">
-        SELECT *
-        FROM posts
-        WHERE user_id = #{user_id}
+    <select id="UserPosts" resultMap="postWithFiles">
+        SELECT p.user_id, pf.post_idx as post_idx, p.post_content as content, pf.file_rname as file_rname
+        FROM post_file pf
+        INNER JOIN posts p ON pf.post_idx = p.post_idx
+        WHERE p.user_id = #{user_id}
+    </select>
+
+    <!--  상세보기 정보  -->
+    <select id="Detail"  resultType="com.project.petproject.dto.Post" parameterType="com.project.petproject.dto.Post_file">
+        SELECT p.user_id, u.user_nick, p.post_content, pf.file_idx, pf.file_rname, p.posted_at, p.post_idx
+        FROM posts p
+                 INNER JOIN post_file pf ON pf.post_idx = p.post_idx
+                 INNER JOIN users u ON u.user_id = p.user_id
+        WHERE p.post_idx = #{post_idx}
+
+
     </select>
 
 

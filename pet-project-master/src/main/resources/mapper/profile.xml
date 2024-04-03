@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="profile">
+
+    <select id="list" resultType="com.project.petproject.dto.userDTO" parameterType="com.project.petproject.dto.userDTO">
+        select * from users where user_id = #{user_id};
+    </select>
+
+     <!-- <select id="profileId" resultType="com.project.petproject.dto.userDTO" parameterType="com.project.petproject.dto.userDTO">
+        select * from users where user_id = #{user_id};
+    </select>
+    
+    <select id="profilePost" resultType="com.project.petproject.dto.Post" parameterType="com.project.petproject.dto.Post">
+        select * from Posts where user_id = #{user_id};
+    </select> -->
+</mapper>

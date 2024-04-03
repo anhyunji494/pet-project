@@ -73,6 +73,10 @@ const PostsList = () => {
 
   // 상세 게시글 보기
   const handleDetail = (post_idx) => {
+
+
+
+
     console.log("상세 게시글 보기 요청"); // 글 idx 넘겨야함 post_idx
     console.log("idx", post_idx);
     setSelectedPostIdx(post_idx);
@@ -91,6 +95,7 @@ const PostsList = () => {
     //     console.log("error", error);
     //   });
   };
+
 
   // 상세 게시글 모달 컨트롤
 
