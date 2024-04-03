@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./PostDetail.css";
 
-const PostDetail = ({post_idx}) => {
+const PostDetail = ({ post_idx }) => {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [photos, setPhotos] = useState([]);
@@ -106,7 +106,7 @@ const PostDetail = ({post_idx}) => {
         fetchComments();
     }, [post_idx]);
 
-// 다음 버튼
+    // 다음 버튼
     const handleNextPost = () => {
         const nextIndex = currentPhotoIndex + 1;
         if (nextIndex < photos.length) {
@@ -115,7 +115,7 @@ const PostDetail = ({post_idx}) => {
             console.error("마지막 사진입니다.");
         }
     };
-// 이전 버튼
+    // 이전 버튼
     const handlePrevPost = () => {
         const prevIndex = currentPhotoIndex - 1;
         if (prevIndex >= 0) {
@@ -139,44 +139,66 @@ const PostDetail = ({post_idx}) => {
                 <div id="container-contents">
                     <div id="photo">
                         {photos.map((photo, index) => (
-                            <img
-                                key={index}
-                                src={photo}
-                                alt={`포스트 이미지 ${index}`}
-                                style={{display: index === currentPhotoIndex ? "block" : "none"}}
-                            />
+                            <div>
+                                <img
+                                    key={index}
+                                    src={photo}
+                                    alt={`포스트 이미지 ${index}`}
+                                    style={{ display: index === currentPhotoIndex ? "block" : "none" }}
+                                />
+                            </div>
                         ))}
                     </div>
-                    <div id="txt">{text}</div>
+                   
+                </div>
+                <div className="move_btn">
+                    <button onClick={handlePrevPost}>◀</button>
+                    <button onClick={handleNextPost}>▶</button>
                 </div>
             </div>
+
+            {/* 전체 댓글영역 */}
             <div id="container-postdetail">
+                {/* 작성된 댓글 영역 */}
+                <div id="txt">{text}</div>
+
+                <div id="comment-list">
+                    {comments.map((comment) => (
+                        <div key={comment.id} className="comment__body">
+                            <div className="comment__info">
+                                <div className="comment__author">{comment.user_nick}</div>
+                                <div className="comment__date">({timeAgo(comment.created_at)})</div>
+                            </div>
+                            <div className="comment__text">{comment.cmt_content} </div>
+
+                        </div>
+                    ))}
+                </div>
+                {/* 댓글영역 작성 */}
                 <div id="reply-box">
-                    <div id="reply">댓글</div>
-                    <div id="message-input-box">
-                        <textarea
+                    <div id="newcomment__form">
+                        <textarea placeholder="Write a comment"
                             id="message-input-txt"
                             value={comment}
                             name="cmt_content"
                             onChange={handleCommentChange}
                         ></textarea>
-                        <button id="message-input-btn" onClick={handleReply}>
-                            입력
-                        </button>
+                        <div class="newcomment__toolbar">
+                            <button
+                                id="reset-button" class="button--secondary"
+                                tabindex="3" type="reset">
+                                Reset
+                            </button>
+                            <button
+                                id="confirm-button" class="button--primary"
+                                tabindex="2" type="submit" onClick={handleReply}>
+                                Comment
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div id="comment-list">
-                    {comments.map((comment) => (
-                        <div key={comment.id}>
-                            <div>
-                                {comment.user_nick}: {comment.cmt_content} ({timeAgo(comment.created_at)})
-                            </div>
-                        </div>
-                    ))}
-                </div>
             </div>
-            <button onClick={handlePrevPost}>이전 포스트</button>
-            <button onClick={handleNextPost}>다음 포스트</button>
+
             {/*<button onClick={handlePrevPost} disabled={currentPhotoIndex === 0}>이전 포스트</button>*/}
             {/*<button onClick={handleNextPost} disabled={currentPhotoIndex === photos.length - 1}>다음 포스트</button>*/}
         </div>

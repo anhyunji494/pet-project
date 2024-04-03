@@ -71,7 +71,9 @@ const Header = () => {
                     </button>
                     <button className="logo">petwave</button>
 
-                    <i className="fi fi-br-home" id="icon"></i>
+                    <i className="fi fi-br-home" id="icon" onClick={() => {
+                            navigate('/');
+                        }}></i>
 
                     <i className="fi fi-br-bell" id="icon"></i>
 

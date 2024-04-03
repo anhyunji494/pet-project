@@ -18,8 +18,7 @@
   /* CSS 적용 */
 
   *{
-
-    font: 500 16px/100% "Noto Sans KR", -apple-system, Roboto, Helvetica,
+    font: "Noto Sans KR", -apple-system, Roboto, Helvetica,
     sans-serif;
   }
 

@@ -205,13 +205,6 @@
     outline: none;
 }
 
-.tabs li a:hover {
-    color: var(--active);
-}
-
-.tabs li a.active {
-    color: var(--active);
-}
 
 .tab-content {
     display: none;

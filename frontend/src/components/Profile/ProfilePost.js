@@ -106,34 +106,37 @@ const ProfilePost = () => {
             ))}
 
 <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            style={{
-              overlay: {
-                position: "fixed",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: "rgba(0, 0, 0, 0.52)",
-                backdropFilter: "blur(5px)",
-              },
-              content: {
-                position: "absolute",
-                top: "40px",
-                left: "40px",
-                right: "40px",
-                bottom: "40px",
-                border: "none",
-                background: "rgba(0, 0, 0, 0)",
-                overflow: "auto",
-                WebkitOverflowScrolling: "touch",
-                borderRadius: "4px",
-                outline: "none",
-                padding: "20px",
-              },
-            }}
-          >
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  style={{
+    overlay: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0, 0, 0, 0.52)",
+      backdropFilter: "blur(5px)",
+      zIndex: 10, // 모달 창의 z-index 값을 설정합니다.
+    },
+    content: {
+      position: "absolute",
+      top: "40px",
+      left: "40px",
+      right: "40px",
+      bottom: "40px",
+      border: "none",
+      background: "rgba(0, 0, 0, 0)",
+      overflow: "auto",
+      WebkitOverflowScrolling: "touch",
+      borderRadius: "4px",
+      outline: "none",
+      padding: "20px",
+      zIndex: 11, // 모달 내용의 z-index 값을 설정합니다. (보통 overlay의 값보다 크게 설정합니다.)
+    },
+  }}
+>
+
             <PostDetail post_idx={selectedPostIdx} />
 
             <button id="modal-close-btn" onClick={closeModal}>

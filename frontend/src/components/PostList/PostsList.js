@@ -76,7 +76,6 @@ const PostsList = () => {
 
 
 
-
     console.log("상세 게시글 보기 요청"); // 글 idx 넘겨야함 post_idx
     console.log("idx", post_idx);
     setSelectedPostIdx(post_idx);
@@ -122,8 +121,6 @@ const PostsList = () => {
       <div className="body">
         {/* 게시글 들어갈 박스들 */}
         <ul className="post-div">
-
-
 
           {/* 주제별 분할 - 장소 */}
           <div id="place">
