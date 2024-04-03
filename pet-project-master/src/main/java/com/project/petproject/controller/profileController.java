@@ -1,10 +1,8 @@
 package com.project.petproject.controller;
 
 import com.project.petproject.dto.PostWithFileDTO;
-import com.project.petproject.dto.UserPublicDTO;
 import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.ProfileService;
-import com.project.petproject.service.postService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
