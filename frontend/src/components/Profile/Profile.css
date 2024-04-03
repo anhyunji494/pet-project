@@ -1,24 +1,4 @@
-:root {
-    --primary: #5F5DFE;
-    --primary-darker: #4F4DFE;
-    --bg: #EFF3F4;
-    --white: #FFF;
-    --profile-bg: #FFFFFD;
-    --socials-bg: #F9FAFC;
-    --highlight-bg: #F9FAFC;
-    --text-bg: #878789;
-    --text: #797C83;
-    --border-color: #F4F4F4;
-    --social-color: #6B6C6E;
-    --active: #7774B5;
-    --tab-bg: #EBE9FF;
-    --tabs-border: #F2F6F5;
-    --tab-width: 7rem;
-    --tabs-gap: 0rem;
-    --tab-radius: 0.4rem;
-    --scrollbar-thumb: #e4e3f3;
-    --scrollbar-bg: #F2F6F5;
-}
+
 
 * {
     margin: 0;
@@ -26,29 +6,8 @@
     box-sizing: border-box;
 }
 
-*:focus {
-    outline: 1px solid var(--primary);
-    outline-offset: 0;
-}
 
-*::selection {
-    background: var(--primary);
-    color: var(--white);
-}
-
-*::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.5rem;
-    background: var(--scrollbar-bg);
-    border-radius: 9.99rem;
-}
-
-*::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
-    border-radius: 9.99rem;
-}
-
-body {
+#ppap {
     font-family: 'Manrope', sans-serif;
     background: var(--bg);
     color: var(--text);

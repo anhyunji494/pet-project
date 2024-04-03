@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Buffer } from 'buffer';
 import uploadImageToS3 from "../../module/s3";
+import './Profile.css';
 
 function UserUpdate() {
     const [formData, setFormData] = useState({

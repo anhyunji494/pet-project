@@ -12,6 +12,7 @@ import Test from "./pages/Test.js";
 import ProfileUpdate from "./components/Profile/ProfileUpdate.js";
 import PostsList from "./components/PostList/PostsList.js";
 import Write from "./components/Write/Write.js";
+import Rank from "./components/Rank/Rank.js";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={
-        <><Header /><Main /></>} />
+        <><Header /><Rank /><Main /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/google" element={<Login />} />
         <Route path="/signin" element={<Signin />} />

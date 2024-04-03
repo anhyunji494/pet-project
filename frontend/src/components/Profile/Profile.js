@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import './Profile.css'; // 스타일 파일 임포트
 
-const ProfileTest = () => {
+const Profile = () => {
     const [activeTab, setActiveTab] = useState('tab1'); // 활성 탭 상태 저장
 
     const handleTabClick = (tabId) => {
@@ -60,6 +60,7 @@ const ProfileTest = () => {
     };
 
     return (
+        <div id="ppap">
         <div className="profile">
             {/* 프로필 헤더 */}
             <header className="profile__header">
@@ -192,7 +193,7 @@ const ProfileTest = () => {
             <button className="btn btn--primary" onClick={handleLogout}>로그아웃</button>
             </div>
         </div>
-    );
+    </div>);
 };
 
-export default ProfileTest;
+export default Profile;
