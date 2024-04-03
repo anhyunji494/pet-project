@@ -1,6 +1,8 @@
 package com.project.petproject.repository;
 
+import com.project.petproject.dto.Post;
 import com.project.petproject.dto.PostWithFileDTO;
+import com.project.petproject.dto.UserPublicDTO;
 import com.project.petproject.dto.userDTO;
 import lombok.RequiredArgsConstructor;
 
@@ -23,5 +25,9 @@ public class ProfileRepository {
     public List<PostWithFileDTO> userPosts(String user_id) {
     return sql.selectList("post.UserPosts", user_id);
 }
+    public List<UserPublicDTO> allUsers() {
+    return sql.selectList("user.allUsers");
+    }
+
 
 }

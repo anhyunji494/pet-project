@@ -137,18 +137,19 @@ const PostDetail = ({ post_idx }) => {
                     </div>
                 </div>
                 <div id="container-contents">
-                    <div id="photo">
+                    {/* <div id="photo"> */}
                         {photos.map((photo, index) => (
-                            <div>
+                            // <div>
                                 <img
                                     key={index}
                                     src={photo}
                                     alt={`포스트 이미지 ${index}`}
                                     style={{ display: index === currentPhotoIndex ? "block" : "none" }}
+                                    id="photo-idv-detail"
                                 />
-                            </div>
+                            // </div>
                         ))}
-                    </div>
+                    {/* </div> */}
                    
                 </div>
                 <div className="move_btn">

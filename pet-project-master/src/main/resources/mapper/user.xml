@@ -28,4 +28,10 @@
         FROM  USERS
         WHERE user_id = #{user_id}
     </select>
+    
+
+    <select id="allUsers" resultType="com.project.petproject.dto.UserPublicDTO">
+        SELECT user_id, user_nick , user_animal , user_intro , user_img , joined_at, user_role
+        FROM  users;
+    </select>
 </mapper>

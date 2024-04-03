@@ -1,6 +1,7 @@
 package com.project.petproject.controller;
 
 import com.project.petproject.dto.PostWithFileDTO;
+import com.project.petproject.dto.UserPublicDTO;
 import com.project.petproject.dto.userDTO;
 import com.project.petproject.service.ProfileService;
 
@@ -9,10 +10,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -38,6 +42,18 @@ public class ProfileController {
         return ResponseEntity.ok(userPosts);
     }
 
+    @GetMapping("/allUsers")
+    public ResponseEntity<List<UserPublicDTO>> allUsers() {
+        System.out.println("실행확인");
+        try {
+        List<UserPublicDTO> allUsers = profileService.allUsers();
+        System.out.println(allUsers);
+        return ResponseEntity.ok(allUsers);
+         } catch (Exception e) {
+           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+    
 
 
 }

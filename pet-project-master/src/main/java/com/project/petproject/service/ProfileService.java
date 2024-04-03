@@ -1,6 +1,7 @@
 package com.project.petproject.service;
 
 import com.project.petproject.dto.PostWithFileDTO;
+import com.project.petproject.dto.UserPublicDTO;
 import com.project.petproject.dto.userDTO;
 import com.project.petproject.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +17,13 @@ public class ProfileService {
     private final ProfileRepository profileRepository;
 
     public userDTO list(userDTO userDTO) {
-        return profileRepository.list(userDTO);
+    return profileRepository.list(userDTO);
     }
 
     public List<PostWithFileDTO> userPosts(String user_id) {
     return profileRepository.userPosts(user_id);
 }
-    
+    public List<UserPublicDTO> allUsers(){
+    return profileRepository.allUsers();    
+    }
 }

@@ -1,14 +1,16 @@
 import * as React from "react";
 import "./Header.css";
-import {useState} from "react";
+import { useState } from "react";
 import ProfileModal from "../Profile/Profile.js";
-import {useRef} from "react";
+import { useRef } from "react";
 import Modal from "react-modal";
+import axios from "axios";
 import Profile from "../Profile/Profile.js";
-import {useNavigate} from "react-router";
-import {useBodyScrollLock} from "../useBodyScrollLock.js";
+import { useNavigate } from "react-router";
+import { useBodyScrollLock } from "../useBodyScrollLock.js";
 // import Chat from "../pages/Chat/Chat.js";
 import Write from "../Write/Write.js";
+
 
 
 const Header = () => {
@@ -36,13 +38,22 @@ const Header = () => {
         } else {
             // 프로필 데이터가 없는 경우 예외 처리
             console.error('No profile data found');
+            navigate('/login');
+        }
+    };
+    const allUsers = async () => {
+        try {
+            const response = await axios.get('/allUsers');
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error logging out:', error);
         }
     };
 
     // 모달 컨트롤
 
     // 모달 사용 시 오버레이 뒷배경 스크롤 막기
-    const {lockScroll, openScroll} = useBodyScrollLock();
+    const { lockScroll, openScroll } = useBodyScrollLock();
 
     // 모달 오픈/클로즈
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -72,8 +83,8 @@ const Header = () => {
                     <button className="logo">petwave</button>
 
                     <i className="fi fi-br-home" id="icon" onClick={() => {
-                            navigate('/');
-                        }}></i>
+                        navigate('/');
+                    }}></i>
 
                     <i className="fi fi-br-bell" id="icon"></i>
 
@@ -120,16 +131,14 @@ const Header = () => {
                         }}
                     >
 
-                        <Write/>
+                        <Write />
                         <button id="modal-close-btn" onClick={closeModal}>X</button>
                     </Modal>
 
                     <div id="icon">
-                        <i className="fi fi-br-comments" id="icon" onClick={() => {
-                            navigate('/chat');
-                        }}></i>
-
+                        <i className="fi fi-br-comments" id="icon" onClick={allUsers}></i>
                     </div>
+
 
                     <i className="fi fi-br-eclipse-alt" id="icon"></i>
 
