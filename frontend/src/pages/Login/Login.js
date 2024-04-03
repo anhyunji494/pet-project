@@ -15,13 +15,19 @@ const PetWaveIcon = () => (
   />
 );
 
-const SignUpButton = () => (
-  <button type="submit" className="signin-button">
-    <Link to="/signin" className="signin-button">
+const SignUpButton = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/signin");
+  };
+
+  return (
+    <button className="signin-button" onClick={handleButtonClick}>
       회원가입
-    </Link>
-  </button>
-);
+    </button>
+  );
+};
 
 function Login() {
   // navigate(페이지 라우팅) 선언
@@ -32,34 +38,34 @@ function Login() {
 
   // 로그인 핸들러
   const handleLogin = (e) => {
-      e.preventDefault();
-      axios
-          .post("/login", {
-              user_id: id,
-              user_pw: password
-          })
-          .then(function (response) {
-              console.log(response);
-              console.log("데이터 전송 성공");
-              console.log(response.status);
-              if (response.data != null) {
-                  // 로그인시 세션정보를 json으로 sessionStorage 넣음
-                  sessionStorage.setItem('myInfo', JSON.stringify(response.data));
-                  // 사용자의 닉네임을 가져와서 프로필 페이지 경로에 추가
-                  const user_nick = response.data.user_nick;
-                  navigate('/');
-                  console.log("로그인 완전 성공");
-              } else {
-                  console.log("데이터 전송 성공, 로그인 오류");
-              }
-          })
-          .catch(function (error) {
-              console.log("데이터 전송 실패");
-              console.log("데이터 정보", id, password);
-              console.log(error);
-              alert("로그인 실패");
-              navigate("/login");
-          });
+    e.preventDefault();
+    axios
+      .post("/login", {
+        user_id: id,
+        user_pw: password
+      })
+      .then(function (response) {
+        console.log(response);
+        console.log("데이터 전송 성공");
+        console.log(response.status);
+        if (response.data != null) {
+          // 로그인시 세션정보를 json으로 sessionStorage 넣음
+          sessionStorage.setItem('myInfo', JSON.stringify(response.data));
+          // 사용자의 닉네임을 가져와서 프로필 페이지 경로에 추가
+          const user_nick = response.data.user_nick;
+          navigate('/');
+          console.log("로그인 완전 성공");
+        } else {
+          console.log("데이터 전송 성공, 로그인 오류");
+        }
+      })
+      .catch(function (error) {
+        console.log("데이터 전송 실패");
+        console.log("데이터 정보", id, password);
+        console.log(error);
+        alert("로그인 실패");
+        navigate("/login");
+      });
   };
 
   return (
@@ -111,7 +117,7 @@ function Login() {
                   <button type="submit" className="signin-button">
                     로그인
                   </button>
-                  <SignUpButton />
+                  <SignUpButton /> {/* 이 부분에서 회원가입 버튼 추가 */}
                 </div>
               </form>
 
@@ -132,8 +138,7 @@ function Login() {
                         googleUserId
                       );
 
-                      // if(isVerified=='true'){
-                        axios
+                      axios
                         .post("/login",{  
                           user_id:googleUserId
                         })
@@ -151,14 +156,6 @@ function Login() {
                             navigate("/login");
                           }
                         )
-                      // }
-
-                      // else{
-
-                      // }
-
-                      
-
                     }}
                     onError={() => {
                       console.log("구글 로그인 실패");
