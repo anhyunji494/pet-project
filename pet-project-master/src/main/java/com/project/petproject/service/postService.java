@@ -84,5 +84,9 @@ public class postService {
     public List<Post> postDetail(int post_idx) {
         return repository.postDetail(post_idx);
     }
+
+    public List<Post> rank() {
+        return repository.postRank();
+    }
 }
 

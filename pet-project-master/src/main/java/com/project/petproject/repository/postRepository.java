@@ -68,4 +68,7 @@ public class postRepository {
         return sql.selectList("post.Detail", post_idx);
     }
 
+    public List<Post> postRank() {
+        return sql.selectList("post.rank");
+    }
 }

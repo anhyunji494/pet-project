@@ -1,5 +1,7 @@
 package com.project.petproject.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.petproject.dto.Post;
 import com.project.petproject.dto.PostWithFileDTO;
 import com.project.petproject.dto.userDTO;
@@ -77,6 +79,20 @@ public class PostController {
 
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    // 랭킹 기능
+    @GetMapping("/post/rank")
+    public String rank() {
+        List<Post> rank = postService.rank();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String jsonRank = mapper.writeValueAsString(rank);
+            return jsonRank;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "Error occurred while processing JSON";
         }
     }
 

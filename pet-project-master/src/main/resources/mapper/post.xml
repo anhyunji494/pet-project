@@ -58,9 +58,22 @@
                  INNER JOIN post_file pf ON pf.post_idx = p.post_idx
                  INNER JOIN users u ON u.user_id = p.user_id
         WHERE p.post_idx = #{post_idx}
-
-
     </select>
 
+    <!--  랭크기능 상위 5개 노출  -->
+    <select id="rank" resultType="com.project.petproject.dto.Post">
+        SELECT p.*, GROUP_CONCAT(pf.file_rname) AS file_rname, u.user_nick, (
+            SELECT COUNT(c.cmt_idx)
+            FROM comments c
+            WHERE c.post_idx = p.post_idx
+        ) AS comment_count
+        FROM posts p
+                 LEFT JOIN users u ON u.user_id = p.user_id
+                 LEFT JOIN post_file pf ON pf.post_idx = p.post_idx
+        GROUP BY p.post_idx
+        ORDER BY comment_count DESC
+        LIMIT 5;
+
+    </select>
 
 </mapper>
