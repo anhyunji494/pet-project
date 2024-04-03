@@ -5,7 +5,7 @@
     font-size: 16px;
     width: 60%;
 }
-.proFilePost{
+.proFilePosts{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
