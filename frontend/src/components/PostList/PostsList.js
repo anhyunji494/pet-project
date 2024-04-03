@@ -33,6 +33,9 @@ const PostsList = () => {
     console.log("현재 data", dataObjArr);
   }, [dataObjArr]);
 
+  // 선택된 게시글의 idx를 저장할 상태
+  const [selectedPostIdx, setSelectedPostIdx] = useState();
+
   useEffect(() => {
     // 컴포넌트 마운트 될 때 이미지 경로 불러옴
     axios
@@ -57,22 +60,36 @@ const PostsList = () => {
         console.log(error);
         console.log("에러");
       });
+
+    // 세션에 값이 있는지 없는지?
+    console.log("session", sessionStorage.getItem("user"));
+    // 실제 하실 때는 객체형태니까 json 파싱 작업이 필요함
+    // 참고 : https://sanghye.tistory.com/14
   }, []);
+
+  useEffect(() => {
+    console.log("selectedPostIdx", selectedPostIdx);
+  }, [selectedPostIdx]);
 
   // 상세 게시글 보기
   const handleDetail = (post_idx) => {
     console.log("상세 게시글 보기 요청"); // 글 idx 넘겨야함 post_idx
     console.log("idx", post_idx);
-
-    axios
-      .get("/images", {
-        post_idx: post_idx,
-      })
-      .then((response) => {
-        console.log("응답 받기 성공");
-        console.log(response);
-        // navigate('{/post/'+{}+'}')/
-      });
+    setSelectedPostIdx(post_idx);
+    //    console.log('selectedPostIdx',selectedPostIdx);
+    // setModalIsOpen(true); // 모달 열기 <-- 이 부분을 아래로 이동하세요
+    openModal(); // 모달 열기 함수 호출
+    //   .get("/images", {
+    //     post_idx: post_idx,
+    //   })
+    //   .then((response) => {
+    //     console.log("응답 받기 성공");
+    //     console.log(response);
+    //     // navigate('{/post/'+{}+'}')/
+    //   })
+    //   .catch((error) => {
+    //     console.log("error", error);
+    //   });
   };
 
   // 상세 게시글 모달 컨트롤
@@ -94,102 +111,157 @@ const PostsList = () => {
     setModalIsOpen(false);
   };
 
-  //   // 무한 스크롤 페이징
-
-  //   const target = useRef(null);
-  //   const [loading, setLoading] = useState(false);
-
-  //   useEffect(() => {
-  //     observer.observe(target.current);
-  //   }, []);
-
-  //   function 실행할함수() {
-  //     setLoading(true);
-  //     console.log("로딩 실행");
-  //     setLoading(false);
-  //   }
-  // /
-  //   const observer = new IntersectionObserver((entries) => {
-  //     entries.forEach((entry) => {
-  //       // enbry와 observer 출력
-  //       console.log('entry', entry)
-  //       if (!entry.isIntersecting) return;
-  //       if (loading) return; // 로딩중이면 함수 종료 (불필요한 api 호출 방지)
-
-  //       // setPage(page+1);
-
-  //       실행할함수();
-  //     });
-  //   });
-
-  //   // 페이지네이션
-
-  //   const [page, setpage] = useState(1);
-  //   // 첫 페이지는 자동 1
-
-  //   const offset = (page-1) * 4 // 4= 한 페이지에 들어갈 갯구, offset = 데이터 위치
-
   return (
     <div>
       {/* 바디영역 */}
       <div className="body">
         {/* 게시글 들어갈 박스들 */}
         <ul className="post-div">
-          <div id="post-photo">
-            {/* 게시글 맵핑 */}
-            {dataObjArr.map((item, index) => (
-              <div id="photo-idv">
-                <img
-                  id="photo-content"
-                  key={index}
-                  src={item.file_rnames[0]}
-                  alt={`사진 ${item.post_idx}`}
-                  width="100%"
-                  height="100%"
-                  onClick={(event) => {
-                    handleDetail(item.post_idx);
-                    openModal();
-                  }}
-                />
-              </div>            
 
-            ))}
+
+
+          {/* 주제별 분할 - 장소 */}
+          <div id="place">
+            <div id="place-txt">
+              <div id="div-title">🙋‍♀️ 주말에 어디가지?</div>
+              <div id="title-tags" style={{ color: "black" }}>
+                #반려동물동반
+              </div>
+              <div id="title-tags"style={{ color: "white", backgroundColor:'green' }}>#이색카페</div>
+            </div>
+            <div id="post-divs">
+              <div id="post-photo">
+                {/* 게시글 맵핑 */}
+                {dataObjArr.map((item, index) => (
+                  <div id="photo-idv">
+                    <img
+                      id="photo-content"
+                      key={index}
+                      src={item.file_rnames[0]}
+                      alt={`사진 ${item.post_idx}`}
+                      width="100%"
+                      height="100%"
+                      onClick={(event) => {
+                        console.log("item", item.post_idx);
+                        setSelectedPostIdx(item.post_idx);
+                        handleDetail(item.post_idx);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
+          {/* 주제별 분할 */}
+          <div id="place">
+            <div id="place-txt">
+              <div id="div-title">✨ 스타일링은 여기가 맛집</div>
+              <div id="title-tags" style={{ color: "black" , background:'rose'}}>
+                #미용
+              </div>
+              <div id="title-tags" style={{ color: "white" , background:'purple'}}>
+                #외출
+              </div>
+            </div>
+            <div id="post-divs">
+              <div id="post-photo">
+                {/* 게시글 맵핑 */}
+                {dataObjArr.map((item, index) => (
+                  <div id="photo-idv">
+                    <img
+                      id="photo-content"
+                      key={index}
+                      src={item.file_rnames[0]}
+                      alt={`사진 ${item.post_idx}`}
+                      width="100%"
+                      height="100%"
+                      onClick={(event) => {
+                        console.log("item", item.post_idx);
+                        setSelectedPostIdx(item.post_idx);
+                        handleDetail(item.post_idx);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 주제별 분할 */}
+          <div id="place">
+            <div id="place-txt">
+              <div id="div-title">🪐 엄마 나도 티니핑</div>
+              <div id="title-tags" style={{ color: "black" , backgroundColor:'skyblue'}}>
+                #반려동물장난감
+              </div>
+            </div>
+            <div id="post-divs">
+              <div id="post-photo">
+                {/* 게시글 맵핑 */}
+                {dataObjArr.map((item, index) => (
+                  <div id="photo-idv">
+                    <img
+                      id="photo-content"
+                      key={index}
+                      src={item.file_rnames[0]}
+                      alt={`사진 ${item.post_idx}`}
+                      width="100%"
+                      height="100%"
+                      onClick={(event) => {
+                        console.log("item", item.post_idx);
+                        setSelectedPostIdx(item.post_idx);
+                        handleDetail(item.post_idx);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
           <Modal
-                  isOpen={modalIsOpen}
-                  onRequestClose={closeModal}
-                  style={{
-                    overlay: {
-                      position: "fixed",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      backgroundColor: "rgba(0, 0, 0, 0.52)",
-                      backdropFilter: "blur(5px)",
-                    },
-                    content: {
-                      position: "absolute",
-                      top: "40px",
-                      left: "40px",
-                      right: "40px",
-                      bottom: "40px",
-                      border: "none",
-                      background: "rgba(0, 0, 0, 0)",
-                      overflow: "auto",
-                      WebkitOverflowScrolling: "touch",
-                      borderRadius: "4px",
-                      outline: "none",
-                      padding: "20px",
-                    },
-                  }}
-                >
-                  <PostDetail />
-                  <button id="modal-close-btn" onClick={closeModal}>
-                    X
-                  </button>
-                </Modal>
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={{
+              overlay: {
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(0, 0, 0, 0.52)",
+                backdropFilter: "blur(5px)",
+              },
+              content: {
+                position: "absolute",
+                top: "40px",
+                left: "40px",
+                right: "40px",
+                bottom: "40px",
+                border: "none",
+                background: "rgba(0, 0, 0, 0)",
+                overflow: "auto",
+                WebkitOverflowScrolling: "touch",
+                borderRadius: "4px",
+                outline: "none",
+                padding: "20px",
+              },
+            }}
+          >
+            <PostDetail post_idx={selectedPostIdx} />
+
+            <button id="modal-close-btn" onClick={closeModal}>
+              X
+            </button>
+          </Modal>
         </ul>
       </div>
 
