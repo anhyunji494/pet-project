@@ -71,4 +71,7 @@ public class postRepository {
     public List<Post> postRank() {
         return sql.selectList("post.rank");
     }
+    public List<Post> search(String searchQuery) {
+        return sql.selectList("post.search", searchQuery);
+    }
 }

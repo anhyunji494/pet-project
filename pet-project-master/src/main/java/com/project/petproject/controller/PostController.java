@@ -96,4 +96,15 @@ public class PostController {
         }
     }
 
+    // 검색 기능
+    @GetMapping("/posts/search")
+    public ResponseEntity<List<Post>> search(@RequestParam("q") String searchQuery) {
+        try {
+            List<Post> searchResult = postService.search(searchQuery);
+            return ResponseEntity.ok(searchResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }
