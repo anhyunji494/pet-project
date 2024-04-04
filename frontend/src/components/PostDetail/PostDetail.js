@@ -158,7 +158,7 @@ const PostDetail = ({ post_idx }) => {
                     <div id="container-profile-text">
                         <div id="container-profile-nick">{postAuthorNick}</div>
                         <div id="container-profile-badge"></div>
-                        <div id="txt">{"자기소개 : " + text}</div>
+                        <div id="txt">{text}</div>
                     </div>
                 </div>
 

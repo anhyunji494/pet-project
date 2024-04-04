@@ -163,7 +163,6 @@ function Login() {
                     }}
                   />
                 </GoogleOAuthProvider>
-                ;
               </div>
             </div>
           </div>
