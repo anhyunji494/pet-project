@@ -190,8 +190,8 @@ const Profile = () => {
                 </main>
                 <div className="btn-container">
                     {sessionUserId === profileData?.user_id && <button className="btn btn--primary" onClick={updateBtn}>수정</button>}
-                    <button className="btn btn--primary" onClick={followBtn}>팔로우</button>
-                    <button className="btn btn--primary" onClick={handleLogout}>로그아웃</button>
+                    {sessionUserId && <button className="btn btn--primary" onClick={followBtn}>팔로우</button>}
+                    {sessionUserId && <button className="btn btn--primary" onClick={handleLogout}>로그아웃</button>}
                 </div>
             </div>
         </div>);
