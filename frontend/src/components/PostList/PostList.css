@@ -99,6 +99,7 @@
   height: 15vw;
   width: 15vw;
   margin: 0.3vw;
+  object-fit: cover;
 }
 
 #title-tags{

@@ -16,6 +16,11 @@
 
 /* CSS 적용 */
 
+*{
+  font-family: "Noto Sans KR", -apple-system, Roboto, Helvetica,
+  sans-serif;
+}
+
 #login-container {
   justify-content: center;
 

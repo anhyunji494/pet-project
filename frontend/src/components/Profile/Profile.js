@@ -151,7 +151,7 @@ const Profile = () => {
                                 <a id="tab2" href="#skills" onClick={() => handleTabClick('tab2')}>like</a>
                             </li>
                             <li className={activeTab === 'tab3' ? 'active' : ''}>
-                                <a id="tab3" href="#reviews" onClick={() => handleTabClick('tab3')}>?뭐쓰지</a>
+                                <a id="tab3" href="#reviews" onClick={() => handleTabClick('tab3')}>others</a>
                             </li>
                             {/* 활성 탭 배경 */}
                             <li id="active-bg"></li>

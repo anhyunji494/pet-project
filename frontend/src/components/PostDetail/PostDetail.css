@@ -56,7 +56,7 @@
 
 #container-profile-photo{
     display: flex;
-    background: black;
+    /* background: black; */
     width: 4vw;
     height: 4vw;
     border-radius: 50px;
