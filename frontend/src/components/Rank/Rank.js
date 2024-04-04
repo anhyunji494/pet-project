@@ -39,7 +39,7 @@ const Rank = () => {
           <div id="rank-divs">
             {rankedPhotos.map((photo, index) => (
                 <div id="rank-div" key={index} onClick={() => openModal(photo.post_idx)}>
-                  <img src={photo.file_rname} alt={`Rank ${index + 1}`}/>
+                  <img src={photo.file_rname.split(",")[0]} alt={`Rank ${index + 1}`}/>
                 </div>
             ))}
           </div>
