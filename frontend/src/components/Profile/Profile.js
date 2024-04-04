@@ -82,7 +82,7 @@ const Profile = () => {
                     </div>
                     {/* 프로필 이미지 */}
                     <div className="profile1__avatar">
-                        <img src={profileData?.user_img} alt="" id="photo" />
+                        <img src={profileData?.user_img} alt="" />
                     </div>
                     {/* 팔로위 */}
                     <div className="profile1__highlight__wrapper">

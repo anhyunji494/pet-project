@@ -62,16 +62,16 @@ const PostsList = () => {
       });
 
     axios
-        .get("/posts/weekend", {params: {week: "주말"}})
-        .then((response) => {
-          console.log("주말 데이터")
-          console.log(response.data)
-          setWeekendData(response.data)
-          response.data.map((week) => console.log("map item", week.file_rname));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .get("/posts/weekend", { params: { week: "주말" } })
+      .then((response) => {
+        console.log("주말 데이터");
+        console.log(response.data);
+        setWeekendData(response.data);
+        response.data.map((week) => console.log("map item", week.file_rname));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     // 세션에 값이 있는지 없는지?
     console.log("session", sessionStorage.getItem("user"));
@@ -85,9 +85,6 @@ const PostsList = () => {
 
   // 상세 게시글 보기
   const handleDetail = (post_idx) => {
-
-
-
     console.log("상세 게시글 보기 요청"); // 글 idx 넘겨야함 post_idx
     console.log("idx", post_idx);
     setSelectedPostIdx(post_idx);
@@ -106,7 +103,6 @@ const PostsList = () => {
     //     console.log("error", error);
     //   });
   };
-
 
   // 상세 게시글 모달 컨트롤
 
@@ -133,69 +129,41 @@ const PostsList = () => {
       <div className="body">
         {/* 게시글 들어갈 박스들 */}
         <ul className="post-div">
-
           {/* 주제별 분할 - 장소 */}
           <div id="place">
             <div id="place-txt">
               <div id="div-title">🙋‍♀️ 주말에 어디가지?</div>
-              <div id="title-tags" style={{color: "black"}}>
+              <div id="title-tags" style={{ color: "black" }}>
                 #반려동물동반
               </div>
-              <div id="title-tags" style={{color: "white", backgroundColor: 'green'}}>#이색카페</div>
+              <div
+                id="title-tags"
+                style={{ color: "white", backgroundColor: "green" }}
+              >
+                #이색카페
+              </div>
             </div>
             <div id="post-divs">
               <div id="post-photo">
-                {weekendData.length > 0 && weekendData.map((week, index) => (
+                {weekendData.length > 0 &&
+                  weekendData.map((week, index) => (
                     <div id="photo-idv" key={index}>
                       <img
-                          id="photo-content"
-                          src={week.file_rname ? week.file_rname.split(',')[0] : ''}
-                          alt={`사진 ${week.post_idx}`}
-                          width="100%"
-                          height="100%"
-                          onClick={(event) => {
-                            console.log("week", week.post_idx);
-                            setSelectedPostIdx(week.post_idx);
-                            handleDetail(week.post_idx);
-                          }}
+                        id="photo-content"
+                        src={
+                          week.file_rname ? week.file_rname.split(",")[0] : ""
+                        }
+                        alt={`사진 ${week.post_idx}`}
+                        width="100%"
+                        height="100%"
+                        onClick={(event) => {
+                          console.log("week", week.post_idx);
+                          setSelectedPostIdx(week.post_idx);
+                          handleDetail(week.post_idx);
+                        }}
                       />
                     </div>
-                ))}
-              </div>
-          </div>
-      </div>
-
-      {/* 주제별 분할 */}
-      <div id="place">
-        <div id="place-txt">
-          <div id="div-title">✨ 스타일링은 여기가 맛집</div>
-          <div id="title-tags" style={{color: "black", background: 'rose'}}>
-            #미용
-          </div>
-          <div id="title-tags" style={{color: "white", background: 'purple'}}>
-            #외출
-          </div>
-        </div>
-        <div id="post-divs">
-          <div id="post-photo">
-            {/* 게시글 맵핑 */}
-                {dataObjArr.map((item, index) => (
-                  <div id="photo-idv">
-                    <img
-                      id="photo-content"
-                      key={index}
-                      src={item.file_rnames[0]}
-                      alt={`사진 ${item.post_idx}`}
-                      width="100%"
-                      height="100%"
-                      onClick={(event) => {
-                        console.log("item", item.post_idx);
-                        setSelectedPostIdx(item.post_idx);
-                        handleDetail(item.post_idx);
-                      }}
-                    />
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>
@@ -203,9 +171,18 @@ const PostsList = () => {
           {/* 주제별 분할 */}
           <div id="place">
             <div id="place-txt">
-              <div id="div-title">🪐 엄마 나도 티니핑</div>
-              <div id="title-tags" style={{ color: "black" , backgroundColor:'skyblue'}}>
-                #반려동물장난감
+              <div id="div-title">✨ 스타일링은 여기가 맛집</div>
+              <div
+                id="title-tags"
+                style={{ color: "black", background: "rose" }}
+              >
+                #미용
+              </div>
+              <div
+                id="title-tags"
+                style={{ color: "white", background: "purple" }}
+              >
+                #외출
               </div>
             </div>
             <div id="post-divs">
@@ -232,11 +209,40 @@ const PostsList = () => {
             </div>
           </div>
 
-
-
-
-
-
+          {/* 주제별 분할 */}
+          <div id="place">
+            <div id="place-txt">
+              <div id="div-title">🪐 엄마 나도 티니핑</div>
+              <div
+                id="title-tags"
+                style={{ color: "black", backgroundColor: "skyblue" }}
+              >
+                #반려동물장난감
+              </div>
+            </div>
+            <div id="post-divs">
+              <div id="post-photo-all">
+                {/* 게시글 맵핑 */}
+                {dataObjArr.map((item, index) => (
+                  <div id="photo-idv">
+                    <img
+                      id="photo-content"
+                      key={index}
+                      src={item.file_rnames[0]}
+                      alt={`사진 ${item.post_idx}`}
+                      width="100%"
+                      height="100%"
+                      onClick={(event) => {
+                        console.log("item", item.post_idx);
+                        setSelectedPostIdx(item.post_idx);
+                        handleDetail(item.post_idx);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
 
           <Modal
