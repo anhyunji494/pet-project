@@ -17,10 +17,25 @@ const Header = () => {
     // navigate 선언 : 항상 최상단. 위치 바뀌면 안 됨!
     const navigate = useNavigate();
 
-    // 검색창 핸들러
-    const handleSearch = () => {
-        // Perform search action
-        console.log("Search button clicked");
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearch = async () => {
+        if (searchQuery.trim() === "") {
+            return
+        }
+
+        try {
+            // 검색어를 사용하여 서버로부터 게시글 가져오기
+            const response = await axios.get(`/posts/search?q=${searchQuery}`);
+            console.log(response.data);
+            // 가져온 게시글 처리
+        } catch (error) {
+            console.error("게시글 가져오기 오류:", error);
+        }
+    };
+
+    const handleInputChange = (e) => {
+        setSearchQuery(e.target.value);
     };
 
     const handleProfileClick = () => {

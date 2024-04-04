@@ -88,5 +88,9 @@ public class postService {
     public List<Post> rank() {
         return repository.postRank();
     }
+
+    public List<Post> search(String searchQuery) {
+        return repository.search(searchQuery);
+    }
 }
 

@@ -76,4 +76,14 @@
 
     </select>
 
+    <select id="search" parameterType="string" resultType="com.project.petproject.dto.Post">
+        SELECT p.*,
+               GROUP_CONCAT(pf.file_rname) AS file_rname,
+               u.user_nick
+        FROM posts p
+                 LEFT JOIN users u ON u.user_id = p.user_id
+                 LEFT JOIN post_file pf ON pf.post_idx = p.post_idx
+        WHERE p.post_content LIKE CONCAT('%', #{searchQuery}, '%')
+        GROUP BY p.post_idx
+    </select>
 </mapper>
