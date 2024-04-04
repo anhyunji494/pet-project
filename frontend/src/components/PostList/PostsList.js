@@ -28,7 +28,7 @@ const PostsList = () => {
   //   };
 
   const [dataObjArr, setDataObjArr] = useState([]);
-
+  const [weekendData, setWeekendData] = useState([]);
   useEffect(() => {
     console.log("현재 data", dataObjArr);
   }, [dataObjArr]);
@@ -60,6 +60,18 @@ const PostsList = () => {
         console.log(error);
         console.log("에러");
       });
+
+    axios
+        .get("/posts/weekend", {params: {week: "주말"}})
+        .then((response) => {
+          console.log("주말 데이터")
+          console.log(response.data)
+          setWeekendData(response.data)
+          response.data.map((week) => console.log("map item", week.file_rname));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
     // 세션에 값이 있는지 없는지?
     console.log("session", sessionStorage.getItem("user"));
@@ -126,49 +138,47 @@ const PostsList = () => {
           <div id="place">
             <div id="place-txt">
               <div id="div-title">🙋‍♀️ 주말에 어디가지?</div>
-              <div id="title-tags" style={{ color: "black" }}>
+              <div id="title-tags" style={{color: "black"}}>
                 #반려동물동반
               </div>
-              <div id="title-tags"style={{ color: "white", backgroundColor:'green' }}>#이색카페</div>
+              <div id="title-tags" style={{color: "white", backgroundColor: 'green'}}>#이색카페</div>
             </div>
             <div id="post-divs">
               <div id="post-photo">
-                {/* 게시글 맵핑 */}
-                {dataObjArr.map((item, index) => (
-                  <div id="photo-idv">
-                    <img
-                      id="photo-content"
-                      key={index}
-                      src={item.file_rnames[0]}
-                      alt={`사진 ${item.post_idx}`}
-                      width="100%"
-                      height="100%"
-                      onClick={(event) => {
-                        console.log("item", item.post_idx);
-                        setSelectedPostIdx(item.post_idx);
-                        handleDetail(item.post_idx);
-                      }}
-                    />
-                  </div>
+                {weekendData.length > 0 && weekendData.map((week, index) => (
+                    <div id="photo-idv" key={index}>
+                      <img
+                          id="photo-content"
+                          src={week.file_rname ? week.file_rname.split(',')[0] : ''}
+                          alt={`사진 ${week.post_idx}`}
+                          width="100%"
+                          height="100%"
+                          onClick={(event) => {
+                            console.log("week", week.post_idx);
+                            setSelectedPostIdx(week.post_idx);
+                            handleDetail(week.post_idx);
+                          }}
+                      />
+                    </div>
                 ))}
               </div>
-            </div>
           </div>
+      </div>
 
-          {/* 주제별 분할 */}
-          <div id="place">
-            <div id="place-txt">
-              <div id="div-title">✨ 스타일링은 여기가 맛집</div>
-              <div id="title-tags" style={{ color: "black" , background:'rose'}}>
-                #미용
-              </div>
-              <div id="title-tags" style={{ color: "white" , background:'purple'}}>
-                #외출
-              </div>
-            </div>
-            <div id="post-divs">
-              <div id="post-photo">
-                {/* 게시글 맵핑 */}
+      {/* 주제별 분할 */}
+      <div id="place">
+        <div id="place-txt">
+          <div id="div-title">✨ 스타일링은 여기가 맛집</div>
+          <div id="title-tags" style={{color: "black", background: 'rose'}}>
+            #미용
+          </div>
+          <div id="title-tags" style={{color: "white", background: 'purple'}}>
+            #외출
+          </div>
+        </div>
+        <div id="post-divs">
+          <div id="post-photo">
+            {/* 게시글 맵핑 */}
                 {dataObjArr.map((item, index) => (
                   <div id="photo-idv">
                     <img

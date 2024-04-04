@@ -74,4 +74,8 @@ public class postRepository {
     public List<Post> search(String searchQuery) {
         return sql.selectList("post.search", searchQuery);
     }
+
+    public List<Post> week(String week) {
+        return sql.selectList("post.week", week);
+    }
 }

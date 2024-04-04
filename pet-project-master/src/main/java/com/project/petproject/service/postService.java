@@ -92,5 +92,9 @@ public class postService {
     public List<Post> search(String searchQuery) {
         return repository.search(searchQuery);
     }
+
+    public List<Post> week(String week) {
+        return repository.week(week);
+    }
 }
 
