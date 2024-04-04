@@ -58,7 +58,7 @@ const AllUsers = () => {
           {/* 데이터를 불러오는 중인 경우 로딩 스피너를 표시합니다. */}
           {users.map((user, index) => (
             <article className="stock-row" key={index}  onClick={() => handleProfile(user.user_id)}  >
-              <img className="stock-avatar" src={user.user_img ? user.user_img : profile} alt={`사진`}/>
+              <img className="stock-avatar1" src={user.user_img ? user.user_img : profile} alt={`사진`}/>
               <div className="stock-name">
                 <h3>{user.user_nick}</h3>
                 <p>{user.user_id}</p>

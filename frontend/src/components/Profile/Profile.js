@@ -13,6 +13,7 @@ const Profile = () => {
     const [profileData, setProfileData] = useState(null);
     const [profilePost, setProfilePost] = useState(null);
     const { user_id } = useParams();
+    const sessionUserId = sessionStorage.getItem('myInfo') ? JSON.parse(sessionStorage.getItem('myInfo')).user_id : null;
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -61,13 +62,13 @@ const Profile = () => {
 
     return (
         <div id="ppap">
-            <div className="profile">
+            <div className="profile1">
                 {/* 프로필 헤더 */}
-                <header className="profile__header">
+                <header className="profile1__header">
                     {/* 프로필 강조 내용 */}
-                    <div className="profile__highlight__wrapper">
+                    <div className="profile1__highlight__wrapper">
                         {/* 팔로워 */}
-                        <div className="profile__highlight">
+                        <div className="profile1__highlight">
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-school" width="24"
                                 height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none"
                                 strokeLinecap="round" strokeLinejoin="round">
@@ -80,12 +81,12 @@ const Profile = () => {
                         follower
                     </div>
                     {/* 프로필 이미지 */}
-                    <div className="profile__avatar">
+                    <div className="profile1__avatar">
                         <img src={profileData?.user_img} alt="" id="photo" />
                     </div>
                     {/* 팔로위 */}
-                    <div className="profile__highlight__wrapper">
-                        <div className="profile__highlight">
+                    <div className="profile1__highlight__wrapper">
+                        <div className="profile1__highlight">
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-coin" width="24"
                                 height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none"
                                 strokeLinecap="round" strokeLinejoin="round">
@@ -100,7 +101,7 @@ const Profile = () => {
                     </div>
                 </header>
                 {/* 프로필 이름 및 생일 */}
-                <div className="profile__name">
+                <div className="profile1__name">
                     <h2>{profileData?.user_nick}</h2>
                     <p>{profileData?.birthday}</p>
                 </div>
@@ -188,7 +189,7 @@ const Profile = () => {
                     {/* ... */}
                 </main>
                 <div className="btn-container">
-                    <button className="btn btn--primary" onClick={updateBtn}>수정</button>
+                    {sessionUserId === profileData?.user_id && <button className="btn btn--primary" onClick={updateBtn}>수정</button>}
                     <button className="btn btn--primary" onClick={followBtn}>팔로우</button>
                     <button className="btn btn--primary" onClick={handleLogout}>로그아웃</button>
                 </div>

@@ -176,9 +176,8 @@ const Header = () => {
                                 backgroundColor: "rgba(0, 0, 0, 0)",
                             },
                         }}
-                    >
+                    ><button id="modal-close-btn" onClick={closeFriendModal}>X</button>
                         <AllUsers />
-                        <button id="modal-close-btn" onClick={closePlusModal}>X</button>
                     </Modal>
 
 
