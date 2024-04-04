@@ -95,6 +95,22 @@
                  LEFT JOIN users u ON u.user_id = p.user_id
                  LEFT JOIN post_file pf ON pf.post_idx = p.post_idx
         WHERE p.post_content LIKE CONCAT('%','주말', '%')
-        GROUP BY p.post_idx
+           OR p.post_content LIKE CONCAT('%', '카페', '%')
+        GROUP BY p.post_idx, p.posted_at -- posted_at 열을 GROUP BY 절에 추가
+        ORDER BY p.posted_at DESC; -- 최근에 온 게시물이 맨 위로 올라오도록 정렬
+
+    </select>
+
+    <select id="style" parameterType="string" resultType="com.project.petproject.dto.Post">
+        SELECT p.*,
+               GROUP_CONCAT(pf.file_rname) AS file_rname,
+               u.user_nick
+        FROM posts p
+                 LEFT JOIN users u ON u.user_id = p.user_id
+                 LEFT JOIN post_file pf ON pf.post_idx = p.post_idx
+        WHERE p.post_content LIKE CONCAT('%','미용', '%')
+           OR p.post_content LIKE CONCAT('%', '외출', '%')
+        GROUP BY p.post_idx, p.posted_at -- posted_at 열을 GROUP BY 절에 추가
+        ORDER BY p.posted_at DESC; -- 최근에 온 게시물이 맨 위로 올라오도록 정렬
     </select>
 </mapper>

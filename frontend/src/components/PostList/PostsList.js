@@ -29,6 +29,8 @@ const PostsList = () => {
 
   const [dataObjArr, setDataObjArr] = useState([]);
   const [weekendData, setWeekendData] = useState([]);
+  const [styleData, setStyleData] = useState([]);
+
   useEffect(() => {
     console.log("현재 data", dataObjArr);
   }, [dataObjArr]);
@@ -72,6 +74,19 @@ const PostsList = () => {
       .catch((error) => {
         console.log(error);
       });
+
+
+    axios
+        .get("/posts/style", {params: {style: "미용"}})
+        .then((response) => {
+          console.log("미용 데이터")
+          console.log(response.data)
+          setStyleData(response.data)
+          response.data.map((style) => console.log("map item", style.file_rname));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
     // 세션에 값이 있는지 없는지?
     console.log("session", sessionStorage.getItem("user"));
@@ -188,22 +203,21 @@ const PostsList = () => {
             <div id="post-divs">
               <div id="post-photo">
                 {/* 게시글 맵핑 */}
-                {dataObjArr.map((item, index) => (
-                  <div id="photo-idv">
-                    <img
-                      id="photo-content"
-                      key={index}
-                      src={item.file_rnames[0]}
-                      alt={`사진 ${item.post_idx}`}
-                      width="100%"
-                      height="100%"
-                      onClick={(event) => {
-                        console.log("item", item.post_idx);
-                        setSelectedPostIdx(item.post_idx);
-                        handleDetail(item.post_idx);
-                      }}
-                    />
-                  </div>
+                {styleData.length > 0 && styleData.map((style, index) => (
+                    <div id="photo-idv" key={index}>
+                      <img
+                          id="photo-content"
+                          src={style.file_rname ? style.file_rname.split(',')[0] : ''}
+                          alt={`사진 ${style.post_idx}`}
+                          width="100%"
+                          height="100%"
+                          onClick={(event) => {
+                            console.log("style", style.post_idx);
+                            setSelectedPostIdx(style.post_idx);
+                            handleDetail(style.post_idx);
+                          }}
+                      />
+                    </div>
                 ))}
               </div>
             </div>

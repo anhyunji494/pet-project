@@ -78,4 +78,8 @@ public class postRepository {
     public List<Post> week(String week) {
         return sql.selectList("post.week", week);
     }
+
+    public List<Post> style(String style) {
+        return sql.selectList("post.style", style);
+    }
 }
