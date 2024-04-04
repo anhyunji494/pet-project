@@ -107,4 +107,17 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/posts/weekend")
+    public ResponseEntity<List<Post>> weekend(@RequestParam("week") String week) {
+        System.out.println("주말");
+        try {
+            List<Post> searchResult = postService.week(week);
+            System.out.println(searchResult);
+            return ResponseEntity.ok(searchResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }
