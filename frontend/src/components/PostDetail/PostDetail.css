@@ -182,13 +182,20 @@
 }
 
 #comment-list {
- 
     color:white;;
     border-radius: 0.5rem;
     margin: 1rem;
     width: 100%;
     min-width: 17.5rem;
     max-width: 25rem;
+    overflow: scroll;
+    height: 40vh;
+    scrollbar-width: none;
+    /* 파이어폭스 */
+}
+#comment-list  ::-webkit-scrollbar {
+    display: none;
+    /* 크롬, 사파리, 오페라, 엣지 */
 }
 
 

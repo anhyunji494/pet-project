@@ -9,7 +9,7 @@ const PostDetail = ({ post_idx }) => {
     const [text, setText] = useState("");
     const [postAuthorNick, setPostAuthorNick] = useState("");
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-
+    const profile = "https://duckgeun.s3.ap-northeast-2.amazonaws.com/%EC%97%91%EB%B0%95%EB%B0%A9%EC%A7%80.jpg";
     const timeAgo = (date) => {
         const seconds = Math.floor((new Date() - new Date(date)) / 1000);
         let interval = Math.floor(seconds / 31536000);
@@ -128,29 +128,21 @@ const PostDetail = ({ post_idx }) => {
     return (
         <div id="newBody">
             <div id="container-postdetail">
-                <div id="container-profile-div">
-                    <div id="container-profile-photo"></div>
-                    &nbsp;&nbsp;
-                    <div id="container-profile-text">
-                        <div id="container-profile-nick">{postAuthorNick}</div>
-                        <div id="container-profile-badge"></div>
-                    </div>
-                </div>
                 <div id="container-contents">
                     {/* <div id="photo"> */}
-                        {photos.map((photo, index) => (
-                            // <div>
-                                <img
-                                    key={index}
-                                    src={photo}
-                                    alt={`포스트 이미지 ${index}`}
-                                    style={{ display: index === currentPhotoIndex ? "block" : "none" }}
-                                    id="photo-idv-detail"
-                                />
-                            // </div>
-                        ))}
+                    {photos.map((photo, index) => (
+                        // <div>
+                        <img
+                            key={index}
+                            src={photo}
+                            alt={`포스트 이미지 ${index}`}
+                            style={{ display: index === currentPhotoIndex ? "block" : "none" }}
+                            id="photo-idv-detail"
+                        />
+                        // </div>
+                    ))}
                     {/* </div> */}
-                   
+
                 </div>
                 <div className="move_btn">
                     <button onClick={handlePrevPost}>◀</button>
@@ -158,10 +150,22 @@ const PostDetail = ({ post_idx }) => {
                 </div>
             </div>
 
-            {/* 전체 댓글영역 */}
             <div id="container-postdetail">
+                <div id="container-profile-div">
+                    <div id="container-profile-photo">
+                        <img className="stock-avatar1" src={comment.user_img ? comment.user_img : profile} alt={`사진`} />
+                    </div>
+                    <div id="container-profile-text">
+                        <div id="container-profile-nick">{postAuthorNick}</div>
+                        <div id="container-profile-badge"></div>
+                        <div id="txt">{"자기소개 : " + text}</div>
+                    </div>
+                </div>
+
+
+                {/* 전체 댓글영역 */}
                 {/* 작성된 댓글 영역 */}
-                <div id="txt">{text}</div>
+
 
                 <div id="comment-list">
                     {comments.map((comment) => (

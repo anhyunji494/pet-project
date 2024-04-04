@@ -1,11 +1,21 @@
-
-.proFilePost { 
+.proFilePost {
     background-color: var(--secondary);
     font-family: Mulish;
     font-size: 16px;
     width: 60%;
+    height: 610px;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    /* 인터넷 익스플로러 */
+    scrollbar-width: none;
+    /* 파이어폭스 */
 }
-.proFilePosts{
+.bproFilePost ::-webkit-scrollbar {
+    display: none;
+    /* 크롬, 사파리, 오페라, 엣지 */
+}
+
+.proFilePosts {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -18,7 +28,7 @@
     align-items: start;
     padding: 2rem;
 }
- 
+
 .articles {
     display: flex;
     flex-wrap: wrap;
@@ -27,7 +37,7 @@
     max-width: 75rem;
     gap: 1.5rem;
 }
- 
+
 .articles article {
     max-width: 20rem;
     cursor: pointer;
@@ -36,14 +46,15 @@
     transition: all 0.4s ease-in-out;
     overflow: hidden;
     border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-   
+
 .articles article img {
     max-width: 100%;
     transform-origin: center;
     transition: transform 0.4s ease-in-out;
 }
-  
+
 .article-preview {
     padding: 1.5rem;
     background: white;
@@ -63,6 +74,5 @@
 }
 
 .articles article:hover img {
-    transform: scale(1.5); 
+    transform: scale(1.5);
 }
-
