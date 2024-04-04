@@ -96,5 +96,9 @@ public class postService {
     public List<Post> week(String week) {
         return repository.week(week);
     }
+
+    public List<Post> style(String style) {
+        return repository.style(style);
+    }
 }
 

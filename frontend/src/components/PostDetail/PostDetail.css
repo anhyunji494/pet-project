@@ -56,7 +56,7 @@
 
 #container-profile-photo{
     display: flex;
-    background: black;
+    /* background: black; */
     width: 4vw;
     height: 4vw;
     border-radius: 50px;
@@ -189,7 +189,7 @@
     min-width: 17.5rem;
     max-width: 25rem;
     overflow: scroll;
-    height: 40vh;
+    height: 35vh;
     scrollbar-width: none;
     /* 파이어폭스 */
 }

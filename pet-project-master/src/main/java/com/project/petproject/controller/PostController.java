@@ -120,4 +120,17 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/posts/style")
+    public ResponseEntity<List<Post>> style(@RequestParam("style") String style) {
+        System.out.println("외출");
+        try {
+            List<Post> searchResult = postService.style(style);
+            System.out.println(searchResult);
+            return ResponseEntity.ok(searchResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }

@@ -5,6 +5,7 @@
     justify-content: space-evenly;
     scrollbar-width: none;
     /* 파이어폭스 */
+    height: 50%;
 }
 #pppp ::-webkit-scrollbar {
     display: none;

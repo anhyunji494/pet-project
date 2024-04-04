@@ -1,0 +1,98 @@
+.containers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-box {
+    width: 400px;
+    background-color: #f3f4f6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-photo input[type="file"] {
+    margin-top: 10px;
+}
+
+.name-div,
+.birthday,
+.intros,
+.likes,
+.dislikes,
+.location,
+.submitss {
+    margin-bottom: 5px;
+}
+
+.name-div,
+.birthday,
+.intros,
+.likes,
+.dislikes,
+.location {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-div div,
+.birthday div,
+.intros div,
+.likes div,
+.dislikes div,
+.location div {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="file"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: calc(100% - 22px); /* 버튼 마진을 고려하여 인풋 너비 조정 */
+    border: none;
+}
+
+.submitss {
+    display: flex;
+    justify-content: center; /* 버튼 가운데 정렬 */
+    margin-top: 10px; /* 버튼과의 간격을 조절할 수 있습니다. */
+}
+
+.submitss button {
+    padding: 5px 10px; /* 버튼 크기를 절반으로 줄임 */
+    margin-top: 10px; /* 버튼과의 간격을 조절할 수 있습니다. */
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submitss button:hover {
+    background-color: #0056b3;
+}

@@ -52,7 +52,7 @@ function Signin() {
         console.log("실패");
         console.log(error);
       });
-      navigate(`/login`);
+      navigate(`/profile/${id}`);
   };
 
 

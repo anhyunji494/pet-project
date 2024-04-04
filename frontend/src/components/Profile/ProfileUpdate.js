@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Buffer } from 'buffer';
 import uploadImageToS3 from "../../module/s3";
-import './Profile.css';
+import './ProfileUpdate.css';
+import { useNavigate } from "react-router-dom";
 
 function UserUpdate() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         user_nick: "",
         birthday: "",
@@ -57,18 +58,35 @@ function UserUpdate() {
 
             // 서버 응답에 따라 필요한 작업 수행
             sessionStorage.setItem('updatedProfileData', JSON.stringify(response.data));
+            handleLogout();
         } catch (error) {
             console.error("Error:", error);
         }
     };
 
+    const handleLogout = async () => {
+        try {
+            // 서버로 로그아웃 요청 보내기
+            await axios.post('/logout');
+
+            // sessionStorage에 저장된 정보 삭제
+            sessionStorage.removeItem('myInfo');
+            sessionStorage.removeItem('updatedProfileData');
+
+            // 로그아웃 후 로그인 페이지로 이동
+            navigate('/login');
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    };
+
     return (
-        <div class="container" id="body">
+        <div class="containers">
             <div className="profile-box">
                 <div className="profile-div">
                     <div className="profile-photo">
                         {imagePreview ? (
-                            <img src={imagePreview} alt="Profile Preview" style={{ maxWidth: "100px", maxHeight: "100px" }} />
+                            <img src={imagePreview} alt="Profile Preview" style={{ maxWidth: "150px", maxHeight: "150px" }} />
                         ) : (
                             <span>프로필 사진</span>
                         )}
@@ -79,8 +97,9 @@ function UserUpdate() {
                             onChange={handleFileChange}
                         />
                     </div>
+
                     <div className="name-div">
-                        반려동물이름
+                        <div><i className="fi fi-rr-fox"></i>&nbsp;반려동물이름</div>
                         <input
                             className="name"
                             name="user_nick"
@@ -89,29 +108,26 @@ function UserUpdate() {
                         />
                     </div>
                     <div className="birthday">
-                        <i className="fi fi-br-cake-birthday"></i>
-                        &nbsp; 생일{" "}
+                        <div>생일</div>
                         <input
                             className="birthday"
                             name="birthday"
                             value={formData.birthday}
                             onChange={handleChange}
                         />
+
                     </div>
-                </div>
-                <div className="tags"></div>
-            </div>
-            <div className="content-box">
-                <span className="intro">소개</span>
-                <input
-                    className="intro"
-                    name="user_intro"
-                    value={formData.user_info}
-                    onChange={handleChange}
-                />
-                <div className="etc-div">
+                    <div className="intros">
+                        <div>소개</div> 
+                        <input
+                            className="intros"
+                            name="user_intro"
+                            value={formData.user_info}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <div className="likes">
-                        <i className="fi fi-sr-thumbs-up"></i>&nbsp;&nbsp; 좋아하는 것
+                    <div>좋아하는 것</div> 
                         <input
                             className="profile-text"
                             name="likes"
@@ -120,7 +136,7 @@ function UserUpdate() {
                         />
                     </div>
                     <div className="dislikes">
-                        <i className="fi fi-sr-thumbs-up"></i>&nbsp;&nbsp; 싫어하는 것
+                        <div>싫어하는 것</div>
                         <input
                             className="profile-text"
                             name="dislikes"
@@ -129,7 +145,7 @@ function UserUpdate() {
                         />
                     </div>
                     <div className="location">
-                        <i className="fi fi-sr-map-marker-smile"></i>&nbsp;&nbsp; 지역
+                        <div>지역</div>
                         <input
                             className="profile-text"
                             name="location"
@@ -137,9 +153,12 @@ function UserUpdate() {
                             onChange={handleChange}
                         />
                     </div>
-                    <button type="submit" className="signin-button" onClick={handleSubmit}>
-                        회원 수정
-                    </button>
+                    <div className="submitss">
+                        <button type="submit" className="signin-button" onClick={handleSubmit}>
+                            회원 수정
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>

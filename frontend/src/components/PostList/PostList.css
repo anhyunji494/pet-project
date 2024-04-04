@@ -54,6 +54,15 @@
   height: 15vw;
 }
 
+#post-photo-all {
+  flex-wrap: wrap;
+display: flex;
+align-content: start;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+}
+
 #post-divs{
     display: flex;
     overflow: hidden;
@@ -61,6 +70,15 @@
     align-content: start;
     justify-content: center;
     align-items: center;
+}
+
+#post-divs-all{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-content: start;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 #place-txt{
@@ -99,6 +117,7 @@
   height: 15vw;
   width: 15vw;
   margin: 0.3vw;
+  object-fit: cover;
 }
 
 #title-tags{
