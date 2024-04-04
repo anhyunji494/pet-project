@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 import { useBodyScrollLock } from "../useBodyScrollLock.js";
 // import Chat from "../pages/Chat/Chat.js";
 import Write from "../Write/Write.js";
-
+import AllUsers from "../AllUsers/AllUsers.js";
 
 
 const Header = () => {
@@ -41,31 +41,36 @@ const Header = () => {
             navigate('/login');
         }
     };
-    const allUsers = async () => {
-        try {
-            const response = await axios.get('/allUsers');
-            console.log(response.data);
-        } catch (error) {
-            console.error('Error logging out:', error);
-        }
-    };
 
-    // 모달 컨트롤
+    // 새글 모달 컨트롤
 
     // 모달 사용 시 오버레이 뒷배경 스크롤 막기
     const { lockScroll, openScroll } = useBodyScrollLock();
 
-    // 모달 오픈/클로즈
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    // 새글 모달 오픈/클로즈
+    const [isPlusModalOpen, setisPlusModalOpen] = useState(false);
 
-    const openModal = () => {
+    const openPlusModal = () => {
         lockScroll();
-        setModalIsOpen(true);
+        setisPlusModalOpen(true);
     };
 
-    const closeModal = () => {
+    const closePlusModal = () => {
         openScroll();
-        setModalIsOpen(false);
+        setisPlusModalOpen(false);
+    };
+
+    // 친구 모달 오픈/클로즈
+    const [isFriendModalOpen, setisFriendModalOpen] = useState(false);
+
+    const openFriendModal = () => {
+        lockScroll();
+        setisFriendModalOpen(true);
+    };
+
+    const closeFriendModal = () => {
+        openScroll();
+        setisFriendModalOpen(false);
     };
 
 
@@ -99,11 +104,11 @@ const Header = () => {
                         </fieldset>
                     </div>
 
-                    <i className="fi fi-br-plus" id="icon" onClick={openModal}></i>
+                    <i className="fi fi-br-plus" id="icon" onClick={openPlusModal}></i>
 
                     <Modal
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
+                        isOpen={isPlusModalOpen}
+                        onRequestClose={closePlusModal}
                         style={{
                             overlay: {
                                 position: "fixed",
@@ -113,6 +118,7 @@ const Header = () => {
                                 bottom: 0,
                                 backgroundColor: "rgba(0, 0, 0, 0.52)",
                                 backdropFilter: 'blur(15px)',
+                                zIndex: 10,
                             },
                             content: {
                                 position: "absolute",
@@ -132,12 +138,48 @@ const Header = () => {
                     >
 
                         <Write />
-                        <button id="modal-close-btn" onClick={closeModal}>X</button>
+                        <button id="modal-close-btn" onClick={closePlusModal}>X</button>
                     </Modal>
 
                     <div id="icon">
-                        <i className="fi fi-br-comments" id="icon" onClick={allUsers}></i>
+                        <i className="fi fi-br-comments" id="icon" onClick={openFriendModal}>
+                        </i>
                     </div>
+
+                    <Modal
+                        isOpen={isFriendModalOpen}
+                        onRequestClose={closeFriendModal}
+                        style={{
+                            overlay: {
+                                position: "fixed",
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                zIndex: 10,
+                                // backgroundColor: "rgba(0, 0, 0, 0.52)",
+                                // backdropFilter: 'blur(15px)',
+                            },
+                            content: {
+                                position: "absolute",
+                                top: "40px",
+                                left: "40px",
+                                right: "40px",
+                                bottom: "40px",
+                                border: "none",
+                                background: "rgba(0, 0, 0, 0)",
+                                overflow: "auto",
+                                WebkitOverflowScrolling: "touch",
+                                borderRadius: "4px",
+                                outline: "none",
+                                padding: "20px",
+                                backgroundColor: "rgba(0, 0, 0, 0)",
+                            },
+                        }}
+                    >
+                        <AllUsers />
+                        <button id="modal-close-btn" onClick={closePlusModal}>X</button>
+                    </Modal>
 
 
                     <i className="fi fi-br-eclipse-alt" id="icon"></i>
