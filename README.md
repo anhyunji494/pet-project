@@ -13,3 +13,7 @@
 ### 7. 팀원역할
 
 ### 8. 시연영상
+
+
+https://github.com/anhyunji494/pet-project/assets/33133274/255832bc-63ea-4b70-8c72-40a50f02cf97
+
